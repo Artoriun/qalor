@@ -163,52 +163,10 @@ const Hero = () => {
                   WebkitTapHighlightColor: 'transparent'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 6px 20px rgba(0,0,0,0.2)';
-                  e.target.style.background = '#f0f0f0';
-                  const arrow = e.target.querySelector('span span');
-                  if (arrow) {
-                    arrow.style.backgroundColor = '#ff6b35';
-                    arrow.style.color = '#fff';
-                  }
+                  e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-                  e.target.style.background = '#fff';
-                  const arrow = e.target.querySelector('span span');
-                  if (arrow) {
-                    arrow.style.backgroundColor = '#ff6b35';
-                    arrow.style.color = '#fff';
-                  }
-                }}
-                onMouseDown={(e) => {
-                  const arrow = e.target.querySelector('span span');
-                  if (arrow) {
-                    arrow.style.backgroundColor = '#ff6b35';
-                    arrow.style.color = '#fff';
-                  }
-                }}
-                onMouseUp={(e) => {
-                  const arrow = e.target.querySelector('span span');
-                  if (arrow) {
-                    arrow.style.backgroundColor = '#ff6b35';
-                    arrow.style.color = '#fff';
-                  }
-                }}
-                onFocus={(e) => {
-                  const arrow = e.target.querySelector('span span');
-                  if (arrow) {
-                    arrow.style.backgroundColor = '#ff6b35';
-                    arrow.style.color = '#fff';
-                  }
-                }}
-                onBlur={(e) => {
-                  const arrow = e.target.querySelector('span span');
-                  if (arrow) {
-                    arrow.style.backgroundColor = '#ff6b35';
-                    arrow.style.color = '#fff';
-                  }
+                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
