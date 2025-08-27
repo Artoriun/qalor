@@ -100,7 +100,8 @@ const Team = () => {
   };
 
   const handlePDFClick = (member) => {
-    if (!member.isImage) {
+    // Only open PDF if the carousel wasn't dragged
+    if (!member.isImage && !hasMoved) {
       setShowPDF(true);
     }
   };
@@ -181,7 +182,12 @@ const Team = () => {
     
     // Reset drag state
     setDragStart(0);
-    setHasMoved(false);
+    
+    // Reset hasMoved after a short delay to prevent accidental PDF opening
+    setTimeout(() => {
+      setHasMoved(false);
+    }, 100);
+    
     setDragStartTime(0);
   };
 
@@ -217,42 +223,6 @@ const Team = () => {
             <h2 style={{ fontSize: '2rem', margin: '0', color: '#333', fontWeight: '600', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
               Een gezamenlijke werkervaring van meer dan 130 jaar in de warmte wereld waarvan meer dan 100 jaar bij warmtebedrijven heeft geleid tot een unieke krachtenbundeling.
             </h2>
-            {/* Test button for PDF viewer */}
-            <div style={{ marginTop: '20px', marginBottom: '10px' }}>
-              <button 
-                onClick={() => setShowPDF(true)} 
-                style={{ 
-                  padding: '12px 24px', 
-                  backgroundColor: '#ff6b35', 
-                  color: '#fff', 
-                  border: 'none', 
-                  borderRadius: '8px', 
-                  cursor: 'pointer',
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
-                  boxShadow: '0 2px 10px rgba(255, 107, 53, 0.3)',
-                  transition: 'all 0.3s ease',
-                  ':hover': {
-                    backgroundColor: '#e55a2b',
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 4px 15px rgba(255, 107, 53, 0.4)'
-                  }
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = '#e55a2b';
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = '#ff6b35';
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 2px 10px rgba(255, 107, 53, 0.3)';
-                }}
-              >
-                📄 Open Peter's CV (Test PDF Viewer)
-              </button>
-            </div>
           </div>
           <div style={{ position: 'relative' }}>
             {/* Slideshow Container */}
