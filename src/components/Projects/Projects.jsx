@@ -405,7 +405,7 @@ const Projects = () => {
           justifyContent: 'center',
           alignItems: 'center',
           gap: '20px',
-          marginTop: '2rem',
+          marginTop: '0.5rem',
           width: '100%',
           position: 'relative',
         }}>

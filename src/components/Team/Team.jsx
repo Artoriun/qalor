@@ -421,7 +421,7 @@ const Team = () => {
             </div>
           </div>
           {/* Navigation Buttons */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '2rem', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '0.5rem', alignItems: 'center' }}>
             <button onClick={handlePrevClick} style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid #ff6b35', backgroundColor: '#ff6b35', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', fontWeight: 'bold', transition: 'transform 0.25s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', outline: 'none', transform: prevClicked ? 'scale(1.2)' : 'scale(1)' }}>&larr;</button>
             <button onClick={handleNextClick} style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid #ff6b35', backgroundColor: '#ff6b35', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', fontWeight: 'bold', transition: 'transform 0.25s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', outline: 'none', transform: nextClicked ? 'scale(1.2)' : 'scale(1)' }}>&rarr;</button>
           </div>
