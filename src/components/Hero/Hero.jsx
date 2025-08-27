@@ -144,6 +144,7 @@ const Hero = () => {
                   e.target.style.transform = 'translateY(0)';
                   e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
                   e.target.style.background = '#fff';
+                  e.target.style.color = '#000';
                   const arrow = e.target.querySelector('span span');
                   if (arrow) {
                     arrow.style.backgroundColor = '#ff6b35';
@@ -151,6 +152,8 @@ const Hero = () => {
                   }
                 }}
                 onMouseDown={(e) => {
+                  e.target.style.background = '#fff';
+                  e.target.style.color = '#000';
                   const arrow = e.target.querySelector('span span');
                   if (arrow) {
                     arrow.style.backgroundColor = '#ff6b35';
@@ -158,6 +161,8 @@ const Hero = () => {
                   }
                 }}
                 onMouseUp={(e) => {
+                  e.target.style.background = '#fff';
+                  e.target.style.color = '#000';
                   const arrow = e.target.querySelector('span span');
                   if (arrow) {
                     arrow.style.backgroundColor = '#ff6b35';
@@ -165,6 +170,8 @@ const Hero = () => {
                   }
                 }}
                 onFocus={(e) => {
+                  e.target.style.background = '#fff';
+                  e.target.style.color = '#000';
                   const arrow = e.target.querySelector('span span');
                   if (arrow) {
                     arrow.style.backgroundColor = '#ff6b35';
@@ -172,6 +179,8 @@ const Hero = () => {
                   }
                 }}
                 onBlur={(e) => {
+                  e.target.style.background = '#fff';
+                  e.target.style.color = '#000';
                   const arrow = e.target.querySelector('span span');
                   if (arrow) {
                     arrow.style.backgroundColor = '#ff6b35';
