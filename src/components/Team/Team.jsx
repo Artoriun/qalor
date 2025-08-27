@@ -38,9 +38,9 @@ const Team = () => {
   }, []);
 
   const teamMembers = [
-    { id: 1, name: 'Peter de Keijzer', avatar: 'Expert 1', description: 'Warmte-expert', background: '#007bff', backgroundImage: peterImg, pdfPath: '/documents/CV_Peter_de_Keijzer.pdf' },
-    { id: 2, name: 'Huub Jansen', avatar: 'Expert 2', description: 'Warmte-expert', background: '#28a745', backgroundImage: huubImg, pdfPath: '/documents/CV_Huub_Jansen.pdf' },
-    { id: 3, name: 'Jan Pouw', avatar: 'Expert 3', description: 'Warmte-expert', background: '#dc3545', backgroundImage: janImg, pdfPath: '/documents/CV_Jan_Pouw.pdf' },
+    { id: 1, name: 'Peter de Keijzer', avatar: 'Expert 1', description: 'Warmte-expert', background: '#007bff', backgroundImage: peterImg, pdfPath: '/qalor/documents/CV_Peter_de_Keijzer.pdf' },
+    { id: 2, name: 'Huub Jansen', avatar: 'Expert 2', description: 'Warmte-expert', background: '#28a745', backgroundImage: huubImg, pdfPath: '/qalor/documents/CV_Huub_Jansen.pdf' },
+    { id: 3, name: 'Jan Pouw', avatar: 'Expert 3', description: 'Warmte-expert', background: '#dc3545', backgroundImage: janImg, pdfPath: '/qalor/documents/CV_Jan_Pouw.pdf' },
     { id: 4, isImage: true, imageUrl: qalorLogoImg }
   ];
 
@@ -337,7 +337,7 @@ const Team = () => {
             >
               ×
             </button>
-            <Worker workerUrl={`/pdfjs/pdf.worker.min.js`}>
+            <Worker workerUrl={`/qalor/pdfjs/pdf.worker.min.js`}>
               <Viewer fileUrl={currentPdfPath} />
             </Worker>
           </div>
