@@ -6,6 +6,7 @@ import './Hero.css';
 const Hero = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
+  const [isWatWijDoenClicked, setIsWatWijDoenClicked] = useState(false);
 
   // Check for mobile screen size and orientation
   useEffect(() => {
@@ -30,6 +31,24 @@ const Hero = () => {
         behavior: 'smooth',
         block: 'start'
       });
+    }
+  };
+
+  const handleWatWijDoenClick = (e) => {
+    // Add clicked class for animation
+    e.target.classList.add('clicked');
+    setIsWatWijDoenClicked(true);
+    setTimeout(() => {
+      e.target.classList.remove('clicked');
+      setIsWatWijDoenClicked(false);
+    }, 200);
+    smoothScrollTo('qalor');
+  };
+
+  // Clear any lingering hover states on touch devices
+  const handleTouchStart = () => {
+    if (document.activeElement) {
+      document.activeElement.blur();
     }
   };
 
@@ -177,7 +196,13 @@ const Hero = () => {
                 </span>
               </button>
               <button 
-                onClick={() => smoothScrollTo('qalor')}
+                onClick={handleWatWijDoenClick}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={(e) => {
+                  // Clear any hover states on touch end but don't interfere with click animation
+                  setTimeout(() => e.target.blur(), 300);
+                }}
+                className="hero-wat-wij-doen-btn"
                 style={{
                   padding: isMobile ? '0.8rem 1.5rem' : '1rem 2rem',
                   background: 'transparent',
@@ -193,30 +218,6 @@ const Hero = () => {
                   cursor: 'pointer',
                   outline: 'none',
                   WebkitTapHighlightColor: 'transparent'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = '#fff';
-                  e.target.style.color = '#ff6b35';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#fff';
-                }}
-                onMouseDown={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#fff';
-                }}
-                onMouseUp={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#fff';
-                }}
-                onFocus={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#fff';
-                }}
-                onBlur={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#fff';
                 }}
               >
                 Wat wij doen
