@@ -53,6 +53,7 @@ Qalor is a professional consulting company focused on energy efficiency, heating
 - **Professional team member cards** with photos and expertise
 - **Background image overlays** with blur effects
 - **Individual expertise descriptions** for each team member
+- **CV download functionality** for team members
 
 #### Contact Section
 - **Animated floating team images** with staggered timing
@@ -65,7 +66,7 @@ Qalor is a professional consulting company focused on energy efficiency, heating
 ### Core Technologies
 - **React 19.1.1** - Latest React with modern hooks and features
 - **Vite 7.1.2** - Lightning-fast build tool and development server
-- **React Router DOM 7.8.2** - Client-side routing (future-ready)
+- **React Router DOM 7.8.2** - Client-side routing
 
 ### Styling & Animation
 - **CSS-in-JS** - Inline styles for component-scoped styling
@@ -73,7 +74,7 @@ Qalor is a professional consulting company focused on energy efficiency, heating
 - **Custom CSS animations** - Hover effects, transitions, and interactions
 - **Responsive design** - Mobile-first approach with breakpoint optimizations
 
-### PDF Integration (Optional)
+### PDF Integration
 - **@react-pdf-viewer/core** - PDF viewing capabilities
 - **@react-pdf-viewer/default-layout** - Pre-built PDF viewer layout
 - **react-pdf** - React PDF component library
@@ -134,8 +135,9 @@ The development server is configured with `--host` flag for network access:
 ```
 qalor-website/
 ├── public/                    # Static assets
-│   ├── images/               # Image assets organized by section
-│   └── pdfjs/               # PDF.js worker files
+│   ├── documents/            # PDF documents for team CVs
+│   ├── pdfjs/               # PDF.js worker files
+│   └── vite.svg             # Vite logo
 ├── src/
 │   ├── components/          # React components
 │   │   ├── About/          # Company information section
@@ -143,15 +145,26 @@ qalor-website/
 │   │   ├── Footer/         # Website footer
 │   │   ├── Hero/           # Landing section with CTA
 │   │   ├── Navbar/         # Navigation bar component
+│   │   ├── PDFViewer/      # PDF viewing component
 │   │   ├── Particles/      # Particle background effects
+│   │   ├── Preloader/      # Loading screen component
 │   │   ├── Projects/       # Project portfolio carousel
 │   │   ├── Team/           # Team member showcase
 │   │   └── WorkProcess/    # Process visualization
 │   ├── assets/             # Organized asset imports
+│   │   ├── documents/      # Document assets
 │   │   └── images/         # Images categorized by usage
+│   │       ├── figures/    # Logo and decorative images
+│   │       ├── hero/       # Hero section images
+│   │       ├── projects/   # Project showcase images
+│   │       ├── team/       # Team member photos
+│   │       └── workprocess/# Process visualization images
 │   ├── App.jsx             # Main application component
 │   ├── main.jsx           # Application entry point
-│   └── index.css          # Global styles and fonts
+│   ├── index.css          # Global styles and fonts
+│   ├── aos-custom.css     # Custom AOS animations
+│   ├── aos-override.css   # AOS library overrides
+│   └── pdf-viewer-override.css # PDF viewer customizations
 ├── package.json           # Dependencies and scripts
 └── README.md             # Project documentation
 ```
