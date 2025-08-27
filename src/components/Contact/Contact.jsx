@@ -11,7 +11,9 @@ const Contact = () => {
     message: ''
   });
 
-  // Add CSS for white placeholder text
+  const [errors, setErrors] = useState({});
+
+  // Add CSS for white placeholder text and button styling
   React.useEffect(() => {
     const style = document.createElement('style');
     style.textContent = `
@@ -31,6 +33,27 @@ const Contact = () => {
         border: 1px solid #fff !important;
         outline: none !important;
         box-shadow: none !important;
+      }
+      .contact-submit-btn {
+        background: rgba(204,51,17,0.3) !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+      .contact-submit-btn:focus {
+        background: rgba(204,51,17,0.3) !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+      .contact-submit-btn:active {
+        background: rgba(204,51,17,0.3) !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+      .contact-submit-btn:hover {
+        background: rgba(204,51,17,0.5) !important;
       }
     `;
     document.head.appendChild(style);
@@ -90,9 +113,39 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Clear previous errors
+    setErrors({});
+    
+    // Custom validation with Dutch messages
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Naam is verplicht';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'E-mail is verplicht';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Voer een geldig e-mailadres in';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Bericht is verplicht';
+    }
+    
+    // If there are errors, show them and don't submit
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    
     // Handle form submission here
     console.log('Form submitted:', formData);
     alert('Bedankt voor uw bericht! We nemen zo spoedig mogelijk contact met u op.');
+    
+    // Reset form
+    setFormData({ name: '', email: '', message: '' });
   };
 
   return (
@@ -160,77 +213,116 @@ const Contact = () => {
               <div style={{
                 display: 'flex',
                 gap: isMobile ? '0.5rem' : '1rem',
-                flexDirection: 'row'
+                flexDirection: 'column'
               }}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Uw naam"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="contact-input"
-                  style={{
-                    padding: isMobile ? '0.8rem' : '1rem',
-                    border: 'none',
-                    borderRadius: '25px',
-                    fontSize: isMobile ? '0.9rem' : '1rem',
-                    width: '100%',
-                    boxSizing: 'border-box',
-                    flex: '1',
-                    background: 'rgba(204,51,17,0.3)',
-                    color: '#fff'
-                  }}
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Uw e-mail"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="contact-input"
-                  style={{
-                    padding: isMobile ? '0.8rem' : '1rem',
-                    border: 'none',
-                    borderRadius: '25px',
-                    fontSize: isMobile ? '0.9rem' : '1rem',
-                    width: '100%',
-                    boxSizing: 'border-box',
-                    flex: '1',
-                    background: 'rgba(204,51,17,0.3)',
-                    color: '#fff'
-                  }}
-                />
+                <div style={{
+                  display: 'flex',
+                  gap: isMobile ? '0.5rem' : '1rem',
+                  flexDirection: 'row'
+                }}>
+                  <div style={{ flex: '1' }}>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Uw naam"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="contact-input"
+                      style={{
+                        padding: isMobile ? '0.8rem' : '1rem',
+                        border: errors.name ? '2px solid #ff4444' : 'none',
+                        borderRadius: '25px',
+                        fontSize: isMobile ? '0.9rem' : '1rem',
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        background: 'rgba(204,51,17,0.3)',
+                        color: '#fff'
+                      }}
+                    />
+                    {errors.name && (
+                      <div style={{
+                        color: '#fff',
+                        fontSize: '0.85rem',
+                        marginTop: '0.25rem',
+                        marginLeft: '1rem',
+                        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif'
+                      }}>
+                        {errors.name}
+                      </div>
+                    )}
+                  </div>
+                  <div style={{ flex: '1' }}>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Uw e-mail"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="contact-input"
+                      style={{
+                        padding: isMobile ? '0.8rem' : '1rem',
+                        border: errors.email ? '2px solid #ff4444' : 'none',
+                        borderRadius: '25px',
+                        fontSize: isMobile ? '0.9rem' : '1rem',
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        background: 'rgba(204,51,17,0.3)',
+                        color: '#fff'
+                      }}
+                    />
+                    {errors.email && (
+                      <div style={{
+                        color: '#fff',
+                        fontSize: '0.85rem',
+                        marginTop: '0.25rem',
+                        marginLeft: '1rem',
+                        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif'
+                      }}>
+                        {errors.email}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-              <textarea
-                name="message"
-                placeholder="Uw bericht"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows="5"
-                className="contact-input"
-                style={{
-                  padding: isMobile ? '0.8rem' : '1rem',
-                  border: 'none',
-                  borderRadius: '25px',
-                  fontSize: isMobile ? '0.9rem' : '1rem',
-                  resize: 'vertical',
-                  width: '100%',
-                  boxSizing: 'border-box',
-                  background: 'rgba(204,51,17,0.3)',
-                  color: '#fff',
-                  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif'
-                }}
-              />
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Uw bericht"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows="5"
+                  className="contact-input"
+                  style={{
+                    padding: isMobile ? '0.8rem' : '1rem',
+                    border: errors.message ? '2px solid #ff4444' : 'none',
+                    borderRadius: '25px',
+                    fontSize: isMobile ? '0.9rem' : '1rem',
+                    resize: 'vertical',
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    background: 'rgba(204,51,17,0.3)',
+                    color: '#fff',
+                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif'
+                  }}
+                />
+                {errors.message && (
+                  <div style={{
+                    color: '#fff',
+                    fontSize: '0.85rem',
+                    marginTop: '0.25rem',
+                    marginLeft: '1rem',
+                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif'
+                  }}>
+                    {errors.message}
+                  </div>
+                )}
+              </div>
               <button
                 type="submit"
+                className="contact-submit-btn"
                 style={{
                   padding: '0.5rem 1rem',
-                  background: 'rgba(204,51,17,0.3)',
                   color: '#fff',
-                  border: 'none',
                   borderRadius: '25px',
                   fontSize: isMobile ? '0.9rem' : '1rem',
                   fontWeight: 'bold',
@@ -242,12 +334,6 @@ const Contact = () => {
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(204,51,17,0.5)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = 'rgba(204,51,17,0.3)';
                 }}
               >
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

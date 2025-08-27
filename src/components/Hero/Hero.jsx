@@ -23,13 +23,31 @@ const Hero = () => {
     };
   }, []);
 
-  const smoothScrollTo = (elementId) => {
+    const smoothScrollTo = (elementId) => {
     const element = document.getElementById(elementId);
     if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      const start = window.pageYOffset;
+      const target = element.offsetTop;
+      const distance = target - start;
+      const duration = 800;
+      let start_time = null;
+
+      function animation(currentTime) {
+        if (start_time === null) start_time = currentTime;
+        const timeElapsed = currentTime - start_time;
+        const run = ease(timeElapsed, start, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+      }
+
+      function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      }
+
+      requestAnimationFrame(animation);
     }
   };
 
