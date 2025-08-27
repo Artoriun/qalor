@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Footer = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   const smoothScrollTo = (elementId) => {
     const element = document.getElementById(elementId);
     if (element) {
@@ -15,9 +27,19 @@ const Footer = () => {
         <footer 
       className="footer-section" 
       id="footer"
+      style={{
+        padding: isMobile ? '2rem 1rem' : '2rem 20px',
+        backgroundColor: '#f8f9fa'
+      }}
     >
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', marginBottom: '2rem' }}>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))', 
+          gap: isMobile ? '1.5rem' : '2rem', 
+          marginBottom: '2rem',
+          padding: isMobile ? '0 0.5rem' : '0'
+        }}>
           {/* Company Info */}
           <div>
             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>Qalor</h3>
