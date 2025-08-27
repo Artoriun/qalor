@@ -59,28 +59,6 @@ const Navbar = () => {
     setIsMenuOpen(false); // Close mobile menu after clicking
   };
 
-  // Clear any lingering hover states on touch devices
-  const handleTouchStart = () => {
-    // Force remove any hover states by triggering a blur event
-    if (document.activeElement) {
-      document.activeElement.blur();
-    }
-    // Remove any lingering hover classes but preserve click animations
-    document.querySelectorAll('.navbar-desktop-nav button').forEach(btn => {
-      btn.classList.remove('hover');
-      // Don't remove 'clicked' class as it's part of the intended animation
-    });
-  };
-
-  const handleButtonClick = (e, targetId) => {
-    // Add clicked class for animation
-    e.target.classList.add('clicked');
-    setTimeout(() => {
-      e.target.classList.remove('clicked');
-    }, 200);
-    smoothScrollTo(targetId);
-  };
-
   return (
     <nav style={navbarStyle}>
       <div style={navbarInnerStyle}>
@@ -90,8 +68,28 @@ const Navbar = () => {
           <img 
             src={qalorLogo} 
             alt="Qalor Logo" 
-            style={{ height: '48px', cursor: 'pointer' }} 
-            onClick={() => {
+            style={{ 
+              height: '48px', 
+              cursor: 'pointer',
+              transition: 'transform 0.3s ease',
+              transform: 'scale(1)'
+            }} 
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'scale(1.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'scale(1)';
+            }}
+            onClick={(e) => {
+              // Create click animation - scale up momentarily
+              e.target.style.transition = 'transform 0.15s ease';
+              e.target.style.transform = 'scale(1.3)';
+              
+              setTimeout(() => {
+                e.target.style.transition = 'transform 0.3s ease';
+                e.target.style.transform = 'scale(1)';
+              }, 150);
+              
               window.scrollTo({ top: 0, behavior: 'smooth' });
               setIsMenuOpen(false);
             }} 
@@ -99,13 +97,16 @@ const Navbar = () => {
         </div>
         
         {/* Desktop Navigation Links */}
-        <ul className="navbar-desktop-nav" onTouchStart={handleTouchStart}>
+        <ul className="navbar-desktop-nav">
           <li>
             <button 
-              onClick={(e) => handleButtonClick(e, 'team')}
-              onTouchEnd={(e) => {
-                // Clear any hover states on touch end but don't interfere with click animation
-                setTimeout(() => e.target.blur(), 300);
+              onClick={(e) => {
+                // Add clicked class for animation
+                e.target.classList.add('clicked');
+                setTimeout(() => {
+                  e.target.classList.remove('clicked');
+                }, 200);
+                smoothScrollTo('team');
               }}
               style={{ 
                 background: 'none', 
@@ -122,10 +123,13 @@ const Navbar = () => {
           </li>
           <li>
             <button 
-              onClick={(e) => handleButtonClick(e, 'qalor')}
-              onTouchEnd={(e) => {
-                // Clear any hover states on touch end but don't interfere with click animation
-                setTimeout(() => e.target.blur(), 300);
+              onClick={(e) => {
+                // Add clicked class for animation
+                e.target.classList.add('clicked');
+                setTimeout(() => {
+                  e.target.classList.remove('clicked');
+                }, 200);
+                smoothScrollTo('qalor');
               }}
               style={{ 
                 background: 'none', 
@@ -142,10 +146,13 @@ const Navbar = () => {
           </li>
           <li>
             <button 
-              onClick={(e) => handleButtonClick(e, 'how-it-works')}
-              onTouchEnd={(e) => {
-                // Clear any hover states on touch end but don't interfere with click animation
-                setTimeout(() => e.target.blur(), 300);
+              onClick={(e) => {
+                // Add clicked class for animation
+                e.target.classList.add('clicked');
+                setTimeout(() => {
+                  e.target.classList.remove('clicked');
+                }, 200);
+                smoothScrollTo('how-it-works');
               }}
               style={{ 
                 background: 'none', 
@@ -162,10 +169,13 @@ const Navbar = () => {
           </li>
           <li>
             <button 
-              onClick={(e) => handleButtonClick(e, 'projects')}
-              onTouchEnd={(e) => {
-                // Clear any hover states on touch end but don't interfere with click animation
-                setTimeout(() => e.target.blur(), 300);
+              onClick={(e) => {
+                // Add clicked class for animation
+                e.target.classList.add('clicked');
+                setTimeout(() => {
+                  e.target.classList.remove('clicked');
+                }, 200);
+                smoothScrollTo('projects');
               }}
               style={{ 
                 background: 'none', 
