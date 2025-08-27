@@ -16,6 +16,7 @@ const Team = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [slideWidth, setSlideWidth] = useState(400);
   const [showPDF, setShowPDF] = useState(false);
+  const [currentPdfPath, setCurrentPdfPath] = useState('');
   
   // Drag functionality state
   const [isDragging, setIsDragging] = useState(false);
@@ -37,9 +38,9 @@ const Team = () => {
   }, []);
 
   const teamMembers = [
-    { id: 1, name: 'Peter de Keijzer', avatar: 'Expert 1', description: 'Warmte-expert', background: '#007bff', backgroundImage: peterImg },
-    { id: 2, name: 'Huub Jansen', avatar: 'Expert 2', description: 'Warmte-expert', background: '#28a745', backgroundImage: huubImg },
-    { id: 3, name: 'Jan Pouw', avatar: 'Expert 3', description: 'Warmte-expert', background: '#dc3545', backgroundImage: janImg },
+    { id: 1, name: 'Peter de Keijzer', avatar: 'Expert 1', description: 'Warmte-expert', background: '#007bff', backgroundImage: peterImg, pdfPath: '/documents/CV_Peter_de_Keijzer.pdf' },
+    { id: 2, name: 'Huub Jansen', avatar: 'Expert 2', description: 'Warmte-expert', background: '#28a745', backgroundImage: huubImg, pdfPath: '/documents/CV_Huub_Jansen.pdf' },
+    { id: 3, name: 'Jan Pouw', avatar: 'Expert 3', description: 'Warmte-expert', background: '#dc3545', backgroundImage: janImg, pdfPath: '/documents/CV_Jan_Pouw.pdf' },
     { id: 4, isImage: true, imageUrl: qalorLogoImg }
   ];
 
@@ -49,21 +50,52 @@ const Team = () => {
     ...teamMembers.slice(0, 3)
   ];
 
+  // Function to start auto-play timer
+  const startAutoPlay = () => {
+    // Always clear any existing timer first
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+    
+    // Only start timer if PDF is not showing
+    if (!showPDF) {
+      timerRef.current = setInterval(() => {
+        setCurrentSlide((prev) => {
+          if (prev === teamMembers.length + 2) {
+            setTimeout(() => {
+              setIsTransitioning(false);
+              setCurrentSlide(3);
+              setTimeout(() => setIsTransitioning(true), 50);
+            }, 500);
+          }
+          return prev + 1;
+        });
+      }, 3000);
+    }
+  };
+
   useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setCurrentSlide((prev) => {
-        if (prev === teamMembers.length + 2) {
-          setTimeout(() => {
-            setIsTransitioning(false);
-            setCurrentSlide(3);
-            setTimeout(() => setIsTransitioning(true), 50);
-          }, 500);
-        }
-        return prev + 1;
-      });
-    }, 3000);
+    startAutoPlay();
     return () => clearInterval(timerRef.current);
   }, [teamMembers.length]);
+
+  // Restart auto-play when PDF closes
+  useEffect(() => {
+    if (!showPDF) {
+      // Small delay to ensure proper state update
+      const timer = setTimeout(() => {
+        startAutoPlay();
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      // Clear timer when PDF opens
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+    }
+  }, [showPDF]);
 
   useEffect(() => { setCurrentSlide(3); }, []);
 
@@ -100,11 +132,40 @@ const Team = () => {
   };
 
   const handlePDFClick = (member) => {
-    // Only open PDF if the carousel wasn't dragged
-    if (!member.isImage && !hasMoved) {
+    // Only open PDF if the carousel wasn't dragged and member has a PDF
+    if (!member.isImage && !hasMoved && member.pdfPath) {
+      setCurrentPdfPath(member.pdfPath);
       setShowPDF(true);
+      // Timer will be cleared automatically by useEffect
     }
   };
+
+  const handleClosePDF = () => {
+    setShowPDF(false);
+    // Timer will be restarted automatically by useEffect
+  };
+
+  // Add keyboard support and better mobile handling
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && showPDF) {
+        handleClosePDF();
+      }
+    };
+
+    if (showPDF) {
+      document.addEventListener('keydown', handleKeyDown);
+      // Disable body scroll when modal is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [showPDF]);
 
   // Drag event handlers
   const handleDragStart = (e) => {
@@ -166,18 +227,7 @@ const Team = () => {
       setDragOffset(0);
       
       // Restart auto-play timer
-      timerRef.current = setInterval(() => {
-        setCurrentSlide((prev) => {
-          if (prev === teamMembers.length + 2) {
-            setTimeout(() => {
-              setIsTransitioning(false);
-              setCurrentSlide(3);
-              setTimeout(() => setIsTransitioning(true), 50);
-            }, 500);
-          }
-          return prev + 1;
-        });
-      }, 3000);
+      startAutoPlay();
     }
     
     // Reset drag state
@@ -205,11 +255,90 @@ const Team = () => {
   return (
     <>
       {showPDF && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
-          <div className="pdf-modal-container">
-            <button onClick={() => setShowPDF(false)} style={{ position: 'absolute', top: '10px', right: '10px', background: '#e86c35', color: 'white', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', zIndex: 1001, fontSize: '24px', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '40px', minHeight: '40px', maxWidth: '40px', maxHeight: '40px', padding: '0', lineHeight: '1', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>×</button>
+        <div 
+          style={{ 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            width: '100vw', 
+            height: '100vh', 
+            backgroundColor: 'rgba(0, 0, 0, 0.8)', 
+            zIndex: 1000,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '20px',
+            boxSizing: 'border-box'
+          }}
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) {
+              handleClosePDF();
+            }
+          }}
+          onTouchStart={(e) => {
+            if (e.target === e.currentTarget) {
+              e.preventDefault();
+              handleClosePDF();
+            }
+          }}
+        >
+          {/* Additional bottom tap area for mobile portrait */}
+          <div 
+            onClick={handleClosePDF}
+            onTouchStart={handleClosePDF}
+            style={{ 
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: '100%',
+              height: '80px',
+              zIndex: 1001
+            }}
+          />
+          
+          {/* PDF Container */}
+          <div 
+            className="pdf-modal-container" 
+            style={{ 
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              maxWidth: '800px',
+              maxHeight: '90vh',
+              borderRadius: '8px',
+              overflow: 'hidden'
+            }}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+          >
+            <button 
+              onClick={handleClosePDF} 
+              style={{ 
+                position: 'absolute', 
+                top: '10px', 
+                right: '10px', 
+                background: '#e86c35', 
+                color: 'white', 
+                border: 'none', 
+                borderRadius: '50%', 
+                width: '40px', 
+                height: '40px', 
+                cursor: 'pointer', 
+                zIndex: 1003, 
+                fontSize: '24px', 
+                fontWeight: 'bold', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                padding: '0',
+                lineHeight: '1',
+                fontFamily: 'Arial, sans-serif'
+              }}
+            >
+              ×
+            </button>
             <Worker workerUrl={`/pdfjs/pdf.worker.min.js`}>
-              <Viewer fileUrl="/documents/CV_Peter_de_Keijzer.pdf" />
+              <Viewer fileUrl={currentPdfPath} />
             </Worker>
           </div>
         </div>
@@ -276,10 +405,12 @@ const Team = () => {
                           <h3 style={{ fontSize: '1.3rem', marginBottom: '0', color: '#fff' }}>{member.name}</h3>
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '8px' }}>
                             <p style={{ color: '#fff', lineHeight: '1.4', margin: 0, fontSize: '1rem' }}>{member.description}</p>
-                            <button style={{ background: '#fff', color: '#000', border: 'none', borderRadius: '50px', padding: '5px 9px', fontSize: '0.85rem', fontWeight: '600', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.08)', outline: 'none', transition: 'background 0.2s, color 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.2rem', height: '24px', minHeight: '24px' }} onClick={(e) => { e.stopPropagation(); handlePDFClick(member); }}>
-                              CV
-                              <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#ff6b35', fontSize: '13px', fontWeight: 'bold', color: '#fff', marginLeft: '4px' }}>&rarr;</span>
-                            </button>
+                            {member.pdfPath && (
+                              <button style={{ background: '#fff', color: '#000', border: 'none', borderRadius: '50px', padding: '5px 9px', fontSize: '0.85rem', fontWeight: '600', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.08)', outline: 'none', transition: 'background 0.2s, color 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.2rem', height: '24px', minHeight: '24px' }} onClick={(e) => { e.stopPropagation(); handlePDFClick(member); }}>
+                                CV
+                                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#ff6b35', fontSize: '13px', fontWeight: 'bold', color: '#fff', marginLeft: '4px' }}>&rarr;</span>
+                              </button>
+                            )}
                           </div>
                         </div>
                       )}
