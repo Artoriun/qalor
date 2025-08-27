@@ -21,6 +21,8 @@ const Team = () => {
   const [dragStart, setDragStart] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   const [dragStartSlide, setDragStartSlide] = useState(0);
+  const [hasMoved, setHasMoved] = useState(false);
+  const [dragStartTime, setDragStartTime] = useState(0);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -96,78 +98,100 @@ const Team = () => {
     }
   };
 
-  const handlePDFClick = () => {
-    setShowPDF(true);
+  const handlePDFClick = (member) => {
+    if (!member.isImage) {
+      setShowPDF(true);
+    }
   };
 
   // Drag event handlers
   const handleDragStart = (e) => {
-    if (isDragging) return;
-    
     const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-    setIsDragging(true);
     setDragStart(clientX);
     setDragStartSlide(currentSlide);
     setDragOffset(0);
-    setIsTransitioning(false);
+    setHasMoved(false);
+    setDragStartTime(Date.now());
     
-    // Clear auto-play timer during drag
+    // Clear auto-play timer during potential drag
     if (timerRef.current) {
       clearInterval(timerRef.current);
     }
   };
 
   const handleDragMove = (e) => {
-    if (!isDragging) return;
+    if (dragStart === 0) return;
     
     e.preventDefault();
     const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
     const offset = clientX - dragStart;
-    setDragOffset(offset);
+    
+    // Start dragging if moved more than 5 pixels
+    if (Math.abs(offset) > 5 && !hasMoved) {
+      setHasMoved(true);
+      setIsDragging(true);
+      setIsTransitioning(false);
+    }
+    
+    if (hasMoved) {
+      setDragOffset(offset);
+    }
   };
 
   const handleDragEnd = (e) => {
-    if (!isDragging) return;
+    const dragDuration = Date.now() - dragStartTime;
+    const moved = hasMoved;
     
-    setIsDragging(false);
-    setIsTransitioning(true);
-    
-    const threshold = slideWidth * 0.3; // 30% of slide width to trigger change
-    
-    if (Math.abs(dragOffset) > threshold) {
-      if (dragOffset > 0) {
-        // Dragged right - go to previous slide
-        handlePrevClick();
+    if (moved && isDragging) {
+      setIsDragging(false);
+      setIsTransitioning(true);
+      
+      const threshold = slideWidth * 0.3; // 30% of slide width to trigger change
+      
+      if (Math.abs(dragOffset) > threshold) {
+        if (dragOffset > 0) {
+          // Dragged right - go to previous slide
+          handlePrevClick();
+        } else {
+          // Dragged left - go to next slide
+          handleNextClick();
+        }
       } else {
-        // Dragged left - go to next slide
-        handleNextClick();
+        // Snap back to current slide
+        setCurrentSlide(dragStartSlide);
       }
-    } else {
-      // Snap back to current slide
-      setCurrentSlide(dragStartSlide);
+      
+      setDragOffset(0);
+      
+      // Restart auto-play timer
+      timerRef.current = setInterval(() => {
+        setCurrentSlide((prev) => {
+          if (prev === teamMembers.length + 2) {
+            setTimeout(() => {
+              setIsTransitioning(false);
+              setCurrentSlide(3);
+              setTimeout(() => setIsTransitioning(true), 50);
+            }, 500);
+          }
+          return prev + 1;
+        });
+      }, 3000);
     }
     
-    setDragOffset(0);
-    
-    // Restart auto-play timer
-    timerRef.current = setInterval(() => {
-      setCurrentSlide((prev) => {
-        if (prev === teamMembers.length + 2) {
-          setTimeout(() => {
-            setIsTransitioning(false);
-            setCurrentSlide(3);
-            setTimeout(() => setIsTransitioning(true), 50);
-          }, 500);
-        }
-        return prev + 1;
-      });
-    }, 3000);
+    // Reset drag state
+    setDragStart(0);
+    setHasMoved(false);
+    setDragStartTime(0);
   };
 
-  // Handle mouse leave to end drag
-  const handleMouseLeave = () => {
-    if (isDragging) {
-      handleDragEnd();
+  // Handle click vs drag
+  const handleSlideClick = (member, e) => {
+    // If we haven't moved significantly, treat it as a click
+    if (!hasMoved) {
+      console.log('Slide clicked, opening PDF for:', member.name);
+      handlePDFClick(member);
+    } else {
+      console.log('Ignoring click - user dragged');
     }
   };
 
@@ -178,7 +202,7 @@ const Team = () => {
           <div style={{ width: '80%', height: '80%', backgroundColor: '#fff', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
             <button onClick={() => setShowPDF(false)} style={{ position: 'absolute', top: '10px', right: '10px', background: 'red', color: 'white', border: 'none', borderRadius: '50%', width: '30px', height: '30px', cursor: 'pointer' }}>X</button>
             <Worker workerUrl={`/pdfjs/pdf.worker.min.js`}>
-              <Viewer fileUrl="/src/assets/documents/CV_Peter_de_Keijzer.pdf" />
+              <Viewer fileUrl="/documents/CV_Peter_de_Keijzer.pdf" />
             </Worker>
           </div>
         </div>
@@ -209,7 +233,7 @@ const Team = () => {
               onMouseDown={handleDragStart}
               onMouseMove={handleDragMove}
               onMouseUp={handleDragEnd}
-              onMouseLeave={handleMouseLeave}
+              onMouseLeave={handleDragEnd}
               onTouchStart={handleDragStart}
               onTouchMove={handleDragMove}
               onTouchEnd={handleDragEnd}
@@ -217,8 +241,8 @@ const Team = () => {
               <div 
                 style={{ 
                   display: 'flex', 
-                  transform: `translateX(-${(currentSlide * slideWidth) - dragOffset}px)`, 
-                  transition: isTransitioning && !isDragging ? 'transform 0.5s ease-in-out' : 'none', 
+                  transform: `translateX(-${(currentSlide * slideWidth) - dragOffset}px)`,
+                  transition: isTransitioning && !isDragging ? 'transform 0.5s ease-in-out' : 'none',
                   height: '100%' 
                 }}
               >
@@ -233,9 +257,9 @@ const Team = () => {
                       alignItems: 'center',
                       padding: isMobile ? '0 10px' : '0 20px',
                       cursor: isDragging ? 'grabbing' : 'pointer',
-                      pointerEvents: isDragging ? 'none' : 'auto'
+                      pointerEvents: 'auto'
                     }}
-                    onClick={!isDragging ? handlePDFClick : undefined}
+                    onClick={(e) => handleSlideClick(member, e)}
                   >
                     <div style={{ background: member.isImage ? 'transparent' : (member.backgroundImage ? `url(${member.backgroundImage})` : '#f8f9fa'), backgroundSize: member.backgroundImage ? 'cover' : 'auto', backgroundPosition: member.backgroundImage ? 'center' : 'initial', padding: member.isImage ? '0' : '0', borderRadius: '8px', textAlign: 'center', width: '100%', maxWidth: isMobile ? '100%' : '350px', minHeight: isMobile ? '300px' : '320px', display: 'flex', flexDirection: 'column', justifyContent: member.isImage ? 'center' : 'flex-end', overflow: 'hidden', position: 'relative' }}>
                       {member.isImage ? (
@@ -245,7 +269,7 @@ const Team = () => {
                           <h3 style={{ fontSize: '1.3rem', marginBottom: '0', color: '#fff' }}>{member.name}</h3>
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '8px' }}>
                             <p style={{ color: '#fff', lineHeight: '1.4', margin: 0, fontSize: '1rem' }}>{member.description}</p>
-                            <button style={{ background: '#fff', color: '#000', border: 'none', borderRadius: '50px', padding: '5px 9px', fontSize: '0.85rem', fontWeight: '600', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.08)', outline: 'none', transition: 'background 0.2s, color 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.2rem', height: '24px', minHeight: '24px' }} onClick={handlePDFClick}>
+                            <button style={{ background: '#fff', color: '#000', border: 'none', borderRadius: '50px', padding: '5px 9px', fontSize: '0.85rem', fontWeight: '600', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.08)', outline: 'none', transition: 'background 0.2s, color 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.2rem', height: '24px', minHeight: '24px' }} onClick={(e) => { e.stopPropagation(); handlePDFClick(member); }}>
                               CV
                               <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#ff6b35', fontSize: '13px', fontWeight: 'bold', color: '#fff', marginLeft: '4px' }}>&rarr;</span>
                             </button>

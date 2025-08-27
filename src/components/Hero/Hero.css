@@ -9,51 +9,6 @@
   padding-top: 100px !important;
 }
 
-/* Wat wij doen button with white dot animation */
-.hero-wat-wij-doen-btn {
-  position: relative;
-  padding-bottom: 8px !important;
-}
-
-.hero-wat-wij-doen-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
-  background-color: #fff;
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.2s ease;
-}
-
-/* Only enable hover on devices that can actually hover (not touch devices) */
-@media (hover: hover) and (pointer: fine) {
-  .hero-wat-wij-doen-btn:hover::after {
-    opacity: 1;
-  }
-}
-
-.hero-wat-wij-doen-btn.clicked::after {
-  opacity: 1;
-  transform: translateX(-50%) scale(1.8);
-}
-
-/* Disable hover effects on touch devices but keep click animations */
-@media (hover: none) {
-  .hero-wat-wij-doen-btn:hover::after {
-    opacity: 0 !important;
-  }
-  
-  /* Ensure click animations still work on touch devices */
-  .hero-wat-wij-doen-btn.clicked::after {
-    opacity: 1 !important;
-    transform: translateX(-50%) scale(1.8) !important;
-  }
-}
-
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
   .hero {

@@ -33,11 +33,8 @@
   transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
-/* Only enable hover on devices that can actually hover (not touch devices) */
-@media (hover: hover) and (pointer: fine) {
-  .navbar-desktop-nav li button:hover::after {
-    opacity: 1;
-  }
+.navbar-desktop-nav li button:hover::after {
+  opacity: 1;
 }
 
 .navbar-desktop-nav li button.clicked::after {
@@ -120,19 +117,6 @@
   
   .navbar-hamburger {
     display: flex;
-  }
-}
-
-/* Disable hover effects on touch devices but keep click animations */
-@media (hover: none) {
-  .navbar-desktop-nav li button:hover::after {
-    opacity: 0 !important;
-  }
-  
-  /* Ensure click animations still work on touch devices */
-  .navbar-desktop-nav li button.clicked::after {
-    opacity: 1 !important;
-    transform: translateX(-50%) scale(1.8) !important;
   }
 }
 
