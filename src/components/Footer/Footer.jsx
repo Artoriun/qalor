@@ -79,6 +79,8 @@ const Footer = () => {
                     textAlign: 'left',
                     outline: 'none'
                   }}
+                  onFocus={(e) => e.target.style.outline = 'none'}
+                  onBlur={(e) => e.target.style.outline = 'none'}
                 >
                   Ons team
                 </button>
@@ -97,6 +99,8 @@ const Footer = () => {
                     textAlign: 'left',
                     outline: 'none'
                   }}
+                  onFocus={(e) => e.target.style.outline = 'none'}
+                  onBlur={(e) => e.target.style.outline = 'none'}
                 >
                   Qalor
                 </button>
@@ -115,6 +119,8 @@ const Footer = () => {
                     textAlign: 'left',
                     outline: 'none'
                   }}
+                  onFocus={(e) => e.target.style.outline = 'none'}
+                  onBlur={(e) => e.target.style.outline = 'none'}
                 >
                   Ons werkproces
                 </button>
@@ -133,6 +139,8 @@ const Footer = () => {
                     textAlign: 'left',
                     outline: 'none'
                   }}
+                  onFocus={(e) => e.target.style.outline = 'none'}
+                  onBlur={(e) => e.target.style.outline = 'none'}
                 >
                   Projecten
                 </button>
@@ -144,9 +152,9 @@ const Footer = () => {
           <div>
             <h4 style={{ fontSize: '1.2rem', marginBottom: '1rem', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>Contact</h4>
             <div style={{ lineHeight: '2', color: '#666', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
-              <p><a href="mailto:info@qalor.nl" style={{ color: '#666', textDecoration: 'none', outline: 'none' }}>info@qalor.nl</a></p>
-              <p><a href="tel:06 112 16 938" style={{ color: '#666', textDecoration: 'none', outline: 'none' }}>06 112 16 938</a></p>
-              <p><a href="https://maps.app.goo.gl/svtgb5ivAYVd9MXAA" style={{ color: '#666', textDecoration: 'none', outline: 'none' }}>Lange Marktstraat 1, 8911AD, Leeuwarden</a></p>
+              <p><a href="mailto:info@qalor.nl" style={{ color: '#666', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>info@qalor.nl</a></p>
+              <p><a href="tel:06 112 16 938" style={{ color: '#666', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>06 112 16 938</a></p>
+              <p><a href="https://maps.app.goo.gl/svtgb5ivAYVd9MXAA" style={{ color: '#666', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>Lange Marktstraat 1, 8911AD, Leeuwarden</a></p>
             </div>
           </div>
         </div>
