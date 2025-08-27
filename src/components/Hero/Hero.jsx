@@ -23,7 +23,40 @@ const Hero = () => {
     };
   }, []);
 
-    const smoothScrollTo = (elementId) => {
+    // Inject CSS for hero contact button styling and wat wij doen button dot animation
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      .wat-wij-doen-btn {
+        position: relative;
+        padding-bottom: 8px !important;
+      }
+      .wat-wij-doen-btn::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 6px;
+        background-color: #fff;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.2s ease;
+      }
+      .wat-wij-doen-btn:hover::after {
+        opacity: 1;
+      }
+      .wat-wij-doen-btn.clicked::after {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.8);
+      }
+    `;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
+
+  const smoothScrollTo = (elementId) => {
     const element = document.getElementById(elementId);
     if (element) {
       const start = window.pageYOffset;
@@ -195,7 +228,15 @@ const Hero = () => {
                 </span>
               </button>
               <button 
-                onClick={() => smoothScrollTo('qalor')}
+                onClick={(e) => {
+                  // Add clicked class for animation
+                  e.target.classList.add('clicked');
+                  setTimeout(() => {
+                    e.target.classList.remove('clicked');
+                  }, 200);
+                  smoothScrollTo('qalor');
+                }}
+                className="wat-wij-doen-btn"
                 style={{
                   padding: isMobile ? '0.8rem 1.5rem' : '1rem 2rem',
                   background: 'transparent',
@@ -213,12 +254,10 @@ const Hero = () => {
                   WebkitTapHighlightColor: 'transparent'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = '#fff';
-                  e.target.style.color = '#ff6b35';
+                  // Keep background transparent on hover
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#fff';
+                  // Keep background transparent
                 }}
                 onMouseDown={(e) => {
                   e.target.style.background = 'transparent';
