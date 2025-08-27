@@ -51,6 +51,10 @@ const Hero = () => {
         opacity: 1;
         transform: translateX(-50%) scale(1.8);
       }
+      /* Override hover state when no-hover class is applied */
+      .wat-wij-doen-btn.no-hover:hover::after {
+        opacity: 0 !important;
+      }
     `;
     document.head.appendChild(style);
     return () => document.head.removeChild(style);
@@ -193,6 +197,17 @@ const Hero = () => {
                     e.target.classList.remove('clicked');
                   }, 200);
                   smoothScrollTo('qalor');
+                }}
+                onTouchEnd={(e) => {
+                  // Remove any lingering hover states on mobile after touch
+                  setTimeout(() => {
+                    e.target.blur();
+                    // Force remove hover by adding and removing a class
+                    e.target.classList.add('no-hover');
+                    setTimeout(() => {
+                      e.target.classList.remove('no-hover');
+                    }, 300);
+                  }, 250);
                 }}
                 className="wat-wij-doen-btn"
                 style={{

@@ -108,6 +108,17 @@ const Navbar = () => {
                 }, 200);
                 smoothScrollTo('team');
               }}
+              onTouchEnd={(e) => {
+                // Remove any lingering hover states on mobile after touch
+                setTimeout(() => {
+                  e.target.blur();
+                  // Force remove hover by adding and removing a class
+                  e.target.classList.add('no-hover');
+                  setTimeout(() => {
+                    e.target.classList.remove('no-hover');
+                  }, 300);
+                }, 250);
+              }}
               style={{ 
                 background: 'none', 
                 border: 'none', 
@@ -130,6 +141,17 @@ const Navbar = () => {
                   e.target.classList.remove('clicked');
                 }, 200);
                 smoothScrollTo('qalor');
+              }}
+              onTouchEnd={(e) => {
+                // Remove any lingering hover states on mobile after touch
+                setTimeout(() => {
+                  e.target.blur();
+                  // Force remove hover by adding and removing a class
+                  e.target.classList.add('no-hover');
+                  setTimeout(() => {
+                    e.target.classList.remove('no-hover');
+                  }, 300);
+                }, 250);
               }}
               style={{ 
                 background: 'none', 
@@ -154,6 +176,17 @@ const Navbar = () => {
                 }, 200);
                 smoothScrollTo('how-it-works');
               }}
+              onTouchEnd={(e) => {
+                // Remove any lingering hover states on mobile after touch
+                setTimeout(() => {
+                  e.target.blur();
+                  // Force remove hover by adding and removing a class
+                  e.target.classList.add('no-hover');
+                  setTimeout(() => {
+                    e.target.classList.remove('no-hover');
+                  }, 300);
+                }, 250);
+              }}
               style={{ 
                 background: 'none', 
                 border: 'none', 
@@ -176,6 +209,17 @@ const Navbar = () => {
                   e.target.classList.remove('clicked');
                 }, 200);
                 smoothScrollTo('projects');
+              }}
+              onTouchEnd={(e) => {
+                // Remove any lingering hover states on mobile after touch
+                setTimeout(() => {
+                  e.target.blur();
+                  // Force remove hover by adding and removing a class
+                  e.target.classList.add('no-hover');
+                  setTimeout(() => {
+                    e.target.classList.remove('no-hover');
+                  }, 300);
+                }, 250);
               }}
               style={{ 
                 background: 'none', 
