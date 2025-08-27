@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import qalorLogo from '../../assets/images/figures/qalor logo.png';
 
 const Footer = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -42,7 +43,19 @@ const Footer = () => {
         }}>
           {/* Company Info */}
           <div>
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>Qalor</h3>
+            <img 
+              src={qalorLogo} 
+              alt="Qalor Logo" 
+              style={{ 
+                height: '48px', 
+                marginBottom: '1rem',
+                cursor: 'pointer',
+                transition: 'transform 0.3s ease'
+              }}
+              onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            />
             <p style={{ lineHeight: '1.6', color: '#666', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
               Energie deskundigen & warmtenetten
             </p>
