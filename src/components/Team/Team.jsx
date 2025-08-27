@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import peterImg from '../../assets/images/team/peter.png';
 import { Worker, Viewer } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
+import '../../pdf-viewer-override.css';
 
 const Team = () => {
   const timerRef = React.useRef();
@@ -199,8 +200,8 @@ const Team = () => {
     <>
       {showPDF && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.8)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }}>
-          <div style={{ width: '80%', height: '80%', backgroundColor: '#fff', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
-            <button onClick={() => setShowPDF(false)} style={{ position: 'absolute', top: '10px', right: '10px', background: 'red', color: 'white', border: 'none', borderRadius: '50%', width: '30px', height: '30px', cursor: 'pointer' }}>X</button>
+          <div className="pdf-modal-container">
+            <button onClick={() => setShowPDF(false)} style={{ position: 'absolute', top: '10px', right: '10px', background: '#e86c35', color: 'white', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', zIndex: 1001, fontSize: '24px', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '40px', minHeight: '40px', maxWidth: '40px', maxHeight: '40px', padding: '0', lineHeight: '1', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>×</button>
             <Worker workerUrl={`/pdfjs/pdf.worker.min.js`}>
               <Viewer fileUrl="/documents/CV_Peter_de_Keijzer.pdf" />
             </Worker>
@@ -216,6 +217,42 @@ const Team = () => {
             <h2 style={{ fontSize: '2rem', margin: '0', color: '#333', fontWeight: '600', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
               Een gezamenlijke werkervaring van meer dan 130 jaar in de warmte wereld waarvan meer dan 100 jaar bij warmtebedrijven heeft geleid tot een unieke krachtenbundeling.
             </h2>
+            {/* Test button for PDF viewer */}
+            <div style={{ marginTop: '20px', marginBottom: '10px' }}>
+              <button 
+                onClick={() => setShowPDF(true)} 
+                style={{ 
+                  padding: '12px 24px', 
+                  backgroundColor: '#ff6b35', 
+                  color: '#fff', 
+                  border: 'none', 
+                  borderRadius: '8px', 
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
+                  boxShadow: '0 2px 10px rgba(255, 107, 53, 0.3)',
+                  transition: 'all 0.3s ease',
+                  ':hover': {
+                    backgroundColor: '#e55a2b',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 4px 15px rgba(255, 107, 53, 0.4)'
+                  }
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = '#e55a2b';
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = '#ff6b35';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 2px 10px rgba(255, 107, 53, 0.3)';
+                }}
+              >
+                📄 Open Peter's CV (Test PDF Viewer)
+              </button>
+            </div>
           </div>
           <div style={{ position: 'relative' }}>
             {/* Slideshow Container */}
