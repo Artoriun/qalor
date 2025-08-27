@@ -94,7 +94,8 @@ const Footer = () => {
                     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
                     fontSize: 'inherit',
                     padding: 0,
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    outline: 'none'
                   }}
                 >
                   Qalor
@@ -111,7 +112,8 @@ const Footer = () => {
                     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
                     fontSize: 'inherit',
                     padding: 0,
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    outline: 'none'
                   }}
                 >
                   Ons werkproces
@@ -128,7 +130,8 @@ const Footer = () => {
                     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
                     fontSize: 'inherit',
                     padding: 0,
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    outline: 'none'
                   }}
                 >
                   Projecten
