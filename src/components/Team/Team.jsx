@@ -15,6 +15,12 @@ const Team = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [slideWidth, setSlideWidth] = useState(400);
   const [showPDF, setShowPDF] = useState(false);
+  
+  // Drag functionality state
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [dragStartSlide, setDragStartSlide] = useState(0);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -94,6 +100,77 @@ const Team = () => {
     setShowPDF(true);
   };
 
+  // Drag event handlers
+  const handleDragStart = (e) => {
+    if (isDragging) return;
+    
+    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    setIsDragging(true);
+    setDragStart(clientX);
+    setDragStartSlide(currentSlide);
+    setDragOffset(0);
+    setIsTransitioning(false);
+    
+    // Clear auto-play timer during drag
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  };
+
+  const handleDragMove = (e) => {
+    if (!isDragging) return;
+    
+    e.preventDefault();
+    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    const offset = clientX - dragStart;
+    setDragOffset(offset);
+  };
+
+  const handleDragEnd = (e) => {
+    if (!isDragging) return;
+    
+    setIsDragging(false);
+    setIsTransitioning(true);
+    
+    const threshold = slideWidth * 0.3; // 30% of slide width to trigger change
+    
+    if (Math.abs(dragOffset) > threshold) {
+      if (dragOffset > 0) {
+        // Dragged right - go to previous slide
+        handlePrevClick();
+      } else {
+        // Dragged left - go to next slide
+        handleNextClick();
+      }
+    } else {
+      // Snap back to current slide
+      setCurrentSlide(dragStartSlide);
+    }
+    
+    setDragOffset(0);
+    
+    // Restart auto-play timer
+    timerRef.current = setInterval(() => {
+      setCurrentSlide((prev) => {
+        if (prev === teamMembers.length + 2) {
+          setTimeout(() => {
+            setIsTransitioning(false);
+            setCurrentSlide(3);
+            setTimeout(() => setIsTransitioning(true), 50);
+          }, 500);
+        }
+        return prev + 1;
+      });
+    }, 3000);
+  };
+
+  // Handle mouse leave to end drag
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      handleDragEnd();
+    }
+  };
+
   return (
     <>
       {showPDF && (
@@ -118,8 +195,33 @@ const Team = () => {
           </div>
           <div style={{ position: 'relative' }}>
             {/* Slideshow Container */}
-            <div style={{ overflow: 'hidden', width: isMobile ? '90vw' : '1220px', maxWidth: '1220px', margin: '0 auto', height: isMobile ? 'auto' : '400px', minHeight: isMobile ? '350px' : '400px' }}>
-              <div style={{ display: 'flex', transform: `translateX(-${currentSlide * slideWidth}px)`, transition: isTransitioning ? 'transform 0.5s ease-in-out' : 'none', height: '100%' }}>
+            <div 
+              style={{ 
+                overflow: 'hidden', 
+                width: isMobile ? '90vw' : '1220px', 
+                maxWidth: '1220px', 
+                margin: '0 auto', 
+                height: isMobile ? 'auto' : '400px', 
+                minHeight: isMobile ? '350px' : '400px',
+                cursor: isDragging ? 'grabbing' : 'grab',
+                userSelect: 'none'
+              }}
+              onMouseDown={handleDragStart}
+              onMouseMove={handleDragMove}
+              onMouseUp={handleDragEnd}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={handleDragStart}
+              onTouchMove={handleDragMove}
+              onTouchEnd={handleDragEnd}
+            >
+              <div 
+                style={{ 
+                  display: 'flex', 
+                  transform: `translateX(-${(currentSlide * slideWidth) - dragOffset}px)`, 
+                  transition: isTransitioning && !isDragging ? 'transform 0.5s ease-in-out' : 'none', 
+                  height: '100%' 
+                }}
+              >
                 {infiniteSlides.map((member, index) => (
                   <div
                     key={`slide-${index}`}
@@ -130,9 +232,10 @@ const Team = () => {
                       justifyContent: 'center',
                       alignItems: 'center',
                       padding: isMobile ? '0 10px' : '0 20px',
-                      cursor: 'pointer',
+                      cursor: isDragging ? 'grabbing' : 'pointer',
+                      pointerEvents: isDragging ? 'none' : 'auto'
                     }}
-                    onClick={handlePDFClick} // Attach the click handler here
+                    onClick={!isDragging ? handlePDFClick : undefined}
                   >
                     <div style={{ background: member.isImage ? 'transparent' : (member.backgroundImage ? `url(${member.backgroundImage})` : '#f8f9fa'), backgroundSize: member.backgroundImage ? 'cover' : 'auto', backgroundPosition: member.backgroundImage ? 'center' : 'initial', padding: member.isImage ? '0' : '0', borderRadius: '8px', textAlign: 'center', width: '100%', maxWidth: isMobile ? '100%' : '350px', minHeight: isMobile ? '300px' : '320px', display: 'flex', flexDirection: 'column', justifyContent: member.isImage ? 'center' : 'flex-end', overflow: 'hidden', position: 'relative' }}>
                       {member.isImage ? (

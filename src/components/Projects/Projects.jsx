@@ -96,6 +96,12 @@ const Projects = () => {
   const [transition, setTransition] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [slideWidth, setSlideWidth] = useState(400);
+  
+  // Drag functionality state
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [dragStartSlide, setDragStartSlide] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -134,21 +140,10 @@ const Projects = () => {
   const handlePrev = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
-      timerRef.current = setInterval(() => {
-        setCurrent((prev) => {
-          if (prev === projects.length + 2) {
-            setTimeout(() => {
-              setTransition(false);
-              setCurrent(3);
-              setTimeout(() => setTransition(true), 50);
-            }, 500);
-          }
-          return prev + 1;
-        });
-      }, 5000);
     }
-  setPrevClicked(true);
-  setTimeout(() => setPrevClicked(false), 250);
+    
+    setPrevClicked(true);
+    setTimeout(() => setPrevClicked(false), 250);
     setTransition(true);
     if (current === 3) {
       setCurrent(2);
@@ -160,26 +155,29 @@ const Projects = () => {
     } else {
       setCurrent(current - 1);
     }
+    
+    // Restart timer
+    timerRef.current = setInterval(() => {
+      setCurrent((prev) => {
+        if (prev === projects.length + 2) {
+          setTimeout(() => {
+            setTransition(false);
+            setCurrent(3);
+            setTimeout(() => setTransition(true), 50);
+          }, 500);
+        }
+        return prev + 1;
+      });
+    }, 5000);
   };
 
   const handleNext = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
-      timerRef.current = setInterval(() => {
-        setCurrent((prev) => {
-          if (prev === projects.length + 2) {
-            setTimeout(() => {
-              setTransition(false);
-              setCurrent(3);
-              setTimeout(() => setTransition(true), 50);
-            }, 500);
-          }
-          return prev + 1;
-        });
-      }, 5000);
     }
-  setNextClicked(true);
-  setTimeout(() => setNextClicked(false), 250);
+    
+    setNextClicked(true);
+    setTimeout(() => setNextClicked(false), 250);
     setTransition(true);
     if (current === projects.length + 2) {
       setCurrent(projects.length + 3);
@@ -190,6 +188,116 @@ const Projects = () => {
       }, 500);
     } else {
       setCurrent(current + 1);
+    }
+    
+    // Restart timer
+    timerRef.current = setInterval(() => {
+      setCurrent((prev) => {
+        if (prev === projects.length + 2) {
+          setTimeout(() => {
+            setTransition(false);
+            setCurrent(3);
+            setTimeout(() => setTransition(true), 50);
+          }, 500);
+        }
+        return prev + 1;
+      });
+    }, 5000);
+  };
+
+  // Drag event handlers
+  const handleDragStart = (e) => {
+    if (isDragging) return;
+    
+    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    setIsDragging(true);
+    setDragStart(clientX);
+    setDragStartSlide(current);
+    setDragOffset(0);
+    setTransition(false);
+    
+    // Clear auto-play timer during drag
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  };
+
+  const handleDragMove = (e) => {
+    if (!isDragging) return;
+    
+    e.preventDefault();
+    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    const offset = clientX - dragStart;
+    setDragOffset(offset);
+  };
+
+  const handleDragEnd = (e) => {
+    if (!isDragging) return;
+    
+    setIsDragging(false);
+    setTransition(true);
+    
+    const threshold = slideWidth * 0.3; // 30% of slide width to trigger change
+    
+    if (Math.abs(dragOffset) > threshold) {
+      if (dragOffset > 0) {
+        // Dragged right - go to previous slide
+        setPrevClicked(true);
+        setTimeout(() => setPrevClicked(false), 250);
+        if (current === 3) {
+          setCurrent(2);
+          setTimeout(() => {
+            setTransition(false);
+            setCurrent(projects.length + 2);
+            setTimeout(() => setTransition(true), 50);
+          }, 500);
+        } else {
+          setCurrent(current - 1);
+        }
+      } else {
+        // Dragged left - go to next slide
+        setNextClicked(true);
+        setTimeout(() => setNextClicked(false), 250);
+        if (current === projects.length + 2) {
+          setCurrent(projects.length + 3);
+          setTimeout(() => {
+            setTransition(false);
+            setCurrent(3);
+            setTimeout(() => setTransition(true), 50);
+          }, 500);
+        } else {
+          setCurrent(current + 1);
+        }
+      }
+    } else {
+      // Snap back to current slide
+      setCurrent(dragStartSlide);
+    }
+    
+    setDragOffset(0);
+    
+    // Restart auto-play timer with clean setup
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    timerRef.current = setInterval(() => {
+      setCurrent((prev) => {
+        if (prev === projects.length + 2) {
+          setTimeout(() => {
+            setTransition(false);
+            setCurrent(3);
+            setTimeout(() => setTransition(true), 50);
+          }, 500);
+        }
+        return prev + 1;
+      });
+    }, 5000);
+  };
+
+  // Handle mouse leave to end drag
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      handleDragEnd();
     }
   };
 
@@ -213,16 +321,38 @@ const Projects = () => {
           minHeight: isMobile ? '320px' : '350px',
           padding: isMobile ? '0 10px' : '0',
           overflow: 'hidden',
-          boxSizing: 'border-box'
-        }}>
+          boxSizing: 'border-box',
+          cursor: isDragging ? 'grabbing' : 'grab',
+          userSelect: 'none'
+        }}
+        onMouseDown={handleDragStart}
+        onMouseMove={handleDragMove}
+        onMouseUp={handleDragEnd}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleDragStart}
+        onTouchMove={handleDragMove}
+        onTouchEnd={handleDragEnd}
+        >
           <div style={{
             display: 'flex',
-            transform: `translateX(-${current * slideWidth}px)`,
-            transition: transition ? 'transform 0.5s ease-in-out' : 'none',
+            transform: `translateX(-${(current * slideWidth) - dragOffset}px)`,
+            transition: transition && !isDragging ? 'transform 0.5s ease-in-out' : 'none',
             height: '100%'
           }}>
             {infiniteSlides.map((project, idx) => (
-              <div key={`slide-${idx}`} style={{ width: slideWidth, flexShrink: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', padding: isMobile ? '0 10px' : '0 20px' }}>
+              <div 
+                key={`slide-${idx}`} 
+                style={{ 
+                  width: slideWidth, 
+                  flexShrink: 0, 
+                  display: 'flex', 
+                  justifyContent: 'center', 
+                  alignItems: 'center', 
+                  padding: isMobile ? '0 10px' : '0 20px',
+                  cursor: isDragging ? 'grabbing' : 'default',
+                  pointerEvents: isDragging ? 'none' : 'auto'
+                }}
+              >
                 <div style={{
                   background: `#fff url(${project.image}) center/cover no-repeat`,
                   borderRadius: '8px',
