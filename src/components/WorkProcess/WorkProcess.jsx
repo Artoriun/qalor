@@ -136,8 +136,23 @@ const WorkProcess = () => {
                   flex: '0 0 auto',
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  position: 'relative',
+                  left: 0,
+                  marginLeft: 0
                 }}>
+                  {/* Vertical line as child of number icon */}
+                  <div style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: 0,
+                    bottom: 0,
+                    width: '3px',
+                    background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
+                    zIndex: 1,
+                    borderRadius: '2px',
+                    transform: 'translateX(-50%)',
+                  }} />
                   <div style={{
                     width: '60px',
                     height: '60px',
@@ -316,8 +331,23 @@ const WorkProcess = () => {
                   flex: '0 0 auto',
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  position: 'relative',
+                  left: 0,
+                  marginLeft: 0
                 }}>
+                  {/* Vertical line as child of number icon */}
+                  <div style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: 0,
+                    bottom: 0,
+                    width: '3px',
+                    background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
+                    zIndex: 1,
+                    borderRadius: '2px',
+                    transform: 'translateX(-50%)',
+                  }} />
                   <div style={{
                     width: '60px',
                     height: '60px',
@@ -496,8 +526,23 @@ const WorkProcess = () => {
                   flex: '0 0 auto',
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  position: 'relative',
+                  left: 0,
+                  marginLeft: 0
                 }}>
+                  {/* Vertical line as child of number icon */}
+                  <div style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: 0,
+                    bottom: 0,
+                    width: '3px',
+                    background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
+                    zIndex: 1,
+                    borderRadius: '2px',
+                    transform: 'translateX(-50%)',
+                  }} />
                   <div style={{
                     width: '60px',
                     height: '60px',
