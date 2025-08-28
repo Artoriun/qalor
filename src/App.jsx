@@ -82,7 +82,7 @@ function App() {
           <About />
           <WorkProcess />
           <Projects />
-          <Contact />
+          {/* <Contact /> */}
           <Footer />
         </div>
       </Router>

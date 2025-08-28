@@ -25,12 +25,12 @@ const Footer = () => {
   };
 
   return (
-        <footer 
+    <footer 
       className="footer-section" 
       id="footer"
       style={{
         padding: isMobile ? '2rem 1rem' : '2rem 20px',
-        backgroundColor: '#f8f9fa'
+        background: 'linear-gradient(135deg, #FF6B6B, #FF8E53)'
       }}
     >
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
@@ -56,20 +56,20 @@ const Footer = () => {
               onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             />
-            <p style={{ lineHeight: '1.6', color: '#666', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
+            <p style={{ lineHeight: '1.6', color: 'white', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
               Energie deskundigen & warmtenetten
             </p>
           </div>
           
           {/* Menu Links */}
           <div>
-            <h4 style={{ fontSize: '1.2rem', marginBottom: '1rem', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>Menu</h4>
+            <h4 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'white', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>Menu</h4>
             <ul style={{ listStyle: 'none', padding: 0, lineHeight: '2' }}>
               <li>
                 <button 
                   onClick={() => smoothScrollTo('team')} 
                   style={{ 
-                    color: '#666', 
+                    color: 'white', 
                     background: 'none', 
                     border: 'none', 
                     cursor: 'pointer', 
@@ -89,7 +89,7 @@ const Footer = () => {
                 <button 
                   onClick={() => smoothScrollTo('qalor')} 
                   style={{ 
-                    color: '#666', 
+                    color: 'white', 
                     background: 'none', 
                     border: 'none', 
                     cursor: 'pointer', 
@@ -109,7 +109,7 @@ const Footer = () => {
                 <button 
                   onClick={() => smoothScrollTo('how-it-works')} 
                   style={{ 
-                    color: '#666', 
+                    color: 'white', 
                     background: 'none', 
                     border: 'none', 
                     cursor: 'pointer', 
@@ -129,7 +129,7 @@ const Footer = () => {
                 <button 
                   onClick={() => smoothScrollTo('projects')} 
                   style={{ 
-                    color: '#666', 
+                    color: 'white', 
                     background: 'none', 
                     border: 'none', 
                     cursor: 'pointer', 
@@ -150,16 +150,16 @@ const Footer = () => {
           
           {/* Contact Info */}
           <div>
-            <h4 style={{ fontSize: '1.2rem', marginBottom: '1rem', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>Contact</h4>
-            <div style={{ lineHeight: '2', color: '#666', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
-              <p><a href="mailto:pdk@qalor.nl" style={{ color: '#666', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>pdk@qalor.nl</a></p>
-              <p><a href="tel:06 112 16 938" style={{ color: '#666', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>06 112 16 938</a></p>
-              <p><a href="https://maps.app.goo.gl/svtgb5ivAYVd9MXAA" style={{ color: '#666', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>Lange Marktstraat 1, 8911AD, Leeuwarden</a></p>
+            <h4 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'white', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>Contact</h4>
+            <div style={{ lineHeight: '2', color: 'white', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
+              <p><a href="mailto:pdk@qalor.nl" style={{ color: 'white', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>pdk@qalor.nl</a></p>
+              <p><a href="tel:06 112 16 938" style={{ color: 'white', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>06 112 16 938</a></p>
+              <p><a href="https://maps.app.goo.gl/svtgb5ivAYVd9MXAA" style={{ color: 'white', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>Lange Marktstraat 1, 8911AD, Leeuwarden</a></p>
             </div>
           </div>
         </div>
         
-        <div style={{ borderTop: '1px solid #ddd', paddingTop: '1rem', textAlign: 'left', color: '#666' }}>
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.6)', paddingTop: '1rem', textAlign: 'left', color: 'white' }}>
           <p style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>Copyright @ 2025 Qalor</p>
         </div>
       </div>
