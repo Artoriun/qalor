@@ -13,13 +13,18 @@ const Contact = () => {
 
   const [errors, setErrors] = useState({});
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [isTablet, setIsTablet] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
+      const height = window.innerHeight;
       setWindowWidth(width);
+      setWindowHeight(height);
       setIsTablet(width >= 769 && width <= 1024);
+      setIsLandscape(width > height && width / height > 1.2); // Landscape if significantly wider than tall
     };
 
     window.addEventListener('resize', handleResize);
@@ -394,8 +399,8 @@ const Contact = () => {
                   position: 'absolute',
                   top: useMobileLayout ? '10px' : '0px',
                   left: useMobileLayout ? '20px' : '20px',
-                  width: isMobile ? '120px' : isTablet ? '160px' : '200px',
-                  height: isMobile ? '120px' : isTablet ? '160px' : '200px',
+                  width: isMobile && !isLandscape ? '120px' : isLandscape ? '180px' : isTablet ? '160px' : '200px',
+                  height: isMobile && !isLandscape ? '120px' : isLandscape ? '180px' : isTablet ? '160px' : '200px',
                   borderRadius: '12px',
                   objectFit: 'cover',
                   boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
@@ -415,8 +420,8 @@ const Contact = () => {
                   position: 'absolute',
                   top: useMobileLayout ? '30px' : '20px',
                   right: useMobileLayout ? '20px' : '20px',
-                  width: useMobileLayout ? '130px' : isTablet ? '170px' : '220px',
-                  height: useMobileLayout ? '130px' : isTablet ? '170px' : '220px',
+                  width: isMobile && !isLandscape ? '130px' : isLandscape ? '190px' : isTablet ? '170px' : '220px',
+                  height: isMobile && !isLandscape ? '130px' : isLandscape ? '190px' : isTablet ? '170px' : '220px',
                   borderRadius: '12px',
                   objectFit: 'cover',
                   boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
@@ -437,8 +442,8 @@ const Contact = () => {
                   bottom: useMobileLayout ? '20px' : '0px',
                   left: '50%',
                   transform: 'translateX(-50%) rotate(-3deg)',
-                  width: useMobileLayout ? '150px' : isTablet ? '200px' : '260px',
-                  height: useMobileLayout ? '150px' : isTablet ? '200px' : '260px',
+                  width: useMobileLayout ? '150px' : isLandscape ? '220px' : isTablet ? '200px' : '260px',
+                  height: useMobileLayout ? '150px' : isLandscape ? '220px' : isTablet ? '200px' : '260px',
                   borderRadius: '12px',
                   objectFit: 'cover',
                   boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
