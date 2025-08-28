@@ -160,6 +160,8 @@ const Footer = () => {
               <p><a href="mailto:pdk@qalor.nl" style={{ color: 'white', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>pdk@qalor.nl</a></p>
               <p><a href="tel:06 112 16 938" style={{ color: 'white', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>06 112 16 938</a></p>
               <p><a href="https://maps.app.goo.gl/svtgb5ivAYVd9MXAA" style={{ color: 'white', textDecoration: 'none', outline: 'none' }} onFocus={(e) => e.target.style.outline = 'none'} onBlur={(e) => e.target.style.outline = 'none'}>Lange Marktstraat 1, 8911AD, Leeuwarden</a></p>
+              <p><strong>Btw-nummer:</strong> NL005077048B43</p>
+              <p><strong>IBAN:</strong> NL94 ABNA 0134 0861 39</p>
             </div>
           </div>
         </div>
