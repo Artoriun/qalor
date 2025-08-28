@@ -5,13 +5,18 @@ import React, { useState, useEffect } from 'react';
 
 const WorkProcess = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [isTablet, setIsTablet] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
+      const height = window.innerHeight;
       setWindowWidth(width);
+      setWindowHeight(height);
       setIsTablet(width >= 769 && width <= 1024);
+      setIsLandscape(width > height && width / height > 1.2); // Landscape if significantly wider than tall
     };
 
     window.addEventListener('resize', handleResize);
@@ -34,8 +39,23 @@ const WorkProcess = () => {
   };
 
   return (
-    <section id="how-it-works" data-aos="fade-left" style={{ padding: '80px 20px', backgroundColor: '#fff', width: '100%' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+    <section id="how-it-works" data-aos={isLandscape ? "fade-up" : "fade-left"} style={{ 
+      padding: useMobileLayout ? (isLandscape ? '60px 15px' : '80px 20px') : '80px 20px', 
+      backgroundColor: '#fff', 
+      width: '100%',
+      overflow: 'hidden', // Prevent horizontal overflow in landscape
+      position: 'relative', // Ensure proper positioning context
+      margin: '0 auto' // Ensure section itself is centered
+    }}>
+      <div style={{ 
+        maxWidth: '1400px', 
+        margin: '0 auto',
+        width: '100%',
+        position: 'relative', // Ensure proper positioning context
+        transform: 'translateX(0)', // Prevent any transform issues from AOS
+        left: 0, // Ensure no left positioning offset
+        right: 0 // Ensure no right positioning offset
+      }}>
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <div style={{ 
             fontSize: '1.6rem', 
@@ -135,7 +155,13 @@ const WorkProcess = () => {
                 </div>
                 
                 {/* Content area */}
-                <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ 
+                  flex: '1', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: '1.5rem',
+                  maxWidth: isLandscape ? '500px' : 'none' // Constrain width in landscape mode
+                }}>
                   {/* Text content */}
                   <div>
                     <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#333', lineHeight: '1.3' }}>
@@ -306,7 +332,13 @@ const WorkProcess = () => {
                 </div>
                 
                 {/* Content area */}
-                <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ 
+                  flex: '1', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: '1.5rem',
+                  maxWidth: isLandscape ? '500px' : 'none' // Constrain width in landscape mode
+                }}>
                   {/* Text content */}
                   <div>
                     <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#333', lineHeight: '1.3' }}>
@@ -477,7 +509,13 @@ const WorkProcess = () => {
                 </div>
                 
                 {/* Content area */}
-                <div style={{ flex: '1', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div style={{ 
+                  flex: '1', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  gap: '1.5rem',
+                  maxWidth: isLandscape ? '500px' : 'none' // Constrain width in landscape mode
+                }}>
                   {/* Text content */}
                   <div>
                     <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#333', lineHeight: '1.3' }}>

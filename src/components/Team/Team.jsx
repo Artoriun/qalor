@@ -362,7 +362,7 @@ const Team = () => {
           </div>
         </div>
       )}
-      <section id="team" style={{ padding: '80px 20px', backgroundColor: '#fff', width: '100%' }}>
+      <section id="team" data-aos="fade-up" style={{ padding: '80px 20px', backgroundColor: '#fff', width: '100%' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', textAlign: 'center' }}>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <div style={{ fontSize: '1.6rem', color: '#ff6b35', marginBottom: '0.5rem', fontWeight: '400', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
