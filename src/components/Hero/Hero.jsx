@@ -47,6 +47,12 @@ const Hero = () => {
       .wat-wij-doen-btn:hover::after {
         opacity: 1;
       }
+      /* On touch devices, disable hover but allow click animation */
+      @media (hover: none) {
+        .wat-wij-doen-btn:hover::after {
+          opacity: 0;
+        }
+      }
       .wat-wij-doen-btn.clicked::after {
         opacity: 1;
         transform: translateX(-50%) scale(1.8);
@@ -195,19 +201,21 @@ const Hero = () => {
                   e.target.classList.add('clicked');
                   setTimeout(() => {
                     e.target.classList.remove('clicked');
+                    // On mobile, force remove any hover state after animation
+                    if ('ontouchstart' in window) {
+                      e.target.classList.add('no-hover');
+                      setTimeout(() => {
+                        e.target.classList.remove('no-hover');
+                      }, 100);
+                    }
                   }, 200);
                   smoothScrollTo('qalor');
                 }}
                 onTouchEnd={(e) => {
-                  // Remove any lingering hover states on mobile after touch
+                  // Blur to remove focus state on mobile
                   setTimeout(() => {
                     e.target.blur();
-                    // Force remove hover by adding and removing a class
-                    e.target.classList.add('no-hover');
-                    setTimeout(() => {
-                      e.target.classList.remove('no-hover');
-                    }, 300);
-                  }, 250);
+                  }, 50);
                 }}
                 className="wat-wij-doen-btn"
                 style={{
