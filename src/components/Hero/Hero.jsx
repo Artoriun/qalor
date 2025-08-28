@@ -148,7 +148,7 @@ const Hero = () => {
               fontWeight: '500',
               fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif'
             }}>
-              Energie deskundigen & warmtenetten
+              Energiedeskundigen warmtenetten
             </h2>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: isMobile ? 'center' : 'flex-start' }}>
               <button 

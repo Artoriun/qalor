@@ -62,7 +62,7 @@ const Footer = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             />
             <p style={{ lineHeight: '1.6', color: 'white', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
-              Energie deskundigen & warmtenetten
+              Energiedeskundigen warmtenetten
             </p>
           </div>
           

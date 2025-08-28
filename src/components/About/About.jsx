@@ -42,7 +42,7 @@ const About = () => {
             fontWeight: '600',
             fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif'
           }}>
-            Energiedeskundigen en warmtenetten
+            Energiedeskundigen warmtenetten
           </h2>
         </div>
         
