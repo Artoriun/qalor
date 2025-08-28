@@ -133,13 +133,18 @@ const WorkProcess = () => {
               <>
                 {/* Number on left */}
                 <div style={{ 
-                  flex: '0 0 auto',
+                  flex: '0 0 60px',
+                  minWidth: '60px',
+                  maxWidth: '60px',
+                  width: '60px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   position: 'relative',
                   left: 0,
-                  marginLeft: 0
+                  marginLeft: 0,
+                  boxSizing: 'border-box',
+                  // outline: '1px solid red' // Uncomment for debugging
                 }}>
                   {/* Vertical line as child of number icon */}
                   <div style={{
@@ -328,13 +333,18 @@ const WorkProcess = () => {
               <>
                 {/* Number on left */}
                 <div style={{ 
-                  flex: '0 0 auto',
+                  flex: '0 0 60px',
+                  minWidth: '60px',
+                  maxWidth: '60px',
+                  width: '60px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   position: 'relative',
                   left: 0,
-                  marginLeft: 0
+                  marginLeft: 0,
+                  boxSizing: 'border-box',
+                  // outline: '1px solid red' // Uncomment for debugging
                 }}>
                   {/* Vertical line as child of number icon */}
                   <div style={{
@@ -523,13 +533,18 @@ const WorkProcess = () => {
               <>
                 {/* Number on left */}
                 <div style={{ 
-                  flex: '0 0 auto',
+                  flex: '0 0 60px',
+                  minWidth: '60px',
+                  maxWidth: '60px',
+                  width: '60px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   position: 'relative',
                   left: 0,
-                  marginLeft: 0
+                  marginLeft: 0,
+                  boxSizing: 'border-box',
+                  // outline: '1px solid red' // Uncomment for debugging
                 }}>
                   {/* Vertical line as child of number icon */}
                   <div style={{
