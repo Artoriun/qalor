@@ -80,6 +80,7 @@ const WorkProcess = () => {
           flexDirection: 'column', 
           gap: '4rem', 
           position: 'relative',
+          alignItems: isLandscape && useMobileLayout ? 'center' : 'stretch', // Center content in landscape mobile
           '@media (maxWidth: 768px)': {
             gap: '3rem'
           }
@@ -104,7 +105,7 @@ const WorkProcess = () => {
           {useMobileLayout && (
             <div style={{
               position: 'absolute',
-              left: '30px',
+              left: isLandscape ? 'calc(50% - 320px)' : '30px', // Adjust for landscape centering
               top: '40px',
               bottom: '40px',
               width: '3px',
@@ -122,7 +123,10 @@ const WorkProcess = () => {
             minHeight: useMobileLayout ? 'auto' : '300px', 
             position: 'relative', 
             zIndex: 2,
-            flexDirection: useMobileLayout ? 'row' : 'row'
+            flexDirection: useMobileLayout ? 'row' : 'row',
+            width: isLandscape && useMobileLayout ? '90%' : '100%', // Constrain width in landscape
+            maxWidth: isLandscape && useMobileLayout ? '700px' : 'none', // Max width for landscape
+            margin: isLandscape && useMobileLayout ? '0 auto' : '0' // Center in landscape
           }}>
             {/* Mobile layout: Number left, content right */}
             {useMobileLayout ? (
@@ -300,7 +304,10 @@ const WorkProcess = () => {
             gap: useMobileLayout ? '1.5rem' : '3rem', 
             minHeight: useMobileLayout ? 'auto' : '300px', 
             position: 'relative', 
-            zIndex: 2
+            zIndex: 2,
+            width: isLandscape && useMobileLayout ? '90%' : '100%', // Constrain width in landscape
+            maxWidth: isLandscape && useMobileLayout ? '700px' : 'none', // Max width for landscape
+            margin: isLandscape && useMobileLayout ? '0 auto' : '0' // Center in landscape
           }}>
             {useMobileLayout ? (
               <>
@@ -477,7 +484,10 @@ const WorkProcess = () => {
             gap: useMobileLayout ? '1.5rem' : '3rem', 
             minHeight: useMobileLayout ? 'auto' : '300px', 
             position: 'relative', 
-            zIndex: 2
+            zIndex: 2,
+            width: isLandscape && useMobileLayout ? '90%' : '100%', // Constrain width in landscape
+            maxWidth: isLandscape && useMobileLayout ? '700px' : 'none', // Max width for landscape
+            margin: isLandscape && useMobileLayout ? '0 auto' : '0' // Center in landscape
           }}>
             {useMobileLayout ? (
               <>
