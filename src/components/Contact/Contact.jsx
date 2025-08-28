@@ -12,6 +12,24 @@ const Contact = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setWindowWidth(width);
+      setIsTablet(width >= 769 && width <= 1024);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = windowWidth <= 768;
+  const useMobileLayout = isMobile || isTablet;
 
   // Add CSS for white placeholder text and button styling
   React.useEffect(() => {
@@ -91,19 +109,6 @@ const Contact = () => {
     };
   }, []);
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -150,7 +155,7 @@ const Contact = () => {
 
   return (
     <section id="contact" data-aos="zoom-in" style={{ 
-      padding: isMobile ? '30px 10px 0px' : '60px 20px 0px', 
+      padding: useMobileLayout ? '30px 10px 0px' : '60px 20px 0px', 
       background: 'linear-gradient(135deg, #FF6B6B, #FF8E53)', 
       width: '100%',
       position: 'relative',
@@ -163,15 +168,15 @@ const Contact = () => {
         width: '100%',
         background: 'rgba(255, 107, 107, 0.1)',
         borderRadius: '20px',
-        padding: isMobile ? '20px 10px 0px' : '40px 40px 0px',
+        padding: useMobileLayout ? '20px 10px 0px' : '40px 40px 0px',
         position: 'relative',
         zIndex: 2
       }}>
         <div style={{ 
           textAlign: 'left', 
-          marginBottom: isMobile ? '1rem' : '1.5rem',
-          maxWidth: isMobile ? '100%' : '50%',
-          width: isMobile ? '100%' : 'auto'
+          marginBottom: useMobileLayout ? '1rem' : '1.5rem',
+          maxWidth: useMobileLayout ? '100%' : '50%',
+          width: useMobileLayout ? '100%' : 'auto'
         }}>
           <div style={{ 
             fontSize: '1.6rem', 
@@ -183,7 +188,7 @@ const Contact = () => {
             • Contact
           </div>
           <h2 style={{ 
-            fontSize: isMobile ? '2rem' : '2.5rem', 
+            fontSize: useMobileLayout ? '2rem' : '2.5rem', 
             margin: '0', 
             color: '#fff',
             fontWeight: '600',
@@ -194,15 +199,18 @@ const Contact = () => {
         </div>
         
         <div style={{ 
-          display: isMobile ? 'flex' : 'grid', 
-          flexDirection: isMobile ? 'column' : 'row',
-          gridTemplateColumns: isMobile ? 'none' : 'repeat(auto-fit, minmax(350px, 1fr))', 
-          gap: isMobile ? '1rem' : '2rem', 
+          display: useMobileLayout ? 'flex' : 'grid', 
+          flexDirection: useMobileLayout ? 'column' : 'row',
+          gridTemplateColumns: useMobileLayout ? 'none' : 'repeat(auto-fit, minmax(350px, 1fr))', 
+          gap: useMobileLayout ? '2rem' : '2rem', 
           alignItems: 'start',
           marginBottom: '0'
         }}>
           {/* Contact Form */}
-          <div style={{ width: '100%' }}>
+          <div style={{ 
+            width: '100%',
+            marginBottom: useMobileLayout ? '1rem' : '0'
+          }}>
             <form onSubmit={handleSubmit} style={{ 
               display: 'flex', 
               flexDirection: 'column', 
@@ -212,12 +220,12 @@ const Contact = () => {
               {/* Name and Email Row */}
               <div style={{
                 display: 'flex',
-                gap: isMobile ? '0.5rem' : '1rem',
+                gap: useMobileLayout ? '0.5rem' : '1rem',
                 flexDirection: 'column'
               }}>
                 <div style={{
                   display: 'flex',
-                  gap: isMobile ? '0.5rem' : '1rem',
+                  gap: useMobileLayout ? '0.5rem' : '1rem',
                   flexDirection: 'row'
                 }}>
                   <div style={{ flex: '1' }}>
@@ -229,10 +237,10 @@ const Contact = () => {
                       onChange={handleChange}
                       className="contact-input"
                       style={{
-                        padding: isMobile ? '0.8rem' : '1rem',
+                        padding: useMobileLayout ? '0.8rem' : '1rem',
                         border: errors.name ? '2px solid #ff4444' : 'none',
                         borderRadius: '25px',
-                        fontSize: isMobile ? '0.9rem' : '1rem',
+                        fontSize: useMobileLayout ? '0.9rem' : '1rem',
                         width: '100%',
                         boxSizing: 'border-box',
                         background: 'rgba(204,51,17,0.3)',
@@ -260,10 +268,10 @@ const Contact = () => {
                       onChange={handleChange}
                       className="contact-input"
                       style={{
-                        padding: isMobile ? '0.8rem' : '1rem',
+                        padding: useMobileLayout ? '0.8rem' : '1rem',
                         border: errors.email ? '2px solid #ff4444' : 'none',
                         borderRadius: '25px',
-                        fontSize: isMobile ? '0.9rem' : '1rem',
+                        fontSize: useMobileLayout ? '0.9rem' : '1rem',
                         width: '100%',
                         boxSizing: 'border-box',
                         background: 'rgba(204,51,17,0.3)',
@@ -293,10 +301,10 @@ const Contact = () => {
                   rows="5"
                   className="contact-input"
                   style={{
-                    padding: isMobile ? '0.8rem' : '1rem',
+                    padding: useMobileLayout ? '0.8rem' : '1rem',
                     border: errors.message ? '2px solid #ff4444' : 'none',
                     borderRadius: '25px',
-                    fontSize: isMobile ? '0.9rem' : '1rem',
+                    fontSize: useMobileLayout ? '0.9rem' : '1rem',
                     resize: 'vertical',
                     width: '100%',
                     boxSizing: 'border-box',
@@ -324,7 +332,7 @@ const Contact = () => {
                   padding: '0.5rem 1rem',
                   color: '#fff',
                   borderRadius: '25px',
-                  fontSize: isMobile ? '0.9rem' : '1rem',
+                  fontSize: useMobileLayout ? '0.9rem' : '1rem',
                   fontWeight: 'bold',
                   cursor: 'pointer',
                   width: 'auto',
@@ -364,14 +372,17 @@ const Contact = () => {
             justifyContent: 'center',
             width: '100%',
             minHeight: 'fit-content',
-            marginTop: isMobile ? '2rem' : '0',
-            marginBottom: isMobile ? '2rem' : '0'
+            marginTop: useMobileLayout ? '3rem' : '0',
+            marginBottom: useMobileLayout ? '3rem' : '0'
           }}>
             <div style={{
               position: 'relative',
               width: '100%',
-              height: '400px',
-              transform: isMobile ? 'translateY(0px)' : 'translateY(-120px)'
+              height: useMobileLayout ? '350px' : '400px',
+              transform: useMobileLayout ? 'translateY(0px)' : 'translateY(-120px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
               {/* Image 1 - Top Left */}
               <img 
@@ -381,10 +392,10 @@ const Contact = () => {
                 data-aos-delay="100"
                 style={{
                   position: 'absolute',
-                  top: '0px',
-                  left: isMobile ? '10px' : '20px',
-                  width: isMobile ? '150px' : '200px',
-                  height: isMobile ? '150px' : '200px',
+                  top: useMobileLayout ? '10px' : '0px',
+                  left: useMobileLayout ? '20px' : '20px',
+                  width: useMobileLayout ? '120px' : '200px',
+                  height: useMobileLayout ? '120px' : '200px',
                   borderRadius: '12px',
                   objectFit: 'cover',
                   boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
@@ -402,10 +413,10 @@ const Contact = () => {
                 data-aos-delay="200"
                 style={{
                   position: 'absolute',
-                  top: '20px',
-                  right: isMobile ? '10px' : '20px',
-                  width: isMobile ? '160px' : '220px',
-                  height: isMobile ? '160px' : '220px',
+                  top: useMobileLayout ? '30px' : '20px',
+                  right: useMobileLayout ? '20px' : '20px',
+                  width: useMobileLayout ? '130px' : '220px',
+                  height: useMobileLayout ? '130px' : '220px',
                   borderRadius: '12px',
                   objectFit: 'cover',
                   boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
@@ -423,11 +434,11 @@ const Contact = () => {
                 data-aos-delay="300"
                 style={{
                   position: 'absolute',
-                  bottom: '0px',
+                  bottom: useMobileLayout ? '20px' : '0px',
                   left: '50%',
                   transform: 'translateX(-50%) rotate(-3deg)',
-                  width: isMobile ? '190px' : '260px',
-                  height: isMobile ? '190px' : '260px',
+                  width: useMobileLayout ? '150px' : '260px',
+                  height: useMobileLayout ? '150px' : '260px',
                   borderRadius: '12px',
                   objectFit: 'cover',
                   boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
