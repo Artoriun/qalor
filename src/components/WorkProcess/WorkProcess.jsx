@@ -1,10 +1,27 @@
 import berekeningImg from '../../assets/images/workprocess/berekening.jpg';
 import gebouwendatabaseImg from '../../assets/images/workprocess/gebouwendatabase.jpg';
 import nettekeningImg from '../../assets/images/workprocess/nettekening.jpg';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const WorkProcess = () => {
-  const isMobile = window.innerWidth <= 768;
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setWindowWidth(width);
+      setIsTablet(width >= 769 && width <= 1024);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isMobile = windowWidth <= 768;
+  const useMobileLayout = isMobile || isTablet;
 
   const smoothScrollTo = (elementId) => {
     const element = document.getElementById(elementId);
@@ -49,7 +66,7 @@ const WorkProcess = () => {
         }}>
           
           {/* Vertical connecting line - Desktop only */}
-          {!isMobile && (
+          {!useMobileLayout && (
             <div style={{
               position: 'absolute',
               left: '50%',
@@ -64,7 +81,7 @@ const WorkProcess = () => {
           )}
           
           {/* Mobile connecting line - left side */}
-          {isMobile && (
+          {useMobileLayout && (
             <div style={{
               position: 'absolute',
               left: '30px',
@@ -80,15 +97,15 @@ const WorkProcess = () => {
           {/* Step 1 */}
           <div style={{ 
             display: 'flex', 
-            alignItems: isMobile ? 'flex-start' : 'center', 
-            gap: isMobile ? '1.5rem' : '3rem', 
-            minHeight: isMobile ? 'auto' : '300px', 
+            alignItems: useMobileLayout ? 'flex-start' : 'center', 
+            gap: useMobileLayout ? '1.5rem' : '3rem', 
+            minHeight: useMobileLayout ? 'auto' : '300px', 
             position: 'relative', 
             zIndex: 2,
-            flexDirection: isMobile ? 'row' : 'row'
+            flexDirection: useMobileLayout ? 'row' : 'row'
           }}>
             {/* Mobile layout: Number left, content right */}
-            {isMobile ? (
+            {useMobileLayout ? (
               <>
                 {/* Number on left */}
                 <div style={{ 
@@ -253,13 +270,13 @@ const WorkProcess = () => {
           {/* Step 2 */}
           <div style={{ 
             display: 'flex', 
-            alignItems: isMobile ? 'flex-start' : 'center', 
-            gap: isMobile ? '1.5rem' : '3rem', 
-            minHeight: isMobile ? 'auto' : '300px', 
+            alignItems: useMobileLayout ? 'flex-start' : 'center', 
+            gap: useMobileLayout ? '1.5rem' : '3rem', 
+            minHeight: useMobileLayout ? 'auto' : '300px', 
             position: 'relative', 
             zIndex: 2
           }}>
-            {isMobile ? (
+            {useMobileLayout ? (
               <>
                 {/* Number on left */}
                 <div style={{ 
@@ -424,13 +441,13 @@ const WorkProcess = () => {
           {/* Step 3 */}
           <div style={{ 
             display: 'flex', 
-            alignItems: isMobile ? 'flex-start' : 'center', 
-            gap: isMobile ? '1.5rem' : '3rem', 
-            minHeight: isMobile ? 'auto' : '300px', 
+            alignItems: useMobileLayout ? 'flex-start' : 'center', 
+            gap: useMobileLayout ? '1.5rem' : '3rem', 
+            minHeight: useMobileLayout ? 'auto' : '300px', 
             position: 'relative', 
             zIndex: 2
           }}>
-            {isMobile ? (
+            {useMobileLayout ? (
               <>
                 {/* Number on left */}
                 <div style={{ 
