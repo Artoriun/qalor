@@ -20,12 +20,13 @@ Qalor is a professional consulting company focused on energy efficiency, heating
 - **Mobile hamburger menu** with animated transitions
 - **Orange dot hover effects** with click swelling animations
 - **Scroll position restoration** for seamless navigation experience
+- **Unified contact flow** - All contact buttons redirect to footer section
 
 ### 📱 Component Sections
 
 #### Hero Section
 - **Full-screen gradient background** with hero image
-- **Interactive "Wat wij doen" button** with white dot animations
+- **Interactive contact button** with smooth scroll to footer
 - **Responsive typography** adapting to screen sizes
 - **Call-to-action buttons** with smooth scroll navigation
 
@@ -38,7 +39,7 @@ Qalor is a professional consulting company focused on energy efficiency, heating
 #### Work Process Section
 - **Step-by-step process visualization** with numbered circles
 - **Progressive gradient colors** from reddish-orange to light orange
-- **Interactive process cards** with hover effects
+- **Interactive "Meer leren" buttons** redirecting to footer contact
 - **Detailed workflow descriptions** for client understanding
 
 #### Projects Portfolio
@@ -55,11 +56,18 @@ Qalor is a professional consulting company focused on energy efficiency, heating
 - **Individual expertise descriptions** for each team member
 - **CV download functionality** for team members
 
-#### Contact Section
-- **Animated floating team images** with staggered timing
-- **Professional contact form** with validation
-- **Optimized animation delays** (100ms, 200ms, 300ms intervals)
-- **Particle background effects** for visual enhancement
+#### Footer Section (Primary Contact Hub)
+- **Gradient background** matching hero section design
+- **Particle effects** for visual consistency
+- **Comprehensive contact information**:
+  - Email: pdk@qalor.nl (clickable mailto link)
+  - Phone: 06 112 16 938 (clickable tel link)
+  - Address: Lange Marktstraat 1, 8911AD, Leeuwarden (linked to Google Maps)
+  - **BTW-nummer:** NL005077048B43 (bold label)
+  - **IBAN:** NL94 ABNA 0134 0861 39 (bold label)
+- **Navigation menu** with smooth scroll links
+- **Company logo** (white version for contrast)
+- **Copyright information** and legal details
 
 ## 🛠️ Technical Stack
 
@@ -138,11 +146,13 @@ qalor-website/
 │   ├── documents/            # PDF documents for team CVs
 │   ├── pdfjs/               # PDF.js worker files
 │   └── vite.svg             # Vite logo
+├── docs/                     # Production build for deployment
+│   ├── assets/              # Compiled CSS and JS bundles
+│   └── index.html           # Production HTML entry point
 ├── src/
 │   ├── components/          # React components
 │   │   ├── About/          # Company information section
-│   │   ├── Contact/        # Contact form and information
-│   │   ├── Footer/         # Website footer
+│   │   ├── Footer/         # Footer with contact information (primary contact hub)
 │   │   ├── Hero/           # Landing section with CTA
 │   │   ├── Navbar/         # Navigation bar component
 │   │   ├── PDFViewer/      # PDF viewing component
@@ -154,7 +164,7 @@ qalor-website/
 │   ├── assets/             # Organized asset imports
 │   │   ├── documents/      # Document assets
 │   │   └── images/         # Images categorized by usage
-│   │       ├── figures/    # Logo and decorative images
+│   │       ├── figures/    # Logo and decorative images (including white logo)
 │   │       ├── hero/       # Hero section images
 │   │       ├── projects/   # Project showcase images
 │   │       ├── team/       # Team member photos
@@ -162,14 +172,18 @@ qalor-website/
 │   ├── App.jsx             # Main application component
 │   ├── main.jsx           # Application entry point
 │   ├── index.css          # Global styles and fonts
-│   ├── aos-custom.css     # Custom AOS animations
-│   ├── aos-override.css   # AOS library overrides
 │   └── pdf-viewer-override.css # PDF viewer customizations
 ├── package.json           # Dependencies and scripts
 └── README.md             # Project documentation
 ```
 
 ## 🎯 Key Features & Functionality
+
+### Contact Flow Architecture
+- **Unified Contact Strategy**: All contact buttons throughout the site redirect to footer
+- **Streamlined User Experience**: Eliminates separate contact section for better flow
+- **Footer as Contact Hub**: Comprehensive contact information centralized in footer
+- **Business Information**: BTW number and IBAN prominently displayed for professional clients
 
 ### Animation System
 - **AOS Integration**: Scroll-triggered animations with optimized performance
@@ -190,6 +204,13 @@ qalor-website/
 - **Efficient Re-renders**: Optimized React hooks and state management
 
 ## 🔧 Configuration & Customization
+
+### Contact Information
+- **Email**: pdk@qalor.nl
+- **Phone**: 06 112 16 938
+- **Address**: Lange Marktstraat 1, 8911AD, Leeuwarden
+- **BTW-nummer**: NL005077048B43
+- **IBAN**: NL94 ABNA 0134 0861 39
 
 ### Color Scheme
 - Primary Orange: `#ff6b35`
@@ -215,10 +236,16 @@ qalor-website/
 ```bash
 npm run build
 ```
-This creates an optimized production build in the `dist/` directory.
+This creates an optimized production build in the `dist/` directory, which is then copied to the `docs/` folder for GitHub Pages deployment.
+
+### Current Deployment
+- **Branch**: `nocontactform` - Contains the latest contact flow updates
+- **Production Build**: Located in `docs/` folder for GitHub Pages
+- **Master Branch**: Main production branch (merge target)
 
 ### Deployment Options
-- **Static Hosting**: Vercel, Netlify, GitHub Pages
+- **GitHub Pages**: Automatic deployment from `docs/` folder
+- **Static Hosting**: Vercel, Netlify
 - **CDN**: CloudFront, CloudFlare
 - **Traditional Hosting**: Apache, Nginx
 
@@ -226,6 +253,27 @@ This creates an optimized production build in the `dist/` directory.
 - Development: `npm run dev`
 - Production: `npm run build && npm run preview`
 - Linting: `npm run lint`
+
+## 🔄 Recent Updates (nocontactform branch)
+
+### Contact Section Removal
+- ✅ Removed dedicated contact section component
+- ✅ Redirected all contact buttons to footer section
+- ✅ Updated navbar contact button (desktop & mobile)
+- ✅ Updated hero section contact button
+- ✅ Updated all "Meer leren" buttons in WorkProcess section
+
+### Footer Enhancement
+- ✅ Added gradient background matching hero section
+- ✅ Integrated particle effects for visual consistency
+- ✅ Added white logo version for better contrast
+- ✅ Added comprehensive business information (BTW & IBAN)
+- ✅ Styled contact labels with bold formatting
+
+### Production Deployment
+- ✅ Built and deployed to `docs/` folder
+- ✅ Committed changes with detailed commit messages
+- ✅ Pushed to remote `nocontactform` branch
 
 ## 📱 Browser Support
 
