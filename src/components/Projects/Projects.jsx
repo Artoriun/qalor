@@ -1,4 +1,4 @@
-import assencompImg from '../../assets/images/projects/assencomp.png';
+import assencompImg from '../../assets/images/projects/assencomp.jpg';
 import heechterp2Img from '../../assets/images/projects/heechterp2.png';
 import heegImg from '../../assets/images/projects/heeg.jpeg';
 import sneekImg from '../../assets/images/projects/sneek.jpeg';
