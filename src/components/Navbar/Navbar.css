@@ -37,6 +37,13 @@
   opacity: 1;
 }
 
+/* On touch devices, disable hover but allow click animation */
+@media (hover: none) {
+  .navbar-desktop-nav li button:hover::after {
+    opacity: 0;
+  }
+}
+
 .navbar-desktop-nav li button.clicked::after {
   opacity: 1;
   transform: translateX(-50%) scale(1.8);

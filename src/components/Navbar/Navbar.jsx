@@ -105,19 +105,21 @@ const Navbar = () => {
                 e.target.classList.add('clicked');
                 setTimeout(() => {
                   e.target.classList.remove('clicked');
+                  // On mobile, force remove any hover state after animation
+                  if ('ontouchstart' in window) {
+                    e.target.classList.add('no-hover');
+                    setTimeout(() => {
+                      e.target.classList.remove('no-hover');
+                    }, 100);
+                  }
                 }, 200);
                 smoothScrollTo('team');
               }}
               onTouchEnd={(e) => {
-                // Remove any lingering hover states on mobile after touch
+                // Blur to remove focus state on mobile
                 setTimeout(() => {
                   e.target.blur();
-                  // Force remove hover by adding and removing a class
-                  e.target.classList.add('no-hover');
-                  setTimeout(() => {
-                    e.target.classList.remove('no-hover');
-                  }, 300);
-                }, 250);
+                }, 50);
               }}
               style={{ 
                 background: 'none', 
@@ -139,19 +141,21 @@ const Navbar = () => {
                 e.target.classList.add('clicked');
                 setTimeout(() => {
                   e.target.classList.remove('clicked');
+                  // On mobile, force remove any hover state after animation
+                  if ('ontouchstart' in window) {
+                    e.target.classList.add('no-hover');
+                    setTimeout(() => {
+                      e.target.classList.remove('no-hover');
+                    }, 100);
+                  }
                 }, 200);
                 smoothScrollTo('qalor');
               }}
               onTouchEnd={(e) => {
-                // Remove any lingering hover states on mobile after touch
+                // Blur to remove focus state on mobile
                 setTimeout(() => {
                   e.target.blur();
-                  // Force remove hover by adding and removing a class
-                  e.target.classList.add('no-hover');
-                  setTimeout(() => {
-                    e.target.classList.remove('no-hover');
-                  }, 300);
-                }, 250);
+                }, 50);
               }}
               style={{ 
                 background: 'none', 
@@ -173,19 +177,21 @@ const Navbar = () => {
                 e.target.classList.add('clicked');
                 setTimeout(() => {
                   e.target.classList.remove('clicked');
+                  // On mobile, force remove any hover state after animation
+                  if ('ontouchstart' in window) {
+                    e.target.classList.add('no-hover');
+                    setTimeout(() => {
+                      e.target.classList.remove('no-hover');
+                    }, 100);
+                  }
                 }, 200);
                 smoothScrollTo('how-it-works');
               }}
               onTouchEnd={(e) => {
-                // Remove any lingering hover states on mobile after touch
+                // Blur to remove focus state on mobile
                 setTimeout(() => {
                   e.target.blur();
-                  // Force remove hover by adding and removing a class
-                  e.target.classList.add('no-hover');
-                  setTimeout(() => {
-                    e.target.classList.remove('no-hover');
-                  }, 300);
-                }, 250);
+                }, 50);
               }}
               style={{ 
                 background: 'none', 
@@ -207,19 +213,21 @@ const Navbar = () => {
                 e.target.classList.add('clicked');
                 setTimeout(() => {
                   e.target.classList.remove('clicked');
+                  // On mobile, force remove any hover state after animation
+                  if ('ontouchstart' in window) {
+                    e.target.classList.add('no-hover');
+                    setTimeout(() => {
+                      e.target.classList.remove('no-hover');
+                    }, 100);
+                  }
                 }, 200);
                 smoothScrollTo('projects');
               }}
               onTouchEnd={(e) => {
-                // Remove any lingering hover states on mobile after touch
+                // Blur to remove focus state on mobile
                 setTimeout(() => {
                   e.target.blur();
-                  // Force remove hover by adding and removing a class
-                  e.target.classList.add('no-hover');
-                  setTimeout(() => {
-                    e.target.classList.remove('no-hover');
-                  }, 300);
-                }, 250);
+                }, 50);
               }}
               style={{ 
                 background: 'none', 
