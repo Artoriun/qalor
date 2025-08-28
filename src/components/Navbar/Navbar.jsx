@@ -262,8 +262,13 @@ const Navbar = () => {
         onMouseLeave={(e) => {
           e.target.style.background = '#ff6b35';
         }}
-        ><span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          Contact
+        ><span style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '0.5rem',
+          pointerEvents: 'none' // Prevent hover effects on text and arrow
+        }}>
+          <span style={{ pointerEvents: 'none' }}>Contact</span>
           <span style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -274,7 +279,8 @@ const Navbar = () => {
             backgroundColor: '#fff',
             fontSize: '16px',
             fontWeight: 'bold',
-            color: '#ff6b35'
+            color: '#ff6b35',
+            pointerEvents: 'none' // Prevent hover effects on arrow
           }}>→</span>
         </span></button>
         
