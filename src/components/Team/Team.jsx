@@ -17,6 +17,7 @@ const Team = () => {
   const [slideWidth, setSlideWidth] = useState(400);
   const [showPDF, setShowPDF] = useState(false);
   const [currentPdfPath, setCurrentPdfPath] = useState('');
+  const [pdfKey, setPdfKey] = useState(0); // Force PDF viewer re-render on orientation change
   
   // Drag functionality state
   const [isDragging, setIsDragging] = useState(false);
@@ -31,11 +32,29 @@ const Team = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
       setSlideWidth(mobile ? Math.min(window.innerWidth * 0.9, 400) : 400);
+      
+      // Force PDF viewer to re-render if it's currently showing
+      if (showPDF) {
+        setPdfKey(prev => prev + 1);
+      }
     };
+    
+    const handleOrientationChange = () => {
+      // Add a small delay to ensure the viewport has updated
+      setTimeout(() => {
+        checkScreenSize();
+      }, 100);
+    };
+    
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+    window.addEventListener('orientationchange', handleOrientationChange);
+    
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+      window.removeEventListener('orientationchange', handleOrientationChange);
+    };
+  }, [showPDF]);
 
   const teamMembers = [
     { id: 1, name: 'Peter de Keijzer', avatar: 'Expert 1', description: 'Warmte-expert', background: '#007bff', backgroundImage: peterImg, pdfPath: '/qalor/documents/CV_Peter_de_Keijzer.pdf' },
@@ -338,7 +357,7 @@ const Team = () => {
               ×
             </button>
             <Worker workerUrl={`/qalor/pdfjs/pdf.worker.min.js`}>
-              <Viewer fileUrl={currentPdfPath} />
+              <Viewer key={pdfKey} fileUrl={currentPdfPath} />
             </Worker>
           </div>
         </div>
