@@ -39,7 +39,7 @@ const WorkProcess = () => {
   };
 
   return (
-    <section id="how-it-works" data-aos={isLandscape ? "fade-up" : "fade-left"} style={{ 
+    <section id="how-it-works" data-aos="fade-right" style={{ 
       padding: useMobileLayout ? (isLandscape ? '60px 15px' : '80px 20px') : '80px 20px', 
       backgroundColor: '#fff', 
       width: '100%',

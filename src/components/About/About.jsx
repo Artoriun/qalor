@@ -180,6 +180,8 @@ const About = () => {
           <img 
             src={peterhuubImg}
             alt="Peter & Huub"
+            data-aos="zoom-in"
+            data-aos-delay="300"
             style={{
               width: '100%',
               height: (() => {

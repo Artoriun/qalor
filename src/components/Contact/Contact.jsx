@@ -159,7 +159,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" data-aos="zoom-in" style={{ 
+    <section id="contact" data-aos="fade-in" style={{ 
       padding: useMobileLayout ? '30px 10px 0px' : '60px 20px 0px', 
       background: 'linear-gradient(135deg, #FF6B6B, #FF8E53)', 
       width: '100%',
