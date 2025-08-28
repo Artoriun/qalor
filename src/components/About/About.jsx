@@ -3,11 +3,14 @@ import React, { useState, useEffect } from 'react';
 
 const About = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
-  // Check for mobile screen size
+  // Check for mobile and tablet screen sizes
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const width = window.innerWidth;
+      setIsMobile(width <= 768);
+      setIsTablet(width > 768 && width <= 1024);
     };
 
     checkScreenSize();
@@ -29,7 +32,11 @@ const About = () => {
             • Wat wij doen
           </div>
           <h2 style={{ 
-            fontSize: isMobile ? '2rem' : '2.5rem', 
+            fontSize: (() => {
+              if (isMobile) return '2rem';
+              if (isTablet) return '2.25rem';
+              return '2.5rem';
+            })(),
             margin: '0', 
             color: '#333',
             fontWeight: '600',
@@ -175,9 +182,17 @@ const About = () => {
             alt="Peter & Huub"
             style={{
               width: '100%',
-              height: isMobile ? '300px' : '450px',
+              height: (() => {
+                if (isMobile) return '300px';
+                if (isTablet) return '380px';
+                return '450px';
+              })(),
               objectFit: 'cover',
-              objectPosition: isMobile ? 'center -75px' : 'center -125px',
+              objectPosition: (() => {
+                if (isMobile) return 'center -50px';
+                if (isTablet) return 'center -90px';
+                return 'center -125px';
+              })(),
               borderRadius: '12px',
               boxShadow: '0 8px 25px rgba(255,107,53,0.2)'
             }}
