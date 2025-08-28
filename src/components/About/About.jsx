@@ -19,7 +19,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="qalor" data-aos="fade-right" style={{ padding: '80px 20px', backgroundColor: '#f8f9fa', width: '100%' }}>
+    <section id="qalor" data-aos="fade-in" style={{ padding: '80px 20px', backgroundColor: '#f8f9fa', width: '100%' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <div style={{ 

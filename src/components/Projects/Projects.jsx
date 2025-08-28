@@ -302,7 +302,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" data-aos="fade-down" style={{ padding: '80px 20px', backgroundColor: '#f8f9fa', width: '100%' }}>
+    <section id="projects" data-aos="fade-right" style={{ padding: '80px 20px', backgroundColor: '#f8f9fa', width: '100%' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', textAlign: 'center' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <div style={{ fontSize: '1.6rem', color: '#ff6b35', marginBottom: '0.5rem', fontWeight: '400' }}>
