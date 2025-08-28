@@ -179,7 +179,7 @@ const About = () => {
               objectFit: 'cover',
               objectPosition: isMobile ? 'center -75px' : 'center -125px',
               borderRadius: '12px',
-              boxShadow: '0 8px 25px rgba(0,123,255,0.2)'
+              boxShadow: '0 8px 25px rgba(255,107,53,0.2)'
             }}
           />
         </div>
