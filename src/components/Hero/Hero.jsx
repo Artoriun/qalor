@@ -152,7 +152,7 @@ const Hero = () => {
             </h2>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: isMobile ? 'center' : 'flex-start' }}>
               <button 
-                onClick={() => smoothScrollTo('contact')}
+                onClick={() => smoothScrollTo('footer')}
                 style={{
                   padding: '0.5rem 1rem',
                   background: '#fff',

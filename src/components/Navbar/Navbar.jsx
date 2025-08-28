@@ -245,7 +245,7 @@ const Navbar = () => {
         </ul>
         
         {/* Desktop Contact button */}
-        <button onClick={() => smoothScrollTo('contact')} className="navbar-desktop-contact" style={{ 
+        <button onClick={() => smoothScrollTo('footer')} className="navbar-desktop-contact" style={{ 
           background: '#ff6b35', 
           color: '#fff', 
           border: 'none', 
@@ -302,7 +302,7 @@ const Navbar = () => {
               <button onClick={() => smoothScrollTo('qalor')} className="navbar-mobile-menu-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Qalor</button>
               <button onClick={() => smoothScrollTo('how-it-works')} className="navbar-mobile-menu-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Ons werkproces</button>
               <button onClick={() => smoothScrollTo('projects')} className="navbar-mobile-menu-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Projecten</button>
-              <button onClick={() => smoothScrollTo('contact')} className="navbar-mobile-menu-item contact" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Contact</button>
+              <button onClick={() => smoothScrollTo('footer')} className="navbar-mobile-menu-item contact" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Contact</button>
             </div>
           )}
         </div>

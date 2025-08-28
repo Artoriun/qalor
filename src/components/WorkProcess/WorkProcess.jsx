@@ -191,7 +191,7 @@ const WorkProcess = () => {
                   
                   {/* Button below image */}
                   <button 
-                    onClick={() => smoothScrollTo('contact')}
+                    onClick={() => smoothScrollTo('footer')}
                     style={{ 
                       padding: '0.75rem 1.5rem', 
                       background: 'transparent', 
@@ -271,7 +271,7 @@ const WorkProcess = () => {
                     Een betrouwbare calculatie van een warmteproject vereist dat als eerste er een kundige nettekening in AutoCAD wordt gemaakt. De basis voor de ondergrond is daarbij immer een oriëntatiemelding van het Kadaster die de bezetting van de ondergrond gedetailleerd weergeeft.
                   </p>
                   <button 
-                    onClick={() => smoothScrollTo('contact')}
+                    onClick={() => smoothScrollTo('footer')}
                     style={{ 
                       padding: '1rem 2rem', 
                       background: 'transparent', 
@@ -371,7 +371,7 @@ const WorkProcess = () => {
                   
                   {/* Button below image */}
                   <button 
-                    onClick={() => smoothScrollTo('contact')}
+                    onClick={() => smoothScrollTo('footer')}
                     style={{ 
                       padding: '0.75rem 1.5rem', 
                       background: 'transparent', 
@@ -405,7 +405,7 @@ const WorkProcess = () => {
                     Een betrouwbare bepaling van de vermogensbehoefte van het warmteproject vereist dat er op basis van diverse openbare bronnen, waaronder het BAG-register en Atlas Leefomgeving, er een complete gebouwendatabase opgesteld wordt.
                   </p>
                   <button 
-                    onClick={() => smoothScrollTo('contact')}
+                    onClick={() => smoothScrollTo('footer')}
                     style={{ 
                       padding: '1rem 2rem', 
                       background: 'transparent', 
@@ -551,7 +551,7 @@ const WorkProcess = () => {
                   
                   {/* Button below image */}
                   <button 
-                    onClick={() => smoothScrollTo('contact')}
+                    onClick={() => smoothScrollTo('footer')}
                     style={{ 
                       padding: '0.75rem 1.5rem', 
                       background: 'transparent', 
@@ -632,7 +632,7 @@ const WorkProcess = () => {
                     Op basis van de AutoCAD tekening, de woningendatabase en de bepaling van het concept en de investeringen van de energie-opwekinstallatie wordt een uitgebreid financieel model in Excel gevuld, waarbij op basis van verschillende uitgangspunten diverse scenario's worden gemaakt.
                   </p>
                   <button 
-                    onClick={() => smoothScrollTo('contact')}
+                    onClick={() => smoothScrollTo('footer')}
                     style={{ 
                       padding: '1rem 2rem', 
                       background: 'transparent', 

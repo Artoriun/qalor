@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import qalorLogo from '../../assets/images/figures/qalor logo.png';
+import Particles from '../Particles/Particles';
+import qalorLogo from '../../assets/images/figures/qalorlogowhite.png';
 
 const Footer = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -28,12 +29,16 @@ const Footer = () => {
     <footer 
       className="footer-section" 
       id="footer"
+      data-aos="fade-in"
       style={{
         padding: isMobile ? '2rem 1rem' : '2rem 20px',
-        background: 'linear-gradient(135deg, #FF6B6B, #FF8E53)'
+        background: 'linear-gradient(135deg, #FF6B6B, #FF8E53)',
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
-      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+      <Particles />
+      <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))', 
