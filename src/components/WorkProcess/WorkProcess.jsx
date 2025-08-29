@@ -127,7 +127,7 @@ const WorkProcess = () => {
               width: '3px',
               background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
               transform: 'translateX(-50%)',
-              zIndex: 1,
+              zIndex: 0,
               borderRadius: '2px'
             }} />
           )}
@@ -142,7 +142,7 @@ const WorkProcess = () => {
                 bottom: 0,
                 width: 3,
                 background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
-                zIndex: 9999,
+                zIndex: 0,
                 borderRadius: 2,
                 pointerEvents: 'none',
                 transform: 'translateX(-50%)',
@@ -202,7 +202,7 @@ const WorkProcess = () => {
                     boxShadow: '0 4px 15px rgba(204,65,37,0.3)',
                     border: '3px solid #fff',
                     position: 'relative',
-                    zIndex: 3
+                    zIndex: 2
                   }}>
                     01
                   </div>
