@@ -1,7 +1,7 @@
 import berekeningImg from '../../assets/images/workprocess/berekening.jpg';
 import gebouwendatabaseImg from '../../assets/images/workprocess/gebouwendatabase.jpg';
 import nettekeningImg from '../../assets/images/workprocess/nettekening.jpg';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './WorkProcess.css';
 
 const WorkProcess = () => {
@@ -10,6 +10,9 @@ const WorkProcess = () => {
   const [isTablet, setIsTablet] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
+  const [verticalLineLeft, setVerticalLineLeft] = useState(30); // default fallback
+  const stepsContainerRef = useRef(null);
+  const firstNumberColRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,6 +33,25 @@ const WorkProcess = () => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Dynamically calculate the center of the first number column relative to the steps container
+  useEffect(() => {
+    if (!stepsContainerRef.current || !firstNumberColRef.current) return;
+    const updateLinePosition = () => {
+      const stepsRect = stepsContainerRef.current.getBoundingClientRect();
+      const numberRect = firstNumberColRef.current.getBoundingClientRect();
+      // Center of the number column relative to the steps container
+      const left = numberRect.left - stepsRect.left + numberRect.width / 2;
+      setVerticalLineLeft(left);
+    };
+    updateLinePosition();
+    window.addEventListener('resize', updateLinePosition);
+    window.addEventListener('orientationchange', updateLinePosition);
+    return () => {
+      window.removeEventListener('resize', updateLinePosition);
+      window.removeEventListener('orientationchange', updateLinePosition);
+    };
+  }, [windowWidth, windowHeight, isLandscape]);
 
   const isMobile = windowWidth <= 768;
   const useMobileLayout = isMobile || isTablet;
@@ -81,16 +103,19 @@ const WorkProcess = () => {
           }}>Ons werkproces</h2>
         </div>
         
-        <div style={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          gap: '4rem', 
-          position: 'relative',
-          alignItems: isLandscape && useMobileLayout ? 'center' : 'stretch', // Center content in landscape mobile
-          '@media (maxWidth: 768px)': {
-            gap: '3rem'
-          }
-        }}>
+        <div
+          ref={stepsContainerRef}
+          style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: '4rem', 
+            position: 'relative',
+            alignItems: isLandscape && useMobileLayout ? 'center' : 'stretch', // Center content in landscape mobile
+            '@media (maxWidth: 768px)': {
+              gap: '3rem'
+            }
+          }}
+        >
           
           {/* Vertical connecting line - Desktop only */}
           {!useMobileLayout && (
@@ -107,42 +132,26 @@ const WorkProcess = () => {
             }} />
           )}
           
-          {/* Mobile connecting line - left side (iOS-specific centering) */}
+          {/* Mobile connecting line - dynamically centered with number column */}
           {useMobileLayout && (
-            <>
-              {isIOS ? (
-                <div
-                  style={{
-                    position: 'absolute',
-                    left: isLandscape ? 60 : 30, // 60px for landscape, 30px for portrait
-                    top: 0,
-                    bottom: 0,
-                    width: 3,
-                    background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
-                    backgroundColor: '#FF6B6B',
-                    borderRadius: 2,
-                    zIndex: 1, // Lower z-index so line is behind button
-                    pointerEvents: 'none',
-                    transform: 'translateX(-50%)',
-                    WebkitTransform: 'translateX(-50%)',
-                    backgroundClip: 'padding-box',
-                    WebkitBackgroundClip: 'padding-box',
-                    willChange: 'transform',
-                  }}
-                />
-              ) : (
-                <div style={{
-                  position: 'absolute',
-                  left: isLandscape ? 'calc(50% - 320px)' : '30px', // Adjust for landscape centering
-                  top: '40px',
-                  bottom: '40px',
-                  width: '3px',
-                  background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
-                  zIndex: 1,
-                  borderRadius: '2px'
-                }} />
-              )}
-            </>
+            <div
+              style={{
+                position: 'absolute',
+                left: verticalLineLeft,
+                top: 0,
+                bottom: 0,
+                width: 3,
+                background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
+                zIndex: 9999,
+                borderRadius: 2,
+                pointerEvents: 'none',
+                transform: 'translateX(-50%)',
+                WebkitTransform: 'translateX(-50%)',
+                backgroundClip: 'padding-box',
+                WebkitBackgroundClip: 'padding-box',
+                willChange: 'transform',
+              }}
+            />
           )}
           
           {/* Step 1 */}
@@ -162,32 +171,23 @@ const WorkProcess = () => {
             {useMobileLayout ? (
               <>
                 {/* Number on left */}
-                <div style={{ 
-                  flex: '0 0 60px',
-                  minWidth: '60px',
-                  maxWidth: '60px',
-                  width: '60px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  position: 'relative',
-                  left: 0,
-                  marginLeft: 0,
-                  boxSizing: 'border-box',
-                  // outline: '1px solid red' // Uncomment for debugging
-                }}>
-                  {/* Vertical line as child of number icon */}
-                  <div style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: 0,
-                    bottom: 0,
-                    width: '3px',
-                    background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
-                    zIndex: 1,
-                    borderRadius: '2px',
-                    transform: 'translateX(-50%)',
-                  }} />
+                <div
+                  ref={firstNumberColRef}
+                  style={{ 
+                    flex: '0 0 60px',
+                    minWidth: '60px',
+                    maxWidth: '60px',
+                    width: '60px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    position: 'relative',
+                    left: 0,
+                    marginLeft: 0,
+                    boxSizing: 'border-box',
+                    // outline: '1px solid red' // Uncomment for debugging
+                  }}
+                >
                   <div style={{
                     width: '60px',
                     height: '60px',
