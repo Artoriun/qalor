@@ -422,15 +422,17 @@ const Projects = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '20px',
-              fontWeight: 'bold',
               transition: 'transform 0.25s cubic-bezier(0.4,0,0.2,1)',
               boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
               outline: 'none',
-              transform: prevClicked ? 'scale(1.2)' : 'scale(1)'
+              transform: prevClicked ? 'scale(1.2)' : 'scale(1)',
+              padding: 0
             }}
           >
-            ←
+            <svg width="100%" height="100%" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
+              <path d="M36 25H14" stroke="#fff" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M20 16L14 25L20 34" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </button>
           <button
             onClick={handleNext}
@@ -445,15 +447,17 @@ const Projects = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '20px',
-              fontWeight: 'bold',
               transition: 'transform 0.25s cubic-bezier(0.4,0,0.2,1)',
               boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
               outline: 'none',
-              transform: nextClicked ? 'scale(1.2)' : 'scale(1)'
+              transform: nextClicked ? 'scale(1.2)' : 'scale(1)',
+              padding: 0
             }}
           >
-            →
+            <svg width="100%" height="100%" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
+              <path d="M14 25H36" stroke="#fff" strokeWidth="4" strokeLinecap="round"/>
+              <path d="M30 16L36 25L30 34" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </button>
         </div>
       </div>
