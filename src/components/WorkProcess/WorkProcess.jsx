@@ -205,7 +205,7 @@ const WorkProcess = () => {
                       width: '100%',
                       objectFit: 'cover',
                       borderRadius: '8px',
-                      boxShadow: '0 4px 15px rgba(0,123,255,0.15)'
+                      boxShadow: '0 8px 25px rgba(255,107,53,0.15)'
                     }}
                   />
                   
@@ -405,7 +405,7 @@ const WorkProcess = () => {
                       width: '100%',
                       objectFit: 'cover',
                       borderRadius: '8px',
-                      boxShadow: '0 4px 15px rgba(40,167,69,0.15)'
+                      boxShadow: '0 8px 25px rgba(255,107,53,0.15)'
                     }}
                   />
                   
