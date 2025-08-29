@@ -427,7 +427,12 @@ const Team = () => {
                             {member.pdfPath && (
                               <button style={{ background: '#fff', color: '#000', border: 'none', borderRadius: '50px', padding: '5px 9px', fontSize: '0.85rem', fontWeight: '600', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.08)', outline: 'none', transition: 'background 0.2s, color 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.2rem', height: '24px', minHeight: '24px' }} onClick={(e) => { e.stopPropagation(); handlePDFClick(member); }}>
                                 CV
-                                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#ff6b35', fontSize: '13px', fontWeight: 'bold', color: '#fff', marginLeft: '4px' }}>&rarr;</span>
+                                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#ff6b35', marginLeft: '4px', pointerEvents: 'none' }}>
+                                  <svg width="14" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
+                                    <path d="M1 4H17" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+                                    <path d="M14 1L17 4L14 7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                  </svg>
+                                </span>
                               </button>
                             )}
                           </div>
