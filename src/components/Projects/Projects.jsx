@@ -363,7 +363,7 @@ const Projects = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-end',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  boxShadow: '0 8px 25px rgba(255,107,53,0.15)',
                   position: 'relative',
                   overflow: 'hidden'
                 }}>
