@@ -2,6 +2,7 @@ import berekeningImg from '../../assets/images/workprocess/berekening.jpg';
 import gebouwendatabaseImg from '../../assets/images/workprocess/gebouwendatabase.jpg';
 import nettekeningImg from '../../assets/images/workprocess/nettekening.jpg';
 import React, { useState, useEffect } from 'react';
+import './WorkProcess.css';
 
 const WorkProcess = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -85,6 +86,11 @@ const WorkProcess = () => {
             gap: '3rem'
           }
         }}>
+          {/* Single vertical line for mobile/tablet, absolutely positioned in steps container */}
+          {useMobileLayout && (
+            <div className="vertical-line-mobile" />
+          )}
+          {/* Mobile connecting line removed; now handled per number button container for perfect centering */}
           
           {/* Vertical connecting line - Desktop only */}
           {!useMobileLayout && (
@@ -101,19 +107,7 @@ const WorkProcess = () => {
             }} />
           )}
           
-          {/* Mobile connecting line - left side */}
-          {useMobileLayout && (
-            <div style={{
-              position: 'absolute',
-              left: isLandscape ? 'calc(50% - 320px)' : '30px', // Adjust for landscape centering
-              top: '40px',
-              bottom: '40px',
-              width: '3px',
-              background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
-              zIndex: 1,
-              borderRadius: '2px'
-            }} />
-          )}
+          {/* Mobile connecting line removed; now handled per number button container for perfect centering */}
           
           {/* Step 1 */}
           <div style={{ 
@@ -146,18 +140,6 @@ const WorkProcess = () => {
                   boxSizing: 'border-box',
                   // outline: '1px solid red' // Uncomment for debugging
                 }}>
-                  {/* Vertical line as child of number icon */}
-                  <div style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: 0,
-                    bottom: 0,
-                    width: '3px',
-                    background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
-                    zIndex: 1,
-                    borderRadius: '2px',
-                    transform: 'translateX(-50%)',
-                  }} />
                   <div style={{
                     width: '60px',
                     height: '60px',
@@ -346,18 +328,6 @@ const WorkProcess = () => {
                   boxSizing: 'border-box',
                   // outline: '1px solid red' // Uncomment for debugging
                 }}>
-                  {/* Vertical line as child of number icon */}
-                  <div style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: 0,
-                    bottom: 0,
-                    width: '3px',
-                    background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
-                    zIndex: 1,
-                    borderRadius: '2px',
-                    transform: 'translateX(-50%)',
-                  }} />
                   <div style={{
                     width: '60px',
                     height: '60px',
@@ -546,18 +516,6 @@ const WorkProcess = () => {
                   boxSizing: 'border-box',
                   // outline: '1px solid red' // Uncomment for debugging
                 }}>
-                  {/* Vertical line as child of number icon */}
-                  <div style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: 0,
-                    bottom: 0,
-                    width: '3px',
-                    background: 'linear-gradient(180deg, #CC4125, #FF6B6B, #FF8E53)',
-                    zIndex: 1,
-                    borderRadius: '2px',
-                    transform: 'translateX(-50%)',
-                  }} />
                   <div style={{
                     width: '60px',
                     height: '60px',
