@@ -277,11 +277,13 @@ const Navbar = () => {
             height: '24px',
             borderRadius: '50%',
             backgroundColor: '#fff',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            color: '#ff6b35',
             pointerEvents: 'none' // Prevent hover effects on arrow
-          }}>→</span>
+          }}>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 8H12" stroke="#ff6b35" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M9 5L12 8L9 11" stroke="#ff6b35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
         </span></button>
         
         {/* Mobile Hamburger Menu */}

@@ -260,7 +260,10 @@ const WorkProcess = () => {
                       outline: 'none'
                     }}>
                     Meer leren
-                    <span style={{ fontSize: '1rem' }}>→</span>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline', verticalAlign: 'middle' }}>
+                      <path d="M4 9H14" stroke="#000" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M11 6L14 9L11 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </button>
                 </div>
               </>
@@ -339,7 +342,10 @@ const WorkProcess = () => {
                       outline: 'none'
                     }}>
                     Meer leren
-                    <span style={{ fontSize: '1rem' }}>→</span>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline', verticalAlign: 'middle' }}>
+                      <path d="M4 9H14" stroke="#000" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M11 6L14 9L11 12" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </button>
                 </div>
               </>
