@@ -242,22 +242,11 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             </button>
           </li>
           {/* Dark mode switch (desktop) */}
-          <li style={{ display: 'flex', alignItems: 'center', marginLeft: '1rem' }}>
+          <li className="navbar-darkmode-switch">
             <button
               aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
               onClick={() => setDarkMode((v) => !v)}
-              style={{
-                background: darkMode ? '#232323' : '#fff',
-                color: darkMode ? '#fff' : '#232323',
-                border: '1px solid #ccc',
-                borderRadius: '20px',
-                padding: '0.25rem 1rem',
-                cursor: 'pointer',
-                fontWeight: 600,
-                fontSize: '1rem',
-                transition: 'all 0.2s',
-                marginLeft: '0.5rem',
-              }}
+              className="navbar-darkmode-btn"
             >
               {darkMode ? '🌙 Donker' : '☀️ Licht'}
             </button>

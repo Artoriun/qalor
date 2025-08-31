@@ -1,3 +1,33 @@
+/* Ensure dark mode button aligns with other nav items on desktop */
+.navbar-darkmode-switch {
+  display: flex;
+  align-items: center;
+  /* Remove extra margin, match other nav items */
+  margin-left: 0;
+}
+
+.navbar-darkmode-btn {
+  background: #fff;
+  color: #232323;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s;
+  outline: none;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.dark-mode .navbar-darkmode-btn {
+  background: #232323;
+  color: #fff;
+  border: 1px solid #ccc;
+}
 /* Hamburger icon: orange in light mode, white in dark mode */
 .navbar-hamburger-line {
   width: 24px;
@@ -47,7 +77,7 @@
 }
 .dark-mode .navbar-mobile-menu-item.contact {
   color: #ff6b35 !important;
-}
+  
 }
 
 .dark-mode .navbar-desktop-contact {
