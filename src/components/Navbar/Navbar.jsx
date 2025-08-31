@@ -123,7 +123,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               style={{ 
                 background: 'none', 
                 border: 'none', 
-                color: 'inherit', 
+                // color: 'inherit', 
                 cursor: 'pointer', 
                 fontSize: 'inherit', 
                 fontFamily: 'inherit',
@@ -159,7 +159,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               style={{ 
                 background: 'none', 
                 border: 'none', 
-                color: 'inherit', 
+                // color: 'inherit', 
                 cursor: 'pointer', 
                 fontSize: 'inherit', 
                 fontFamily: 'inherit',
@@ -195,7 +195,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               style={{ 
                 background: 'none', 
                 border: 'none', 
-                color: 'inherit', 
+                // color: 'inherit', 
                 cursor: 'pointer', 
                 fontSize: 'inherit', 
                 fontFamily: 'inherit',
@@ -231,7 +231,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               style={{ 
                 background: 'none', 
                 border: 'none', 
-                color: 'inherit', 
+                // color: 'inherit', 
                 cursor: 'pointer', 
                 fontSize: 'inherit', 
                 fontFamily: 'inherit',

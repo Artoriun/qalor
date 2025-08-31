@@ -93,7 +93,31 @@ button:focus-visible {
   }
 }
 
+
 body.dark-mode, .dark-mode #root {
   background-color: #181818 !important;
+}
+
+body.dark-mode, .dark-mode {
   color: #fff !important;
+}
+
+body.dark-mode * {
+  color: #fff !important;
+}
+
+body.dark-mode .hero button:first-child,
+.dark-mode .hero button:first-child,
+body.dark-mode .hero button:first-child span,
+.dark-mode .hero button:first-child span {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+
+body.dark-mode .hero button:first-child,
+.dark-mode .hero button:first-child,
+body.dark-mode .hero button:first-child span,
+.dark-mode .hero button:first-child span {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
 }
