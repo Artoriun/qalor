@@ -3,7 +3,7 @@ import Particles from '../Particles/Particles';
 import heroImage from '../../assets/images/hero/hero.jpeg';
 import './Hero.css';
 
-const Hero = () => {
+const Hero = ({ darkMode }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
 
@@ -288,7 +288,7 @@ const Hero = () => {
                 objectFit: 'cover',
                 objectPosition: 'right center',
                 borderRadius: '15px',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
+                                boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 10px 30px rgba(0,0,0,0.2)'
               }} 
             />
           </div>
@@ -296,6 +296,6 @@ const Hero = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Hero;

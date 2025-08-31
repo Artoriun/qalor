@@ -4,7 +4,7 @@ import nettekeningImg from '../../assets/images/workprocess/nettekening.jpg';
 import React, { useState, useEffect, useRef } from 'react';
 import './WorkProcess.css';
 
-const WorkProcess = () => {
+const WorkProcess = ({ darkMode }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [isTablet, setIsTablet] = useState(false);
@@ -234,7 +234,7 @@ const WorkProcess = () => {
                       width: '100%',
                       objectFit: 'cover',
                       borderRadius: '8px',
-                      boxShadow: '0 8px 25px rgba(255,107,53,0.15)'
+                      boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 8px 25px rgba(255,107,53,0.15)'
                     }}
                   />
                   
@@ -440,7 +440,7 @@ const WorkProcess = () => {
                       width: '100%',
                       objectFit: 'cover',
                       borderRadius: '8px',
-                      boxShadow: '0 8px 25px rgba(255,107,53,0.15)'
+                      boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 8px 25px rgba(255,107,53,0.15)'
                     }}
                   />
                   
@@ -646,7 +646,7 @@ const WorkProcess = () => {
                       width: '100%',
                       objectFit: 'cover',
                       borderRadius: '8px',
-                      boxShadow: '0 4px 15px rgba(255,107,53,0.15)'
+                      boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 4px 15px rgba(255,107,53,0.15)'
                     }}
                   />
                   
@@ -696,7 +696,7 @@ const WorkProcess = () => {
                       width: '100%',
                       objectFit: 'cover',
                       borderRadius: '12px',
-                      boxShadow: '0 8px 25px rgba(255,107,53,0.15)'
+                      boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 8px 25px rgba(255,107,53,0.15)'
                     }}
                   />
                 </div>

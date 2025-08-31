@@ -1,7 +1,7 @@
 import peterhuubImg from '../../assets/images/team/peterhuub.jpg';
 import React, { useState, useEffect } from 'react';
 
-const About = () => {
+const About = ({ darkMode }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
@@ -186,22 +186,22 @@ const About = () => {
             alt="Peter & Huub"
             data-aos="zoom-in"
             data-aos-delay="300"
-            style={{
-              width: '100%',
-              height: (() => {
-                if (isMobile) return '300px';
-                if (isTablet) return '380px';
-                return '450px';
-              })(),
-              objectFit: 'cover',
-              objectPosition: (() => {
-                if (isMobile) return 'center -50px';
-                if (isTablet) return 'center -90px';
-                return 'center -125px';
-              })(),
-              borderRadius: '12px',
-              boxShadow: '0 8px 25px rgba(255,107,53,0.2)'
-            }}
+            style={{ 
+              width: '100%', 
+              height: (() => { 
+                if (isMobile) return '300px'; 
+                if (isTablet) return '380px'; 
+                return '450px'; 
+              })(), 
+              objectFit: 'cover', 
+              objectPosition: (() => { 
+                if (isMobile) return 'center -50px'; 
+                if (isTablet) return 'center -90px'; 
+                return 'center -125px'; 
+              })(), 
+              borderRadius: '12px', 
+              boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 8px 25px rgba(255,107,53,0.2)' 
+            }} 
           />
         </div>
       </div>

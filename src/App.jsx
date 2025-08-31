@@ -88,10 +88,10 @@ function App() {
           padding: 0
         }}>
           <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-          <Hero />
-          <Team />
-          <About />
-          <WorkProcess />
+          <Hero darkMode={darkMode} />
+          <Team darkMode={darkMode} />
+          <About darkMode={darkMode} />
+          <WorkProcess darkMode={darkMode} />
           <Projects />
           {/* <Contact /> */}
           <Footer />

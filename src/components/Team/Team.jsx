@@ -7,7 +7,7 @@ import { Worker, Viewer } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '../../pdf-viewer-override.css';
 
-const Team = () => {
+const Team = ({ darkMode }) => {
   const timerRef = React.useRef();
   const [prevClicked, setPrevClicked] = useState(false);
   const [nextClicked, setNextClicked] = useState(false);
@@ -362,7 +362,7 @@ const Team = () => {
           </div>
         </div>
       )}
-  <section id="team" data-aos="fade-right" className="section-bg" style={{ padding: '80px 20px', width: '100%' }}>
+  <section id="team" data-aos="fade-right" style={{ padding: '80px 20px', backgroundColor: darkMode ? '#181818' : '#fff', width: '100%' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', textAlign: 'center' }}>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <div style={{ fontSize: '1.6rem', color: '#ff6b35', marginBottom: '0.5rem', fontWeight: '400', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif' }}>
@@ -416,7 +416,7 @@ const Team = () => {
                     }}
                     onClick={(e) => handleSlideClick(member, e)}
                   >
-                    <div style={{ background: member.isImage ? 'transparent' : (member.backgroundImage ? `url(${member.backgroundImage})` : '#f8f9fa'), backgroundSize: member.backgroundImage ? 'cover' : 'auto', backgroundPosition: member.backgroundImage ? 'center' : 'initial', padding: member.isImage ? '0' : '0', borderRadius: '8px', textAlign: 'center', width: '100%', maxWidth: isMobile ? '100%' : '350px', minHeight: isMobile ? '300px' : '320px', display: 'flex', flexDirection: 'column', justifyContent: member.isImage ? 'center' : 'flex-end', overflow: 'hidden', position: 'relative', boxShadow: '0 8px 25px rgba(255,107,53,0.15)' }}>
+                    <div style={{ background: member.isImage ? 'transparent' : (member.backgroundImage ? `url(${member.backgroundImage})` : '#f8f9fa'), backgroundSize: member.backgroundImage ? 'cover' : 'auto', backgroundPosition: member.backgroundImage ? 'center' : 'initial', padding: member.isImage ? '0' : '0', borderRadius: '8px', textAlign: 'center', width: '100%', maxWidth: isMobile ? '100%' : '350px', minHeight: isMobile ? '300px' : '320px', display: 'flex', flexDirection: 'column', justifyContent: member.isImage ? 'center' : 'flex-end', overflow: 'hidden', position: 'relative', boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 8px 25px rgba(255,107,53,0.15)' }}>
                       {member.isImage ? (
                         <img src={member.imageUrl} alt="Team Image" style={{ width: member.id === 4 ? '100%' : '100%', height: member.id === 4 ? '100%' : (isMobile ? '300px' : '320px'), objectFit: member.id === 4 ? 'contain' : 'cover', borderRadius: '8px', background: member.id === 4 ? 'white' : undefined, maxWidth: member.id === 4 ? '350px' : undefined, maxHeight: member.id === 4 ? (isMobile ? '300px' : '320px') : undefined, margin: member.id === 4 ? '0 auto' : undefined, display: member.id === 4 ? 'block' : undefined }} />
                       ) : (
