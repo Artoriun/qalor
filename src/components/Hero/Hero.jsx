@@ -95,7 +95,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero" data-aos="fade-up" style={{ 
+    <section className="hero section-bg" data-aos="fade-up" style={{ 
       paddingBottom: '80px',
       paddingLeft: '20px',
       paddingRight: '20px',
@@ -179,7 +179,7 @@ const Hero = () => {
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#000', WebkitTextFillColor: '#000', textShadow: 'none', fontWeight: 600, fontSize: isMobile ? '1rem' : '1.2rem', lineHeight: 1, position: 'relative', zIndex: 2, pointerEvents: 'none', /* force black text */ }}>
                   Contact
                   <span style={{
                     display: 'inline-flex',

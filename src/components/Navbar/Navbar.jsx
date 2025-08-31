@@ -8,7 +8,6 @@ const navbarStyle = {
   left: 0,
   right: 0,
   zIndex: 1000,
-  background: '#fff',
   boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
   padding: '0.5rem 0',
 };
@@ -23,7 +22,7 @@ const navbarInnerStyle = {
   maxWidth: '1400px',
 };
 
-const Navbar = () => {
+const Navbar = ({ darkMode, setDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -60,7 +59,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={navbarStyle}>
+    <nav className="navbar-bg" style={navbarStyle}>
       <div style={navbarInnerStyle}>
         {/* Logo on the left */}
         <div style={{ fontWeight: 'bold', fontSize: '1.5rem', display: 'flex', alignItems: 'center' }}>
@@ -96,8 +95,8 @@ const Navbar = () => {
           />
         </div>
         
-        {/* Desktop Navigation Links */}
-        <ul className="navbar-desktop-nav">
+  {/* Desktop Navigation Links */}
+  <ul className="navbar-desktop-nav">
           <li>
             <button 
               onClick={(e) => {
@@ -242,6 +241,27 @@ const Navbar = () => {
               Projecten
             </button>
           </li>
+          {/* Dark mode switch (desktop) */}
+          <li style={{ display: 'flex', alignItems: 'center', marginLeft: '1rem' }}>
+            <button
+              aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+              onClick={() => setDarkMode((v) => !v)}
+              style={{
+                background: darkMode ? '#232323' : '#fff',
+                color: darkMode ? '#fff' : '#232323',
+                border: '1px solid #ccc',
+                borderRadius: '20px',
+                padding: '0.25rem 1rem',
+                cursor: 'pointer',
+                fontWeight: 600,
+                fontSize: '1rem',
+                transition: 'all 0.2s',
+                marginLeft: '0.5rem',
+              }}
+            >
+              {darkMode ? '🌙 Donker' : '☀️ Licht'}
+            </button>
+          </li>
         </ul>
         
         {/* Desktop Contact button */}
@@ -305,6 +325,26 @@ const Navbar = () => {
               <button onClick={() => smoothScrollTo('how-it-works')} className="navbar-mobile-menu-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Ons werkproces</button>
               <button onClick={() => smoothScrollTo('projects')} className="navbar-mobile-menu-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Projecten</button>
               <button onClick={() => smoothScrollTo('footer')} className="navbar-mobile-menu-item contact" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Contact</button>
+              {/* Dark mode switch (mobile) */}
+              <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+                <button
+                  aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                  onClick={() => setDarkMode((v) => !v)}
+                  style={{
+                    background: darkMode ? '#232323' : '#fff',
+                    color: darkMode ? '#fff' : '#232323',
+                    border: '1px solid #ccc',
+                    borderRadius: '20px',
+                    padding: '0.25rem 1rem',
+                    cursor: 'pointer',
+                    fontWeight: 600,
+                    fontSize: '1rem',
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  {darkMode ? '🌙 Donker' : '☀️ Licht'}
+                </button>
+              </div>
             </div>
           )}
         </div>

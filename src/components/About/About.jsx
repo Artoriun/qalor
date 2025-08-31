@@ -4,9 +4,13 @@ import React, { useState, useEffect } from 'react';
 const About = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
 
   // Check for mobile and tablet screen sizes
   useEffect(() => {
+    const ua = window.navigator.userAgent;
+    setIsIOS(/iPad|iPhone|iPod/.test(ua) && !window.MSStream);
+
     const checkScreenSize = () => {
       const width = window.innerWidth;
       setIsMobile(width <= 768);
@@ -19,7 +23,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="qalor" data-aos="fade-in" style={{ padding: '80px 20px', backgroundColor: '#f8f9fa', width: '100%' }}>
+  <section id="qalor" data-aos="fade-in" className="section-bg" style={{ padding: '80px 20px', width: '100%' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <div style={{ 

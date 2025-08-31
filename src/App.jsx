@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -12,6 +12,17 @@ import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 
 function App() {
+  // Dark mode state
+  const [darkMode, setDarkMode] = useState(() => {
+    // Try to load from localStorage
+    const saved = localStorage.getItem('darkMode');
+    return saved === 'true';
+  });
+
+  useEffect(() => {
+    document.body.classList.toggle('dark-mode', darkMode);
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
   useEffect(() => {
     // Scroll position restoration
     const saveScrollPosition = () => {
@@ -76,7 +87,7 @@ function App() {
           margin: 0,
           padding: 0
         }}>
-          <Navbar />
+          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
           <Hero />
           <Team />
           <About />

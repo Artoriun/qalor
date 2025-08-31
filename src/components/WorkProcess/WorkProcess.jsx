@@ -67,9 +67,8 @@ const WorkProcess = () => {
   };
 
   return (
-    <section id="how-it-works" data-aos="fade-right" style={{ 
+    <section id="how-it-works" data-aos="fade-right" className="section-bg" style={{ 
       padding: useMobileLayout ? (isLandscape ? '60px 15px' : '80px 20px') : '80px 20px', 
-      backgroundColor: '#fff', 
       width: '100%',
       overflow: 'hidden', // Prevent horizontal overflow in landscape
       position: 'relative', // Ensure proper positioning context

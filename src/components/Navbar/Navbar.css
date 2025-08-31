@@ -1,3 +1,44 @@
+/* Hamburger icon: orange in light mode, white in dark mode */
+.navbar-hamburger-line {
+  width: 24px;
+  height: 3px;
+  background: #ff6b35;
+  border-radius: 2px;
+  transition: background 0.3s, box-shadow 0.3s, opacity 0.3s;
+}
+.dark-mode .navbar-hamburger-line {
+  background: #fff;
+}
+.navbar-bg {
+  background: #fff;
+  transition: background 0.3s;
+}
+
+.dark-mode .navbar-bg {
+  background: #232323;
+}
+.dark-mode .navbar-mobile-menu {
+  background: #232323;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.dark-mode .navbar-mobile-menu-item {
+  color: #fff;
+  border-bottom: 1px solid #333;
+}
+
+.dark-mode .navbar-mobile-menu-item:hover {
+  background: #232323;
+}
+
+.dark-mode .navbar-desktop-nav {
+  background: #232323;
+}
+
+.dark-mode .navbar-desktop-contact {
+  background: #ff6b35;
+  color: #fff;
+}
 .navbar-desktop-nav {
   display: flex;
   flex-direction: row;
@@ -83,12 +124,18 @@
   outline: none;
 }
 
-.navbar-hamburger-line {
-  width: 20px;
-  height: 2px;
-  background: #ff6b35;
-  border-radius: 1px;
+
+
+/* Fix: Remove lighter shade in dark mode for navbar backgrounds */
+.dark-mode .navbar-bg,
+.dark-mode .navbar-mobile-menu,
+.dark-mode .navbar-mobile-menu-item:hover,
+.dark-mode .navbar-desktop-nav {
+  background: #181818 !important;
+  box-shadow: none !important;
 }
+
+/* (moved to top for clarity) */
 
 .navbar-mobile-menu {
   position: absolute;
