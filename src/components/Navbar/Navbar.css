@@ -35,6 +35,21 @@
   background: #232323;
 }
 
+/* Make all navbar desktop nav items white in dark mode */
+.dark-mode .navbar-desktop-nav li,
+.dark-mode .navbar-desktop-nav li button {
+  color: #fff !important;
+}
+
+/* Ensure mobile menu items are white in dark mode except for .contact */
+.dark-mode .navbar-mobile-menu-item {
+  color: #fff !important;
+}
+.dark-mode .navbar-mobile-menu-item.contact {
+  color: #ff6b35 !important;
+}
+}
+
 .dark-mode .navbar-desktop-contact {
   background: #ff6b35;
   color: #fff;
