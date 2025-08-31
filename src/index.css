@@ -92,3 +92,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+body.dark-mode, .dark-mode #root {
+  background-color: #181818 !important;
+  color: #fff !important;
+}

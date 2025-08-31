@@ -9,6 +9,10 @@
   padding-top: 100px !important;
 }
 
+.dark-mode .hero {
+  background-color: #181818 !important;
+}
+
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
   .hero {
