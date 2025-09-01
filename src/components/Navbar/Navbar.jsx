@@ -332,25 +332,19 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               <button onClick={() => smoothScrollTo('projects')} className="navbar-mobile-menu-item" role="menuitem" aria-label="Scroll naar Projecten" tabIndex={0} style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Projecten</button>
               <button onClick={() => smoothScrollTo('footer')} className="navbar-mobile-menu-item contact" role="menuitem" aria-label="Scroll naar Contact" tabIndex={0} style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Contact</button>
               {/* Dark mode switch (mobile) */}
-              <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-                <button
-                  aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-                  onClick={() => setDarkMode((v) => !v)}
-                  style={{
-                    background: darkMode ? '#232323' : '#fff',
-                    color: darkMode ? '#fff' : '#232323',
-                    border: '1px solid #ccc',
-                    borderRadius: '20px',
-                    padding: '0.25rem 1rem',
-                    cursor: 'pointer',
-                    fontWeight: 600,
-                    fontSize: '1rem',
-                    transition: 'all 0.2s',
-                  }}
-                >
-                  {darkMode ? '🌙 Donker' : '☀️ Licht'}
-                </button>
-              </div>
+              <button
+                aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+                onClick={() => setDarkMode((v) => !v)}
+                className="navbar-mobile-darkmode-btn"
+                style={{
+                  background: darkMode ? '#232323' : '#fff',
+                  color: darkMode ? '#fff' : '#232323',
+                  cursor: 'pointer',
+                  outline: 'none',
+                }}
+              >
+                {darkMode ? '🌙 Donker' : '☀️ Licht'}
+              </button>
             </div>
           )}
         </div>
