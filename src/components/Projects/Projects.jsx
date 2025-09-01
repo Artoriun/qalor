@@ -1,13 +1,13 @@
-import assencompImg from '../../assets/images/projects/assencomp.png';
-import heechterp2Img from '../../assets/images/projects/heechterp2.png';
-import heegImg from '../../assets/images/projects/heeg.jpeg';
-import sneekImg from '../../assets/images/projects/sneek.jpeg';
+import assencompImg from '../../assets/images-webp/assencomp.webp';
+import heechterp2Img from '../../assets/images-webp/heechterp2.webp';
+import heegImg from '../../assets/images-webp/heeg.webp';
+import sneekImg from '../../assets/images-webp/sneek.webp';
 
 import React, { useState, useEffect } from 'react';
 import defaultProjectImg from '../../assets/images/figures/qalor Q.png';
-import heechterpImg from '../../assets/images/projects/heechterp.jpg';
-import dokkumImg from '../../assets/images/projects/dokkum.jpeg';
-import anjumImg from '../../assets/images/projects/anjum.jpeg';
+import heechterpImg from '../../assets/images-webp/heechterp.webp';
+import dokkumImg from '../../assets/images-webp/dokkum.webp';
+import anjumImg from '../../assets/images-webp/anjum.webp';
 
 const projects = [
   {
@@ -305,8 +305,38 @@ const Projects = () => {
   <section id="projects" data-aos="fade-right" className="section-bg" style={{ padding: '80px 20px', width: '100%' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', textAlign: 'center' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <div style={{ fontSize: '1.6rem', color: '#ff6b35', marginBottom: '0.5rem', fontWeight: '400' }}>
-            • Projectreferenties
+          <div style={{ fontSize: '1.6rem', marginBottom: '0.5rem', fontWeight: '400' }}>
+            <span style={{
+              color: '#ff6b35',
+              WebkitTextFillColor: '#ff6b35',
+              textShadow: 'none',
+              filter: 'none',
+              background: 'none',
+              backgroundClip: 'unset',
+              WebkitBackgroundClip: 'unset',
+              WebkitBoxReflect: 'unset',
+              boxShadow: 'none',
+              mixBlendMode: 'unset',
+              opacity: 1,
+              zIndex: 10,
+              position: 'relative',
+              pointerEvents: 'auto',
+              fontWeight: 400,
+              fontFamily: 'inherit',
+              fontSize: 'inherit',
+              margin: 0,
+              padding: 0,
+              border: 'none',
+              outline: 'none',
+              transition: 'none',
+              colorScheme: 'light dark',
+              // Most important: force color
+              // Use !important via style attribute workaround
+              // eslint-disable-next-line
+              ...({'color': '#ff6b35 !important'})
+            }}>
+              • Projectreferenties
+            </span>
           </div>
           <h2 style={{ fontSize: '2.5rem', margin: '0 0 1rem 0', color: '#333', fontWeight: '600' }}>
             Onze projecten in 2024-2025

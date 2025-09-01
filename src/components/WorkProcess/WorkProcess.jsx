@@ -1,6 +1,6 @@
-import berekeningImg from '../../assets/images/workprocess/berekening.jpg';
-import gebouwendatabaseImg from '../../assets/images/workprocess/gebouwendatabase.jpg';
-import nettekeningImg from '../../assets/images/workprocess/nettekening.jpg';
+import berekeningImg from '../../assets/images-webp/berekening.webp';
+import gebouwendatabaseImg from '../../assets/images-webp/gebouwendatabase.webp';
+import nettekeningImg from '../../assets/images-webp/nettekening.webp';
 import React, { useState, useEffect, useRef } from 'react';
 import './WorkProcess.css';
 
@@ -86,12 +86,41 @@ const WorkProcess = ({ darkMode }) => {
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
           <div style={{ 
             fontSize: '1.6rem', 
-            color: '#ff6b35', 
             marginBottom: '0.5rem',
             fontWeight: '400',
             fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif'
           }}>
-            • Hoe wij te werk gaan
+            <span style={{
+              color: '#ff6b35',
+              WebkitTextFillColor: '#ff6b35',
+              textShadow: 'none',
+              filter: 'none',
+              background: 'none',
+              backgroundClip: 'unset',
+              WebkitBackgroundClip: 'unset',
+              WebkitBoxReflect: 'unset',
+              boxShadow: 'none',
+              mixBlendMode: 'unset',
+              opacity: 1,
+              zIndex: 10,
+              position: 'relative',
+              pointerEvents: 'auto',
+              fontWeight: 400,
+              fontFamily: 'inherit',
+              fontSize: 'inherit',
+              margin: 0,
+              padding: 0,
+              border: 'none',
+              outline: 'none',
+              transition: 'none',
+              colorScheme: 'light dark',
+              // Most important: force color
+              // Use !important via style attribute workaround
+              // eslint-disable-next-line
+              ...({'color': '#ff6b35 !important'})
+            }}>
+              • Hoe wij te werk gaan
+            </span>
           </div>
           <h2 style={{ 
             fontSize: '2.5rem', 

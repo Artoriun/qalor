@@ -1,4 +1,4 @@
-import peterhuubImg from '../../assets/images/team/peterhuub.jpg';
+import peterhuubImg from '../../assets/images-webp/peterhuub.webp';
 import React, { useState, useEffect } from 'react';
 
 const About = ({ darkMode }) => {
@@ -28,12 +28,41 @@ const About = ({ darkMode }) => {
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <div style={{ 
             fontSize: '1.6rem', 
-            color: '#ff6b35', 
             marginBottom: '0.5rem',
             fontWeight: '400',
             fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif'
           }}>
-            • Wat wij doen
+            <span style={{
+              color: '#ff6b35',
+              WebkitTextFillColor: '#ff6b35',
+              textShadow: 'none',
+              filter: 'none',
+              background: 'none',
+              backgroundClip: 'unset',
+              WebkitBackgroundClip: 'unset',
+              WebkitBoxReflect: 'unset',
+              boxShadow: 'none',
+              mixBlendMode: 'unset',
+              opacity: 1,
+              zIndex: 10,
+              position: 'relative',
+              pointerEvents: 'auto',
+              fontWeight: 400,
+              fontFamily: 'inherit',
+              fontSize: 'inherit',
+              margin: 0,
+              padding: 0,
+              border: 'none',
+              outline: 'none',
+              transition: 'none',
+              colorScheme: 'light dark',
+              // Most important: force color
+              // Use !important via style attribute workaround
+              // eslint-disable-next-line
+              ...({'color': '#ff6b35 !important'})
+            }}>
+              • Wat wij doen
+            </span>
           </div>
           <h2 style={{ 
             fontSize: (() => {
@@ -184,6 +213,7 @@ const About = ({ darkMode }) => {
           <img 
             src={peterhuubImg}
             alt="Peter & Huub"
+            loading="lazy"
             data-aos="zoom-in"
             data-aos-delay="300"
             style={{ 
