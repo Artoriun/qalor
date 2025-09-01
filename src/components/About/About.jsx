@@ -230,7 +230,7 @@ const About = ({ darkMode }) => {
                 return 'center -125px'; 
               })(), 
               borderRadius: '12px', 
-              boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 8px 25px rgba(255,107,53,0.2)' 
+              boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.25)' : '0 8px 25px rgba(255,107,53,0.2)' 
             }} 
           />
         </div>
