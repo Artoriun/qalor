@@ -4,10 +4,9 @@
   align-items: center;
   /* Remove extra margin, match other nav items */
   margin-left: 0;
-}
 
 .navbar-darkmode-btn {
-  background: #fff;
+  background: none;
   color: #232323;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -18,13 +17,17 @@
   transition: all 0.2s;
   outline: none;
   margin-left: 0;
-  display: flex;
-  align-items: center;
-  height: 100%;
+}
+
+@media (min-width: 769px) {
+  .navbar-darkmode-btn {
+    margin-right: 1.25rem;
+  }
+}
 }
 
 .dark-mode .navbar-darkmode-btn {
-  background: #232323;
+  background: none;
   color: #fff;
   border: 1px solid #ccc;
 }
