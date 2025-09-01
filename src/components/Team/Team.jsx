@@ -418,48 +418,15 @@ const Team = ({ darkMode }) => {
                   >
                     <div style={{ background: member.isImage ? 'transparent' : (member.backgroundImage ? `url(${member.backgroundImage})` : '#f8f9fa'), backgroundSize: member.backgroundImage ? 'cover' : 'auto', backgroundPosition: member.backgroundImage ? 'center' : 'initial', padding: member.isImage ? '0' : '0', borderRadius: '8px', textAlign: 'center', width: '100%', maxWidth: isMobile ? '100%' : '350px', minHeight: isMobile ? '300px' : '320px', display: 'flex', flexDirection: 'column', justifyContent: member.isImage ? 'center' : 'flex-end', overflow: 'hidden', position: 'relative', boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 8px 25px rgba(255,107,53,0.15)' }}>
                       {member.isImage ? (
-                        <img src={member.imageUrl} alt={member.name ? member.name : 'Qalor Logo'} loading="lazy" style={{ width: member.id === 4 ? '100%' : '100%', height: member.id === 4 ? '100%' : (isMobile ? '300px' : '320px'), objectFit: member.id === 4 ? 'contain' : 'cover', borderRadius: '8px', background: member.id === 4 ? 'white' : undefined, maxWidth: member.id === 4 ? '350px' : undefined, maxHeight: member.id === 4 ? (isMobile ? '300px' : '320px') : undefined, margin: member.id === 4 ? '0 auto' : undefined, display: member.id === 4 ? 'block' : undefined }} />
+                        <img src={member.imageUrl} alt={member.name ? member.name : 'Qalor Logo'} loading="lazy" style={{ width: member.id === 4 ? '100%' : '100%', height: member.id === 4 ? '100%' : (isMobile ? '300px' : '320px'), objectFit: member.id === 4 ? 'contain' : 'cover', borderRadius: '8px', background: member.id === 4 ? 'transparent' : undefined, maxWidth: member.id === 4 ? '350px' : undefined, maxHeight: member.id === 4 ? (isMobile ? '300px' : '320px') : undefined, margin: member.id === 4 ? '0 auto' : undefined, display: member.id === 4 ? 'block' : undefined }} />
                       ) : (
                         <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', textAlign: 'center', padding: '16px 0 12px 0', background: 'linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0))', borderRadius: '0 0 8px 8px' }}>
                           <h3 style={{ fontSize: '1.3rem', marginBottom: '0', color: '#fff' }}>{member.name}</h3>
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '8px' }}>
                             <p style={{ color: '#fff', lineHeight: '1.4', margin: 0, fontSize: '1rem' }}>{member.description}</p>
                             {member.pdfPath && (
-                              <button
-                                style={{
-                                  background: '#fff',
-                                  color: darkMode ? '#111' : '#000',
-                                  border: 'none',
-                                  borderRadius: '50px',
-                                  padding: '5px 9px',
-                                  fontSize: '0.85rem',
-                                  fontWeight: '600',
-                                  cursor: 'pointer',
-                                  boxShadow: '0 2px 5px rgba(0,0,0,0.08)',
-                                  outline: 'none',
-                                  transition: 'background 0.2s, color 0.2s',
-                                  display: 'inline-flex',
-                                  alignItems: 'center',
-                                  gap: '0.2rem',
-                                  height: '24px',
-                                  minHeight: '24px'
-                                }}
-                                onClick={(e) => { e.stopPropagation(); handlePDFClick(member); }}
-                              >
-                                <span style={{
-                                  color: darkMode ? '#111 !important' : '#000',
-                                  WebkitTextFillColor: darkMode ? '#111' : '#000',
-                                  textShadow: 'none',
-                                  filter: 'none',
-                                  background: 'none',
-                                  backgroundClip: 'unset',
-                                  WebkitBackgroundClip: 'unset',
-                                  fontWeight: 600,
-                                  fontFamily: 'inherit',
-                                  fontSize: 'inherit',
-                                  margin: 0,
-                                  padding: 0
-                                }}>CV</span>
+                              <button style={{ background: '#fff', color: '#000', border: 'none', borderRadius: '50px', padding: '5px 9px', fontSize: '0.85rem', fontWeight: '600', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.08)', outline: 'none', transition: 'background 0.2s, color 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.2rem', height: '24px', minHeight: '24px' }} onClick={(e) => { e.stopPropagation(); handlePDFClick(member); }}>
+                                CV
                                 <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#ff6b35', marginLeft: '4px', pointerEvents: 'none' }}>
                                   <svg width="14" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
                                     <path d="M1 4H17" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>

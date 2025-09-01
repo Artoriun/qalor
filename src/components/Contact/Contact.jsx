@@ -392,6 +392,7 @@ const Contact = () => {
               <img 
                 src={peterImg}
                 alt="Peter de Keijzer"
+                loading="lazy"
                 data-aos="fade-right"
                 data-aos-delay="100"
                 style={{
@@ -413,6 +414,7 @@ const Contact = () => {
               <img 
                 src={huubImg}
                 alt="Huub Jansen"
+                loading="lazy"
                 data-aos="fade-left"
                 data-aos-delay="200"
                 style={{
@@ -434,6 +436,7 @@ const Contact = () => {
               <img 
                 src={janImg}
                 alt="Jan Pouw"
+                loading="lazy"
                 data-aos="fade-up"
                 data-aos-delay="300"
                 style={{

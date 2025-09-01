@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Particles from '../Particles/Particles';
-import heroImage from '../../assets/images/hero/hero.jpeg';
+import heroImage from '../../assets/images-webp/hero.webp';
 import './Hero.css';
 
 const Hero = ({ darkMode }) => {
@@ -279,6 +279,7 @@ const Hero = ({ darkMode }) => {
             <img 
               src={heroImage}
               alt="Energy efficiency" 
+              loading="lazy"
               data-aos="zoom-in"
               data-aos-delay="300"
               style={{ 

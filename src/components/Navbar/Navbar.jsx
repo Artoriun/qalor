@@ -59,14 +59,16 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   };
 
   return (
-    <nav className="navbar-bg" style={navbarStyle}>
+    <nav className="navbar-bg" style={navbarStyle} aria-label="Hoofdnavigatie">
       <div style={navbarInnerStyle}>
         {/* Logo on the left */}
         <div style={{ fontWeight: 'bold', fontSize: '1.5rem', display: 'flex', alignItems: 'center' }}>
-          {/* Replace with actual logo image if available */}
           <img 
             src={qalorLogo} 
             alt="Qalor Logo" 
+            tabIndex={0}
+            role="link"
+            aria-label="Scroll naar boven"
             style={{ 
               height: '48px', 
               cursor: 'pointer',
@@ -80,25 +82,30 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               e.target.style.transform = 'scale(1)';
             }}
             onClick={(e) => {
-              // Create click animation - scale up momentarily
               e.target.style.transition = 'transform 0.15s ease';
               e.target.style.transform = 'scale(1.3)';
-              
               setTimeout(() => {
                 e.target.style.transition = 'transform 0.3s ease';
                 e.target.style.transform = 'scale(1)';
               }, 150);
-              
               window.scrollTo({ top: 0, behavior: 'smooth' });
               setIsMenuOpen(false);
             }} 
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setIsMenuOpen(false);
+              }
+            }}
           />
         </div>
-        
-  {/* Desktop Navigation Links */}
-  <ul className="navbar-desktop-nav">
-          <li>
+        {/* Desktop Navigation Links */}
+        <ul className="navbar-desktop-nav" role="menubar">
+          <li role="none">
             <button 
+              role="menuitem" 
+              aria-label="Scroll naar Ons team" 
+              tabIndex={0}
               onClick={(e) => {
                 // Add clicked class for animation
                 e.target.classList.add('clicked');
@@ -133,8 +140,11 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               Ons team
             </button>
           </li>
-          <li>
+          <li role="none">
             <button 
+              role="menuitem" 
+              aria-label="Scroll naar Qalor" 
+              tabIndex={0}
               onClick={(e) => {
                 // Add clicked class for animation
                 e.target.classList.add('clicked');
@@ -169,8 +179,11 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               Qalor
             </button>
           </li>
-          <li>
+          <li role="none">
             <button 
+              role="menuitem" 
+              aria-label="Scroll naar Ons werkproces" 
+              tabIndex={0}
               onClick={(e) => {
                 // Add clicked class for animation
                 e.target.classList.add('clicked');
@@ -205,8 +218,11 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               Ons werkproces
             </button>
           </li>
-          <li>
+          <li role="none">
             <button 
+              role="menuitem" 
+              aria-label="Scroll naar Projecten" 
+              tabIndex={0}
               onClick={(e) => {
                 // Add clicked class for animation
                 e.target.classList.add('clicked');
@@ -252,9 +268,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             </button>
           </li>
         </ul>
-        
         {/* Desktop Contact button */}
-        <button onClick={() => smoothScrollTo('footer')} className="navbar-desktop-contact" style={{ 
+        <button onClick={() => smoothScrollTo('footer')} className="navbar-desktop-contact" aria-label="Scroll naar Contact" tabIndex={0} style={{ 
           background: '#ff6b35', 
           color: '#fff', 
           border: 'none', 
@@ -294,26 +309,28 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             </svg>
           </span>
         </span></button>
-        
         {/* Mobile Hamburger Menu */}
         <div ref={menuRef} style={{ position: 'relative' }}>
           <button 
             onClick={toggleMenu}
             className="navbar-hamburger"
+            aria-label={isMenuOpen ? 'Sluit navigatiemenu' : 'Open navigatiemenu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="navbar-mobile-menu"
+            tabIndex={0}
           >
             <div className="navbar-hamburger-line"></div>
             <div className="navbar-hamburger-line"></div>
             <div className="navbar-hamburger-line"></div>
           </button>
-          
           {/* Mobile Dropdown Menu */}
           {isMenuOpen && (
-            <div className="navbar-mobile-menu">
-              <button onClick={() => smoothScrollTo('team')} className="navbar-mobile-menu-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Ons team</button>
-              <button onClick={() => smoothScrollTo('qalor')} className="navbar-mobile-menu-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Qalor</button>
-              <button onClick={() => smoothScrollTo('how-it-works')} className="navbar-mobile-menu-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Ons werkproces</button>
-              <button onClick={() => smoothScrollTo('projects')} className="navbar-mobile-menu-item" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Projecten</button>
-              <button onClick={() => smoothScrollTo('footer')} className="navbar-mobile-menu-item contact" style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Contact</button>
+            <div className="navbar-mobile-menu" id="navbar-mobile-menu" role="menu">
+              <button onClick={() => smoothScrollTo('team')} className="navbar-mobile-menu-item" role="menuitem" aria-label="Scroll naar Ons team" tabIndex={0} style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Ons team</button>
+              <button onClick={() => smoothScrollTo('qalor')} className="navbar-mobile-menu-item" role="menuitem" aria-label="Scroll naar Qalor" tabIndex={0} style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Qalor</button>
+              <button onClick={() => smoothScrollTo('how-it-works')} className="navbar-mobile-menu-item" role="menuitem" aria-label="Scroll naar Ons werkproces" tabIndex={0} style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Ons werkproces</button>
+              <button onClick={() => smoothScrollTo('projects')} className="navbar-mobile-menu-item" role="menuitem" aria-label="Scroll naar Projecten" tabIndex={0} style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Projecten</button>
+              <button onClick={() => smoothScrollTo('footer')} className="navbar-mobile-menu-item contact" role="menuitem" aria-label="Scroll naar Contact" tabIndex={0} style={{ background: 'none', border: 'none', width: '100%', textAlign: 'left' }}>Contact</button>
               {/* Dark mode switch (mobile) */}
               <div style={{ width: '100%', marginTop: '1.5rem', display: 'flex', justifyContent: 'center' }}>
                 <button

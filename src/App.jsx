@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Navbar from './components/Navbar/Navbar';
-import Hero from './components/Hero/Hero';
-import Team from './components/Team/Team';
-import About from './components/About/About';
-import WorkProcess from './components/WorkProcess/WorkProcess';
-import Projects from './components/Projects/Projects';
-import Contact from './components/Contact/Contact';
-import Footer from './components/Footer/Footer';
+
+const Navbar = lazy(() => import('./components/Navbar/Navbar'));
+const Hero = lazy(() => import('./components/Hero/Hero'));
+const Team = lazy(() => import('./components/Team/Team'));
+const About = lazy(() => import('./components/About/About'));
+const WorkProcess = lazy(() => import('./components/WorkProcess/WorkProcess'));
+const Projects = lazy(() => import('./components/Projects/Projects'));
+const Contact = lazy(() => import('./components/Contact/Contact'));
+const Footer = lazy(() => import('./components/Footer/Footer'));
 
 function App() {
   // Dark mode state
@@ -87,14 +88,34 @@ function App() {
           margin: 0,
           padding: 0
         }}>
-          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-          <Hero darkMode={darkMode} />
-          <Team darkMode={darkMode} />
-          <About darkMode={darkMode} />
-          <WorkProcess darkMode={darkMode} />
-          <Projects />
-          {/* <Contact /> */}
-          <Footer />
+          <Suspense fallback={<div style={{textAlign:'center',padding:'4rem'}}>Laden...</div>}>
+            <header>
+              <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+            </header>
+            <main>
+              <section id="hero">
+                <Hero darkMode={darkMode} />
+              </section>
+              <section id="team">
+                <Team darkMode={darkMode} />
+              </section>
+              <section id="qalor">
+                <About darkMode={darkMode} />
+              </section>
+              <section id="how-it-works">
+                <WorkProcess darkMode={darkMode} />
+              </section>
+              <section id="projects">
+                <Projects />
+              </section>
+              {/* <section id="contact">
+                <Contact />
+              </section> */}
+            </main>
+            <footer>
+              <Footer />
+            </footer>
+          </Suspense>
         </div>
       </Router>
     </React.StrictMode>
