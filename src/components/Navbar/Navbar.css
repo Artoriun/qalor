@@ -233,3 +233,36 @@
     display: none;
   }
 }
+
+/* Shrink navbar buttons and contact button on small landscape screens */
+@media (max-width: 900px) and (orientation: landscape) {
+  .navbar-desktop-nav li button {
+    font-size: 0.95rem;
+    padding-bottom: 6px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .navbar-desktop-contact {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+    max-width: 140px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+  .navbar-desktop-nav li button {
+    font-size: 0.85rem;
+    padding-bottom: 4px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .navbar-desktop-contact {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.5rem;
+    max-width: 100px;
+  }
+}
