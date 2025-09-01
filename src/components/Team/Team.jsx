@@ -274,20 +274,22 @@ const Team = ({ darkMode }) => {
   return (
     <>
       {showPDF && (
-        <div 
-          style={{ 
-            position: 'fixed', 
-            top: 0, 
-            left: 0, 
-            width: '100vw', 
-            height: '100vh', 
-            backgroundColor: 'rgba(0, 0, 0, 0.8)', 
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            width: '100vw',
+            minWidth: '100vw',
+            left: 0,
+            right: 0,
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
             zIndex: 1000,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: '20px',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            touchAction: 'none',
           }}
           onMouseDown={(e) => {
             if (e.target === e.currentTarget) {
