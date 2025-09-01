@@ -1,1 +1,0 @@
-.vertical-line-mobile{position:absolute;left:60px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#cc4125,#ff6b6b,#ff8e53);background-color:#ff6b6b;border-radius:2px;z-index:0;pointer-events:none;transform:translate(-50%);-webkit-transform:translateX(-50%);background-clip:padding-box;-webkit-background-clip:padding-box;will-change:transform}
