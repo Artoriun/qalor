@@ -1,4 +1,4 @@
-import{R as H,r as s,j as t}from"./index-CRRc9-T1.js";const R="/qalor/assets/assencomp-32-7OlqL.webp",B="/qalor/assets/heechterp2-CpvNaK1p.webp",X="/qalor/assets/heeg-B3ixUi0f.webp",q="/qalor/assets/sneek-CxDfxWAm.webp",N="/qalor/assets/heechterp-C1VLd9IC.webp",O="/qalor/assets/dokkum-DKtW4Xn7.webp",F="/qalor/assets/anjum-Dakf3uNX.webp",i=[{id:1,name:"Heechterp Leeuwarden",role:"Warmtenet Ontwerp",description:`warmtenet voor 868 woningen
+import{R as H,r as s,j as t}from"./index-Bxy0_DtO.js";const R="/qalor/assets/assencomp-32-7OlqL.webp",B="/qalor/assets/heechterp2-CpvNaK1p.webp",X="/qalor/assets/heeg-B3ixUi0f.webp",q="/qalor/assets/sneek-CxDfxWAm.webp",N="/qalor/assets/heechterp-C1VLd9IC.webp",O="/qalor/assets/dokkum-DKtW4Xn7.webp",F="/qalor/assets/anjum-Dakf3uNX.webp",i=[{id:1,name:"Heechterp Leeuwarden",role:"Warmtenet Ontwerp",description:`warmtenet voor 868 woningen
 zowel bestaande bouw als nieuwbouw
 indopdrachtgever woningcorporatie Elkien`,image:N,color:"#007bff"},{id:2,name:"Dokkum Fûgellân",role:"Energie Optimalisatie",description:`warmtenet voor 1114 woningen + utiliteit
 bestaande bouw
