@@ -38,14 +38,12 @@ const Navbar = ({ darkMode, setDarkMode }) => {
       }
     };
 
-    if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isMenuOpen]);
+  }, []);
 
   const smoothScrollTo = (elementId) => {
     const element = document.getElementById(elementId);
