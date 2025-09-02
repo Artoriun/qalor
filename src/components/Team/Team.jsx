@@ -427,10 +427,53 @@ const Team = ({ darkMode }) => {
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '8px' }}>
                             <p style={{ color: '#fff', lineHeight: '1.4', margin: 0, fontSize: '1rem' }}>{member.description}</p>
                             {member.pdfPath && (
-                              <button style={{ background: '#fff', color: '#000', border: 'none', borderRadius: '50px', padding: '5px 9px', fontSize: '0.85rem', fontWeight: '600', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.08)', outline: 'none', transition: 'background 0.2s, color 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.2rem', height: '24px', minHeight: '24px' }} onClick={(e) => { e.stopPropagation(); handlePDFClick(member); }}>
+                              <button 
+                                className="cv-button" // Add a unique class for the CV button
+                                style={{ 
+                                  background: '#fff', // Keep the background white
+                                  color: darkMode ? '#000' : '#000', // Ensure text color is always black
+                                  border: 'none', 
+                                  borderRadius: '50px', 
+                                  padding: '5px 9px', 
+                                  fontSize: '0.85rem', 
+                                  fontWeight: '600', 
+                                  cursor: 'pointer', 
+                                  boxShadow: '0 2px 5px rgba(0,0,0,0.08)', 
+                                  outline: 'none', 
+                                  transition: 'background 0.2s, color 0.2s', 
+                                  display: 'inline-flex', 
+                                  alignItems: 'center', 
+                                  gap: '0.2rem', 
+                                  height: '24px', 
+                                  minHeight: '24px' 
+                                }} 
+                                onClick={(e) => { 
+                                  e.stopPropagation(); 
+                                  handlePDFClick(member); 
+                                }}
+                              >
                                 CV
-                                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#ff6b35', marginLeft: '4px', pointerEvents: 'none' }}>
-                                  <svg width="14" height="8" viewBox="0 0 18 8" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
+                                <span 
+                                  style={{ 
+                                    display: 'inline-flex', 
+                                    alignItems: 'center', 
+                                    justifyContent: 'center', 
+                                    width: '20px', 
+                                    height: '20px', 
+                                    borderRadius: '50%', 
+                                    backgroundColor: '#ff6b35', 
+                                    marginLeft: '4px', 
+                                    pointerEvents: 'none' 
+                                  }}
+                                >
+                                  <svg 
+                                    width="14" 
+                                    height="8" 
+                                    viewBox="0 0 18 8" 
+                                    fill="none" 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    style={{ display: 'block' }}
+                                  >
                                     <path d="M1 4H17" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
                                     <path d="M14 1L17 4L14 7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                   </svg>

@@ -80,6 +80,14 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.cv-button {
+  color: #000 !important; /* Ensure text color is always black */
+}
+
+body.dark-mode .cv-button {
+  color: #000 !important; /* Ensure text color is always black in dark mode */
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
