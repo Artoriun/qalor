@@ -51,6 +51,7 @@ const Footer = () => {
             <img 
               src={qalorLogo} 
               alt="Qalor Logo" 
+              loading="lazy"
               style={{ 
                 height: '48px', 
                 marginBottom: '1rem',

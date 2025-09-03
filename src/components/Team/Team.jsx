@@ -334,6 +334,7 @@ const Team = ({ darkMode }) => {
           >
             <button 
               onClick={handleClosePDF} 
+              aria-label="Close PDF Viewer" 
               style={{ 
                 position: 'absolute', 
                 top: '10px', 
@@ -491,13 +492,13 @@ const Team = ({ darkMode }) => {
           </div>
           {/* Navigation Buttons */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '0.5rem', alignItems: 'center' }}>
-            <button onClick={handlePrevClick} style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid #ff6b35', backgroundColor: '#ff6b35', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.25s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', outline: 'none', transform: prevClicked ? 'scale(1.2)' : 'scale(1)', padding: 0 }}>
+            <button onClick={handlePrevClick} aria-label="Previous Slide" style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid #ff6b35', backgroundColor: '#ff6b35', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.25s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', outline: 'none', transform: prevClicked ? 'scale(1.2)' : 'scale(1)', padding: 0 }}>
               <svg width="100%" height="100%" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
                 <path d="M36 25H14" stroke="#fff" strokeWidth="4" strokeLinecap="round"/>
                 <path d="M20 16L14 25L20 34" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-            <button onClick={handleNextClick} style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid #ff6b35', backgroundColor: '#ff6b35', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.25s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', outline: 'none', transform: nextClicked ? 'scale(1.2)' : 'scale(1)', padding: 0 }}>
+            <button onClick={handleNextClick} aria-label="Next Slide" style={{ width: '50px', height: '50px', borderRadius: '50%', border: '2px solid #ff6b35', backgroundColor: '#ff6b35', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.25s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 2px 5px rgba(0,0,0,0.1)', outline: 'none', transform: nextClicked ? 'scale(1.2)' : 'scale(1)', padding: 0 }}>
               <svg width="100%" height="100%" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
                 <path d="M14 25H36" stroke="#fff" strokeWidth="4" strokeLinecap="round"/>
                 <path d="M30 16L36 25L30 34" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>

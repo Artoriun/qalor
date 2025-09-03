@@ -64,6 +64,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           <img 
             src={qalorLogo} 
             alt="Qalor Logo" 
+            loading="lazy" 
             tabIndex={0}
             role="link"
             aria-label="Scroll naar boven"

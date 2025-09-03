@@ -258,6 +258,7 @@ const WorkProcess = ({ darkMode }) => {
                   <img 
                     src={nettekeningImg}
                     alt="AutoCAD Nettekening"
+                    loading="lazy"
                     style={{
                       height: '260px',
                       width: '100%',
@@ -308,6 +309,7 @@ const WorkProcess = ({ darkMode }) => {
                   <img
                     src={nettekeningImg}
                     alt="AutoCAD Nettekening"
+                    loading="lazy"
                     style={{
                       height: '300px',
                       width: '100%',

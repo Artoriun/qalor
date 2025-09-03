@@ -441,6 +441,7 @@ const Projects = () => {
         }}>
           <button
             onClick={handlePrev}
+            aria-label="Previous Project" 
             style={{
               width: '50px',
               height: '50px',
@@ -466,6 +467,7 @@ const Projects = () => {
           </button>
           <button
             onClick={handleNext}
+            aria-label="Next Project" 
             style={{
               width: '50px',
               height: '50px',
