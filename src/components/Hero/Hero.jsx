@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Particles from '../Particles/Particles';
-import heroImage from '../../assets/images-webp/hero.webp';
 import './Hero.css';
 
 const Hero = ({ darkMode }) => {
@@ -276,21 +275,13 @@ const Hero = ({ darkMode }) => {
             position: 'relative',
             zIndex: 3
           }}>
-            <img 
-              src={heroImage}
-              alt="Energy efficiency" 
-              loading="lazy"
+            <img
+              alt="Energy efficiency"
+              src="/qalor/src/assets/images-webp/hero-optimized.webp"
               data-aos="zoom-in"
               data-aos-delay="300"
-              style={{ 
-                width: '100%', 
-                height: isMobile ? '300px' : '100%',
-                minHeight: isMobile ? '300px' : '400px',
-                objectFit: 'cover',
-                objectPosition: 'right center',
-                borderRadius: '15px',
-                                boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.6)' : '0 10px 30px rgba(0,0,0,0.2)'
-              }} 
+              className="aos-init aos-animate"
+              style={{ width: '100%', height: '300px', minHeight: '300px', objectFit: 'cover', objectPosition: 'right', borderRadius: '15px', position: 'relative' }}
             />
           </div>
         </div>
