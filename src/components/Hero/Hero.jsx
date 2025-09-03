@@ -280,7 +280,6 @@ const Hero = ({ darkMode }) => {
               src="/qalor/src/assets/images-webp/hero-optimized.webp"
               data-aos="zoom-in"
               data-aos-delay="300"
-              className="aos-init aos-animate"
               style={{ width: '100%', height: '300px', minHeight: '300px', objectFit: 'cover', objectPosition: 'right', borderRadius: '15px', position: 'relative' }}
             />
           </div>

@@ -25,8 +25,3 @@
   opacity: 1;
 }
 
-/* When animated, return to normal position */
-[data-aos].aos-animate {
-  transform: none !important;
-  opacity: 1 !important;
-}
