@@ -13,4 +13,12 @@ export default defineConfig({
       '.ngrok.io', // Allow ngrok domains for future use
     ],
   },
+  build: {
+    minify: 'esbuild', // Ensure JavaScript is minified during the build
+    terserOptions: {
+      compress: {
+        drop_console: true, // Remove console logs for production
+      },
+    },
+  },
 })
