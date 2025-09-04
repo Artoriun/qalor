@@ -359,7 +359,8 @@ const Team = ({ darkMode }) => {
             >
               ×
             </button>
-            <Worker workerUrl={`/qalor/pdfjs/pdf.worker.min.js`}>
+            {/* Use Vite base URL so worker path works on root or subpath deployments */}
+            <Worker workerUrl={`${import.meta.env.BASE_URL}pdfjs/pdf.worker.min.js`}>
               <Viewer key={pdfKey} fileUrl={currentPdfPath} />
             </Worker>
           </div>

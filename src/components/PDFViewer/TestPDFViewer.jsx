@@ -1,7 +1,8 @@
 import React from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.min.js';
+// Use Vite's base URL so the worker path works for root or subpath deployments
+pdfjs.GlobalWorkerOptions.workerSrc = `${import.meta.env.BASE_URL}pdfjs/pdf.worker.min.js`;
 
 const TestPDFViewer = () => {
     const fileUrl = '/src/assets/documents/sample.pdf'; // Replace with an actual PDF file path
