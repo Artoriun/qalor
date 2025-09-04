@@ -96,9 +96,8 @@ function App() {
               <section id="hero">
                 <Hero darkMode={darkMode} />
               </section>
-              <section id="team">
-                <Team darkMode={darkMode} />
-              </section>
+              {/* Defer Team section loading until visible */}
+              <DeferredTeam darkMode={darkMode} />
               <section id="qalor">
                 <About darkMode={darkMode} />
               </section>
@@ -119,6 +118,33 @@ function App() {
         </div>
       </Router>
     </React.StrictMode>
+  );
+}
+
+// DeferredTeam: loads Team only when scrolled into view
+function DeferredTeam({ darkMode }) {
+  const [show, setShow] = React.useState(false);
+  const ref = React.useRef();
+
+  React.useEffect(() => {
+    if (!ref.current) return;
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShow(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="team" ref={ref} style={{ minHeight: '400px', width: '100%' }}>
+      {show ? <Team darkMode={darkMode} /> : <div style={{textAlign:'center',padding:'4rem'}}>Laden...</div>}
+    </section>
   );
 }
 
