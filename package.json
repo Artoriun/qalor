@@ -4,10 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+  "dev": "vite --host",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "serve:compressed": "node server/precompressed-server.cjs",
+  "serve:compressed:bg": "nohup node server/precompressed-server.cjs > precompressed.log 2>&1 &",
+  "lh:report": "npx --yes lighthouse http://localhost:8080 --quiet --output=json --output-path=./precompressed-lighthouse.json"
   },
   "dependencies": {
     "@react-pdf-viewer/core": "^3.12.0",
