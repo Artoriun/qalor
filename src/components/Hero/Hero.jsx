@@ -23,6 +23,20 @@ const Hero = ({ darkMode }) => {
     };
   }, []);
 
+  // Preload the hero LCP image so it's fetched early (helps LCP when image is rendered dynamically)
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = heroImg; // Vite resolves this to the correct hashed asset path
+    link.crossOrigin = 'anonymous';
+    document.head.appendChild(link);
+    return () => {
+      try { document.head.removeChild(link); } catch (e) { /* ignore */ }
+    };
+  }, []);
+
     // Inject CSS for hero contact button styling and wat wij doen button dot animation
   useEffect(() => {
     const style = document.createElement('style');
