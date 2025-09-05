@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import heroImg from '../../assets/images-webp/hero-optimized.webp';
 import Particles from '../Particles/Particles';
 import './Hero.css';
 
@@ -277,7 +278,7 @@ const Hero = ({ darkMode }) => {
           }}>
             <img
               alt="Energy efficiency"
-              src="/assets/hero-optimized.webp"
+              src={heroImg}
               data-aos="zoom-in"
               data-aos-delay="300"
               style={{ width: '100%', height: '300px', minHeight: '300px', objectFit: 'cover', objectPosition: 'right', borderRadius: '15px', position: 'relative' }}
