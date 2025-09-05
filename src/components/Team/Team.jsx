@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Worker, Viewer } from '@react-pdf-viewer/core';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '../../pdf-viewer-override.css';
+// PDF viewer (heavy) will be dynamically imported when a CV is opened to avoid
+// adding it to the initial Team chunk.
 
 import qalorLogoImg from '../../assets/images-webp/qalor logo.webp';
 import janImg from '../../assets/images-webp/jan.webp';
@@ -21,6 +20,8 @@ const Team = ({ darkMode }) => {
   const [showPDF, setShowPDF] = useState(false);
   const [currentPdfPath, setCurrentPdfPath] = useState('');
   const [pdfKey, setPdfKey] = useState(0);
+  const [pdfModule, setPdfModule] = useState(null);
+  const [pdfLoading, setPdfLoading] = useState(false);
 
   // Drag
   const [isDragging, setIsDragging] = useState(false);
@@ -129,6 +130,20 @@ const Team = ({ darkMode }) => {
     if (!member.isImage && !hasMoved && member.pdfPath) {
       setCurrentPdfPath(member.pdfPath);
       setShowPDF(true);
+      // Start loading the heavy PDF viewer code (if not already loaded).
+      if (!pdfModule && !pdfLoading) {
+        setPdfLoading(true);
+        Promise.all([
+          import('@react-pdf-viewer/core'),
+          import('@react-pdf-viewer/core/lib/styles/index.css'),
+          import('../../pdf-viewer-override.css'),
+        ])
+          .then(([mod]) => {
+            setPdfModule(mod);
+          })
+          .catch(() => {})
+          .finally(() => setPdfLoading(false));
+      }
     }
   };
 
@@ -215,12 +230,25 @@ const Team = ({ darkMode }) => {
           onTouchStart={(e) => { if (e.target === e.currentTarget) { e.preventDefault(); handleClosePDF(); } }}
         >
           <div onClick={handleClosePDF} onTouchStart={handleClosePDF} style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '80px', zIndex: 1001 }} />
-          <div className="pdf-modal-container" style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '800px', maxHeight: '90vh', borderRadius: '8px', overflow: 'hidden' }} onMouseDown={(e) => e.stopPropagation()} onTouchStart={(e) => e.stopPropagation()}>
-            <button onClick={handleClosePDF} aria-label="Close PDF Viewer" style={{ position: 'absolute', top: '10px', right: '10px', background: '#e86c35', color: 'white', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', zIndex: 1003, fontSize: '24px', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0', lineHeight: '1', fontFamily: 'Arial, sans-serif' }}>×</button>
-            <Worker workerUrl={`${import.meta.env.BASE_URL}pdfjs/pdf.worker.min.js`}>
-              <Viewer key={pdfKey} fileUrl={currentPdfPath} />
-            </Worker>
-          </div>
+            <div className="pdf-modal-container" style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '800px', maxHeight: '90vh', borderRadius: '8px', overflow: 'hidden' }} onMouseDown={(e) => e.stopPropagation()} onTouchStart={(e) => e.stopPropagation()}>
+              <button onClick={handleClosePDF} aria-label="Close PDF Viewer" style={{ position: 'absolute', top: '10px', right: '10px', background: '#e86c35', color: 'white', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer', zIndex: 1003, fontSize: '24px', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0', lineHeight: '1', fontFamily: 'Arial, sans-serif' }}>×</button>
+              {/* Render a lightweight loader while the viewer code is fetched. */}
+              {(!pdfModule && pdfLoading) && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#fff' }}>Laden…</div>
+              )}
+              {/* Once the module is loaded, render Worker/Viewer from the dynamically imported module. */}
+              {pdfModule && (
+                // pdfModule exposes Worker and Viewer as named exports
+                pdfModule.Worker ? (
+                  <pdfModule.Worker workerUrl={`${import.meta.env.BASE_URL}pdfjs/pdf.worker.min.js`}>
+                    <pdfModule.Viewer key={pdfKey} fileUrl={currentPdfPath} />
+                  </pdfModule.Worker>
+                ) : (
+                  // Fallback: if Worker isn't available, try to render Viewer directly
+                  <pdfModule.Viewer key={pdfKey} fileUrl={currentPdfPath} />
+                )
+              )}
+            </div>
         </div>,
         document.body
       )}

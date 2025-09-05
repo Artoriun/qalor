@@ -5,7 +5,9 @@ import 'aos/dist/aos.css';
 
 const Navbar = lazy(() => import('./components/Navbar/Navbar'));
 const Hero = lazy(() => import('./components/Hero/Hero'));
-const Team = lazy(() => import('./components/Team/Team'));
+// Team is intentionally not lazy-imported at module scope to avoid Vite preloading
+// its chunk. It will be dynamically imported inside `DeferredTeam` when the
+// section becomes visible.
 const About = lazy(() => import('./components/About/About'));
 const WorkProcess = lazy(() => import('./components/WorkProcess/WorkProcess'));
 const Projects = lazy(() => import('./components/Projects/Projects'));
@@ -121,9 +123,12 @@ function App() {
   );
 }
 
-// DeferredTeam: loads Team only when scrolled into view
+// DeferredTeam: loads Team only when scrolled into view. We perform a dynamic
+// import inside the effect so the Team chunk isn't referenced at module scope
+// and therefore won't be preloaded by Vite during initial load.
 function DeferredTeam({ darkMode }) {
   const [show, setShow] = React.useState(false);
+  const [TeamComp, setTeamComp] = React.useState(null);
   const ref = React.useRef();
 
   React.useEffect(() => {
@@ -141,9 +146,22 @@ function DeferredTeam({ darkMode }) {
     return () => observer.disconnect();
   }, []);
 
+  // When `show` becomes true, dynamically import the Team component.
+  React.useEffect(() => {
+    let mounted = true;
+    if (show && TeamComp === null) {
+      import('./components/Team/Team').then((mod) => {
+        if (mounted) setTeamComp(() => mod.default);
+      }).catch(() => {
+        // ignore import errors here; component will remain null and fallback will show
+      });
+    }
+    return () => { mounted = false; };
+  }, [show, TeamComp]);
+
   return (
     <section id="team" ref={ref} style={{ minHeight: '400px', width: '100%' }}>
-      {show ? <Team darkMode={darkMode} /> : <div style={{textAlign:'center',padding:'4rem'}}>Laden...</div>}
+      {TeamComp ? <TeamComp darkMode={darkMode} /> : <div style={{textAlign:'center',padding:'4rem'}}>Laden...</div>}
     </section>
   );
 }
