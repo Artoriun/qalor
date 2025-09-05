@@ -1,5 +1,9 @@
 import berekeningImg from '../../assets/images-webp/berekening.webp';
+import berekening400 from '../../assets/images-webp/berekening-400.webp';
+import berekening800 from '../../assets/images-webp/berekening-800.webp';
 import gebouwendatabaseImg from '../../assets/images-webp/gebouwendatabase.webp';
+import gebouwendatabase400 from '../../assets/images-webp/gebouwendatabase-400.webp';
+import gebouwendatabase800 from '../../assets/images-webp/gebouwendatabase-800.webp';
 import nettekeningImg from '../../assets/images-webp/nettekening.webp';
 import React, { useState, useEffect, useRef } from 'react';
 import './WorkProcess.css';
@@ -463,8 +467,7 @@ const WorkProcess = ({ darkMode }) => {
                   </div>
                   
                   {/* Image below text */}
-                  <img 
-                    src={gebouwendatabaseImg}
+                  <img
                     alt="Gebouwendatabase"
                     style={{
                       height: '260px',
@@ -473,6 +476,9 @@ const WorkProcess = ({ darkMode }) => {
                       borderRadius: '8px',
                       boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.25)' : '0 8px 25px rgba(255,107,53,0.15)'
                     }}
+                    srcSet={`${gebouwendatabase400} 400w, ${gebouwendatabase800} 800w, ${gebouwendatabaseImg} 1200w`}
+                    sizes="(max-width: 600px) 400px, 800px"
+                    src={gebouwendatabase400}
                   />
                   
                   {/* Button below image */}
@@ -574,7 +580,6 @@ const WorkProcess = ({ darkMode }) => {
                   justifyContent: 'center',
                 }}>
                   <img
-                    src={gebouwendatabaseImg}
                     alt="Gebouwendatabase"
                     style={{
                       height: '300px',
@@ -583,6 +588,9 @@ const WorkProcess = ({ darkMode }) => {
                       borderRadius: '12px',
                       boxShadow: '0 8px 25px rgba(40,167,69,0.15)'
                     }}
+                    srcSet={`${gebouwendatabase400} 400w, ${gebouwendatabase800} 800w, ${gebouwendatabaseImg} 1200w`}
+                    sizes="(max-width: 600px) 400px, 800px"
+                    src={gebouwendatabase800}
                   />
                 </div>
               </>
@@ -669,8 +677,7 @@ const WorkProcess = ({ darkMode }) => {
                   </div>
                   
                   {/* Image below text */}
-                  <img 
-                    src={berekeningImg}
+                  <img
                     alt="Exploitatieberekening"
                     style={{
                       height: '260px',
@@ -679,6 +686,9 @@ const WorkProcess = ({ darkMode }) => {
                       borderRadius: '8px',
                       boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.25)' : '0 4px 15px rgba(255,107,53,0.15)'
                     }}
+                    srcSet={`${berekening400} 400w, ${berekening800} 800w, ${berekeningImg} 1200w`}
+                    sizes="(max-width: 600px) 400px, 800px"
+                    src={berekening400}
                   />
                   
                   {/* Button below image */}
@@ -720,7 +730,6 @@ const WorkProcess = ({ darkMode }) => {
                   justifyContent: 'center',
                 }}>
                   <img
-                    src={berekeningImg}
                     alt="Exploitatieberekening"
                     style={{
                       height: '300px',
@@ -729,6 +738,9 @@ const WorkProcess = ({ darkMode }) => {
                       borderRadius: '12px',
                       boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.25)' : '0 8px 25px rgba(255,107,53,0.15)'
                     }}
+                    srcSet={`${berekening400} 400w, ${berekening800} 800w, ${berekeningImg} 1200w`}
+                    sizes="(max-width: 600px) 400px, 800px"
+                    src={berekening800}
                   />
                 </div>
                 

@@ -1,4 +1,6 @@
 import peterhuubImg from '../../assets/images-webp/peterhuub.webp';
+import peterhuub400 from '../../assets/images-webp/peterhuub-400.webp';
+import peterhuub800 from '../../assets/images-webp/peterhuub-800.webp';
 import React, { useState, useEffect } from 'react';
 
 const About = ({ darkMode }) => {
@@ -210,28 +212,30 @@ const About = ({ darkMode }) => {
           </div>
           
           {/* Right side - Image */}
-          <img 
-            src={peterhuubImg}
+          <img
             alt="Peter & Huub"
             loading="lazy"
             data-aos="zoom-in"
             data-aos-delay="300"
-            style={{ 
-              width: '100%', 
-              height: (() => { 
-                if (isMobile) return '300px'; 
-                if (isTablet) return '380px'; 
-                return '450px'; 
-              })(), 
-              objectFit: 'cover', 
-              objectPosition: (() => { 
-                if (isMobile) return 'center -50px'; 
-                if (isTablet) return 'center -90px'; 
-                return 'center -125px'; 
-              })(), 
-              borderRadius: '12px', 
-              boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.25)' : '0 8px 25px rgba(255,107,53,0.2)' 
-            }} 
+            style={{
+              width: '100%',
+              height: (() => {
+                if (isMobile) return '300px';
+                if (isTablet) return '380px';
+                return '450px';
+              })(),
+              objectFit: 'cover',
+              objectPosition: (() => {
+                if (isMobile) return 'center -50px';
+                if (isTablet) return 'center -90px';
+                return 'center -125px';
+              })(),
+              borderRadius: '12px',
+              boxShadow: darkMode ? '0 0 40px 0 rgba(255,107,53,0.25)' : '0 8px 25px rgba(255,107,53,0.2)'
+            }}
+            srcSet={`${peterhuub400} 400w, ${peterhuub800} 800w, ${peterhuubImg} 1200w`}
+            sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+            src={peterhuub400}
           />
         </div>
       </div>

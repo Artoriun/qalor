@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
 import qalorLogo from '../../assets/images-webp/qalor logo.webp';
+import qalorLogo400 from '../../assets/images-webp/qalor logo-400.webp';
+import qalorLogo800 from '../../assets/images-webp/qalor logo-800.webp';
 
 const navbarStyle = {
   position: 'fixed',
@@ -63,6 +65,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         <div style={{ fontWeight: 'bold', fontSize: '1.5rem', display: 'flex', alignItems: 'center' }}>
           <img 
             src={qalorLogo} 
+            srcSet={`${qalorLogo400} 48w, ${qalorLogo800} 96w, ${qalorLogo} 160w`}
+            sizes="48px"
             alt="Qalor Logo" 
             loading="lazy" 
             tabIndex={0}

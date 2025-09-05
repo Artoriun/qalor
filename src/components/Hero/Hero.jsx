@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import heroImg from '../../assets/images-webp/hero-optimized.webp';
+import hero400 from '../../assets/images-webp/hero-optimized-400.webp';
+import hero800 from '../../assets/images-webp/hero-optimized-800.webp';
 import Particles from '../Particles/Particles';
 import './Hero.css';
 
@@ -29,7 +31,8 @@ const Hero = ({ darkMode }) => {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
-    link.href = heroImg; // Vite resolves this to the correct hashed asset path
+  // Preload the medium/large hero image (Vite resolves to hashed asset)
+  link.href = hero800;
     link.crossOrigin = 'anonymous';
     document.head.appendChild(link);
     return () => {
@@ -292,10 +295,12 @@ const Hero = ({ darkMode }) => {
           }}>
             <img
               alt="Energy efficiency"
-              src={heroImg}
               data-aos="zoom-in"
               data-aos-delay="300"
               style={{ width: '100%', height: '300px', minHeight: '300px', objectFit: 'cover', objectPosition: 'right', borderRadius: '15px', position: 'relative' }}
+              srcSet={`${hero400} 400w, ${hero800} 800w, ${heroImg} 1200w`}
+              sizes="(max-width: 600px) 400px, 800px"
+              src={hero400}
             />
           </div>
         </div>
