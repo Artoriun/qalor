@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Navbar.css';
-import qalorLogo from '../../assets/images/figures/qalor logo.png';
+import qalorLogo from '../../assets/images-webp/qalor logo.webp';
 
 const navbarStyle = {
   position: 'fixed',

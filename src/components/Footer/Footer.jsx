@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Particles from '../Particles/Particles';
-import qalorLogo from '../../assets/images/figures/qalorlogowhite.png';
+import qalorLogo from '../../assets/images-webp/qalorlogowhite.webp';
 
 const Footer = () => {
   const [isMobile, setIsMobile] = useState(false);

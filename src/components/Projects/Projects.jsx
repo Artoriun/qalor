@@ -4,7 +4,7 @@ import heegImg from '../../assets/images-webp/heeg.webp';
 import sneekImg from '../../assets/images-webp/sneek.webp';
 
 import React, { useState, useEffect } from 'react';
-import defaultProjectImg from '../../assets/images/figures/qalor Q.png';
+import defaultProjectImg from '../../assets/images-webp/qalor Q.webp';
 import heechterpImg from '../../assets/images-webp/heechterp.webp';
 import dokkumImg from '../../assets/images-webp/dokkum.webp';
 import anjumImg from '../../assets/images-webp/anjum.webp';

@@ -4,10 +4,10 @@ import { Worker, Viewer } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '../../pdf-viewer-override.css';
 
-import qalorLogoImg from '../../assets/images/figures/qalor logo.png';
-import janImg from '../../assets/images/team/jan.png';
-import huubImg from '../../assets/images/team/huub.png';
-import peterImg from '../../assets/images/team/peter.png';
+import qalorLogoImg from '../../assets/images-webp/qalor logo.webp';
+import janImg from '../../assets/images-webp/jan.webp';
+import huubImg from '../../assets/images-webp/huub.webp';
+import peterImg from '../../assets/images-webp/peter.webp';
 
 const Team = ({ darkMode }) => {
   const timerRef = useRef(null);

@@ -1,6 +1,6 @@
-import janImg from '../../assets/images/team/jan.png';
-import huubImg from '../../assets/images/team/huub.png';
-import peterImg from '../../assets/images/team/peter.png';
+import janImg from '../../assets/images-webp/jan.webp';
+import huubImg from '../../assets/images-webp/huub.webp';
+import peterImg from '../../assets/images-webp/peter.webp';
 import React, { useState, useEffect } from 'react';
 import Particles from '../Particles/Particles';
 
