@@ -6,11 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qalor
     </title>
-  <!-- Preloads removed: use imported assets so Vite manages paths -->
+  <!-- Make Google Fonts non-blocking: preload with onload swap, fallback in noscript -->
   <meta name="description" content="Qalor — energiedeskundigen voor warmtenetten: advies, ontwerp en realisatie van energie-efficiënte warmteoplossingen voor gebouwen en wijken." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" onload="this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  </noscript>
+
+  <!-- Critical inline CSS: small above-the-fold styles so first paint isn't blocked by full CSS -->
+  <style>
+    /* Basic reset and font fallback */
+    html,body{height:100%;margin:0;padding:0}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    #root{min-height:100vh}
+
+    /* Hero critical layout (small subset) */
+    .hero.section-bg{width:100%;display:flex;align-items:center;padding:0}
+    .hero > div{max-width:1600px;margin:0 auto;padding:60px 40px;border-radius:20px;position:relative}
+    .hero img{width:100%;height:300px;min-height:300px;object-fit:cover;object-position:right;border-radius:15px;display:block}
+
+    /* Buttons and simple touch-friendly rules */
+    .wat-wij-doen-btn{position:relative;padding-bottom:8px}
+    .wat-wij-doen-btn, button{font-family:inherit}
+
+    /* Mobile tweaks for above-the-fold */
+    @media (max-width:768px){
+      .hero > div{padding:40px 20px}
+      .hero h1{font-size:3rem}
+      .hero h2{font-size:1.6rem}
+    }
+  </style>
+
+  <!-- End head -->
   </head>
   <body>
   <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <!-- Non-blocking load for main CSS (fallback to built file in /assets) -->
+  <link rel="preload" as="style" href="/assets/index-BTZSLuTo.css" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/index-BTZSLuTo.css"></noscript>
+
+  <!-- Application entry (module) -->
+  <script type="module" src="/src/main.jsx" defer></script>
   </body>
 </html>
