@@ -47,6 +47,11 @@ Qalor is a professional consulting company focused on energy efficiency, heating
 - **Auto-advancing slides** with manual navigation controls
 - **Project details** including location, scope, and descriptions
 - **Responsive card layout** with professional imagery
+#### Projects Portfolio
+- **Infinite carousel slider** showcasing completed projects
+- **Auto-advancing slides** with manual navigation controls
+- **Project details** including location, scope, and descriptions
+- **Responsive card layout** with professional imagery
 
 #### Team Section
 - **Interactive team carousel** featuring key personnel
