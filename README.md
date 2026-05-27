@@ -5,6 +5,8 @@ A modern, responsive React website for Qalor - energy experts specializing in he
 ## Link To Website
 https://qalor.nl/
 
+<img width="1080" height="2034" alt="Image" src="https://github.com/user-attachments/assets/33e561c5-c84f-474e-8fc9-3f45db55b3fa
+
 ## 🚀 Overview
 
 Qalor is a professional consulting company focused on energy efficiency, heating networks, and sustainable energy solutions. This website showcases their expertise, team, and project portfolio with a modern, interactive design.
