@@ -2,7 +2,7 @@
 
 A modern, responsive React website for Qalor - energy experts specializing in heating networks and sustainable energy solutions.
 
-## Link To Website
+## Link to Website
 https://qalor.nl/
 
 <img width="1080" height="2034" alt="Image" src="https://github.com/user-attachments/assets/f7672313-afde-4bef-8abe-3dca3093e611" />
